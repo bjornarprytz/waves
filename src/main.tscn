@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=8 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Shader" uid="uid://cey285dctf074" path="res://ground.gdshader" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
@@ -29,9 +29,11 @@ albedo_texture = ExtResource("2_h2yge")
 uv1_scale = Vector3(100, 6, 100)
 texture_filter = 2
 
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+size = Vector3(0.605, 0.4, 1)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_h2yge")
-rotate_speed = 0.007
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9598151, 0.28063318, 0, -0.28063318, 0.9598151, 0, 0, 0)
@@ -41,6 +43,11 @@ unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, -100.91819, -8.114407)
 mesh = SubResource("CylinderMesh_ig7tw")
 surface_material_override/0 = SubResource("StandardMaterial3D_1bvp3")
+
+[node name="Car" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.961, -1.59)
+mesh = SubResource("BoxMesh_h2yge")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
