@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnlnc82km7nue"]
+
+[ext_resource type="Script" uid="uid://ghdg8kw3r0wl" path="res://car.gd" id="1_7822p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+size = Vector3(0.605, 0.4, 1)
+
+[node name="Car" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+mesh = SubResource("BoxMesh_h2yge")
+script = ExtResource("1_7822p")

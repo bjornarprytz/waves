@@ -1,36 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=4 format=3 uid="uid://cgrejd4v5ywd3"]
 
-[ext_resource type="Shader" uid="uid://cey285dctf074" path="res://ground.gdshader" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
-[ext_resource type="Texture2D" uid="uid://c0vtkyd3x6lw0" path="res://assets/img/placeholder-texture.png" id="2_h2yge"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
-render_priority = 0
-shader = ExtResource("1_0xm2m")
-shader_parameter/road_color = Color(0.1, 0.1, 0.1, 1)
-shader_parameter/sidewalk_color = Color(0.3, 0.3, 0.3, 1)
-shader_parameter/line_color = Color(1, 1, 0, 1)
-shader_parameter/line_repeat = 4.0
-shader_parameter/sidewalk_width = 0.2
-shader_parameter/line_width = 0.05
-shader_parameter/scroll_speed = 0.5
-shader_parameter/time_offset = 0.0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_ig7tw"]
-material = SubResource("ShaderMaterial_h2yge")
-top_radius = 100.0
-bottom_radius = 100.0
-height = 20.0
-cap_top = false
-cap_bottom = false
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bvp3"]
-albedo_texture = ExtResource("2_h2yge")
-uv1_scale = Vector3(100, 6, 100)
-texture_filter = 2
-
-[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
-size = Vector3(0.605, 0.4, 1)
+[ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dnlnc82km7nue" path="res://car.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_h2yge")
@@ -38,18 +10,16 @@ script = ExtResource("1_h2yge")
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9598151, 0.28063318, 0, -0.28063318, 0.9598151, 0, 0, 0)
 
-[node name="Ground" type="MeshInstance3D" parent="."]
+[node name="Ground" parent="." instance=ExtResource("2_0xm2m")]
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, -100.91819, -8.114407)
-mesh = SubResource("CylinderMesh_ig7tw")
-surface_material_override/0 = SubResource("StandardMaterial3D_1bvp3")
 
-[node name="Car" type="MeshInstance3D" parent="."]
+[node name="Car" parent="." instance=ExtResource("3_h2yge")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.961, -1.59)
-mesh = SubResource("BoxMesh_h2yge")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-1, 5.957346e-15, -8.742278e-08, -2.1454326e-08, 0.96941966, 0.24540895, 8.474935e-08, 0.24540895, -0.96941966, 0, 0, -66.45788)
+transform = Transform3D(-0.5608557, 0.20317739, -0.8025957, -2.1454326e-08, 0.96941966, 0.24540895, 0.8279136, 0.13763902, -0.5437045, 0, 0, -66.45788)
+light_energy = 7.642
