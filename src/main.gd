@@ -12,9 +12,11 @@ var move_speed := 3.0
 
 var direction := 0
 
+const rubber_band_strength := 20.0
+const max_momentum := 6.9
 var momentum := 0.0
 
-var acceleration := 2.0
+var acceleration := 15.0
 var deceleration := 10.69
 
 func _ready() -> void:
@@ -27,8 +29,8 @@ func _ready() -> void:
 	degrees_per_meter = circumference_in_meters / 360.0
 	rads_per_meter = deg_to_rad(degrees_per_meter)
 	
-	print ("Circumference: %f" % circumference_in_meters)
-	print ("Rads/meter: %f" % rads_per_meter)
+	print("Circumference: %f" % circumference_in_meters)
+	print("Rads/meter: %f" % rads_per_meter)
 
 func _physics_process(delta: float) -> void:
 	ground.rotate(Vector3.RIGHT, rads_per_meter * delta)
@@ -45,15 +47,16 @@ func _process(delta: float) -> void:
 	else:
 		momentum = move_toward(momentum, 0.0, delta * deceleration)
 	
-	if (momentum < -0.01):
-		car.position.x = move_toward(car.position.x, left_bound, delta * abs(momentum))
-		if (car.position.x == left_bound):
-			momentum = move_toward(momentum, 0.0, delta * deceleration)
-	elif momentum > 0.01:
-		car.position.x = move_toward(car.position.x, right_bound, delta * abs(momentum))
-		if (car.position.x == right_bound):
-			momentum = move_toward(momentum, 0.0, delta * deceleration)
-		
-	car.rotation.y = -momentum * .269
-		
-		
+	# Apply rubber band force when past bounds
+	if car.position.x < left_bound:
+		var distance_past = left_bound - car.position.x
+		momentum += rubber_band_strength * distance_past * delta
+	elif car.position.x > right_bound:
+		var distance_past = car.position.x - right_bound
+		momentum -= rubber_band_strength * distance_past * delta
+	
+	momentum = clamp(momentum, -max_momentum, max_momentum)
+	
+	# Move car based on momentum
+	car.position.x += momentum * delta
+	car.rotation.y = - momentum * .169
