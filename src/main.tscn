@@ -1,11 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=7 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dnlnc82km7nue" path="res://car.tscn" id="3_h2yge"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_synth"]
+sky_top_color = Color(0.0627451, 0, 0.172549, 1)
+sky_horizon_color = Color(0.545098, 0, 1, 1)
+ground_bottom_color = Color(0.0627451, 0, 0.172549, 1)
+ground_horizon_color = Color(0.141176, 0, 0.27451, 1)
+
+[sub_resource type="Sky" id="Sky_synth"]
+sky_material = SubResource("ProceduralSkyMaterial_synth")
+
+[sub_resource type="Environment" id="Environment_synth"]
+background_mode = 2
+sky = SubResource("Sky_synth")
+ambient_light_source = 3
+ambient_light_color = Color(0.545098, 0, 1, 1)
+ambient_light_energy = 0.3
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_h2yge")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_synth")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9598151, 0.28063318, 0, -0.28063318, 0.9598151, 0, 0, 0)
@@ -22,4 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.961, 
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.5608557, 0.20317739, -0.8025957, -2.1454326e-08, 0.96941966, 0.24540895, 0.8279136, 0.13763902, -0.5437045, 0, 0, -66.45788)
+light_color = Color(1, 0.4, 0.9, 1)
 light_energy = 7.642
+shadow_enabled = true
+shadow_opacity = 0.5

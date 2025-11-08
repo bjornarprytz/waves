@@ -23,12 +23,10 @@ func _process(delta: float) -> void:
 		if (momentum > 0.0):
 			momentum -= (deceleration * delta)
 		momentum -= (acceleration * delta)
-		print("LEFT  MOMENTUM: %f" % momentum)
 	elif right_pressed:
 		if (momentum < 0.0):
 			momentum += (deceleration * delta)
 		momentum += (acceleration * delta)
-		print("RIGHT  MOMENTUM: %f" % momentum)
 	else:
 		momentum = move_toward(momentum, 0.0, delta * deceleration)
 	

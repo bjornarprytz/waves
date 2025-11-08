@@ -6,9 +6,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
 render_priority = 0
 shader = ExtResource("1_t7tip")
-shader_parameter/road_color = Color(1, 1, 1, 1)
-shader_parameter/sidewalk_color = Color(0.7877592, 0.78775924, 0.787759, 1)
-shader_parameter/line_color = Color(1, 1, 0, 1)
+shader_parameter/road_color = Color(0.141176, 0, 0.27451, 1)
+shader_parameter/sidewalk_color = Color(0.545098, 0, 1, 1)
+shader_parameter/line_color = Color(1, 0.0627451, 0.941176, 1)
 shader_parameter/line_repeat = 4.0
 shader_parameter/sidewalk_width = 0.2
 shader_parameter/line_width = 0.05
