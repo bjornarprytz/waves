@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnlnc82km7nue"]
 
 [ext_resource type="Script" uid="uid://ghdg8kw3r0wl" path="res://car.gd" id="1_7822p"]
-[ext_resource type="Shader" path="res://building.gdshader" id="2_shader"]
+[ext_resource type="Shader" uid="uid://c66d5b73aoxyv" path="res://building.gdshader" id="2_shader"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+size = Vector3(0.605, 0.4, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_car"]
 render_priority = 0
 shader = ExtResource("2_shader")
-shader_parameter/edge_color = Color(1, 0.062745, 0.941176, 1)
+shader_parameter/edge_color = Color(0.99051315, 0.46834642, 0.41103393, 1)
 shader_parameter/base_color = Color(0.905882, 0.14902, 0.133333, 1)
 shader_parameter/edge_thickness = 0.3
 shader_parameter/edge_glow = 2.5
-
-[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
-size = Vector3(0.605, 0.4, 1)
 
 [node name="Car" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
