@@ -42,6 +42,13 @@ texture={
 "mipmaps/generate": true
 }
 
+[input]
+
+ui_lef={
+"deadzone": 0.2,
+"events": []
+}
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

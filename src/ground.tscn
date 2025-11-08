@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bccp5jxnm18cp"]
+[gd_scene load_steps=6 format=3 uid="uid://bccp5jxnm18cp"]
 
 [ext_resource type="Shader" uid="uid://cey285dctf074" path="res://ground.gdshader" id="1_t7tip"]
 [ext_resource type="Script" uid="uid://cen7w6j0ng0py" path="res://ground.gd" id="3_tv015"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv015"]
+albedo_color = Color(1, 0.9019608, 0.16078432, 1)
+uv1_scale = Vector3(0, 40, 10)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
 render_priority = 0
@@ -25,5 +29,6 @@ cap_bottom = false
 
 [node name="Ground" type="MeshInstance3D"]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_tv015")
 mesh = SubResource("CylinderMesh_ig7tw")
 script = ExtResource("3_tv015")

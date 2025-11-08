@@ -5,22 +5,18 @@
 [ext_resource type="PackedScene" uid="uid://dnlnc82km7nue" path="res://car.tscn" id="3_h2yge"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_synth"]
-sky_top_color = Color(0.0627451, 0, 0.172549, 1)
-sky_horizon_color = Color(0.545098, 0, 1, 1)
-ground_bottom_color = Color(0.0627451, 0, 0.172549, 1)
-ground_horizon_color = Color(0.141176, 0, 0.27451, 1)
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.28627452, 0.7254902, 0.7490196, 1)
+sky_curve = 0.26116505
 
 [sub_resource type="Sky" id="Sky_synth"]
 sky_material = SubResource("ProceduralSkyMaterial_synth")
 
 [sub_resource type="Environment" id="Environment_synth"]
 background_mode = 2
-background_energy_multiplier = 0.79
 sky = SubResource("Sky_synth")
 sky_custom_fov = 100.0
-ambient_light_source = 3
-ambient_light_color = Color(0.90588236, 0.14901961, 0.13333334, 1)
-ambient_light_energy = 0.3
+ambient_light_source = 2
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_h2yge")
@@ -43,7 +39,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.961, 
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.9134531, 0.09986766, -0.3944995, -3.128903e-08, 0.9694197, 0.24540894, 0.40694404, 0.22416957, -0.8855195, 0, 0, -66.45788)
-light_color = Color(0.90588236, 0.14901961, 0.13333334, 1)
-light_energy = 7.642
+light_color = Color(1, 0.9019608, 0.16078432, 1)
+light_angular_distance = 14.15
 shadow_enabled = true
-shadow_opacity = 0.5
+shadow_opacity = 0.69
