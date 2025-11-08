@@ -8,9 +8,9 @@ func _ready() -> void:
 	_randomize()
 
 func _randomize():
-	var height = randf_range(2.0, 20.0)	
-	var width = randf_range(1.0, 5.0)
-	var length = randf_range(1.0, 3.0)
+	var height = randf_range(2.0, 10.0)	
+	var width = randf_range(1.0, 4.0)
+	var length = randf_range(1.0, 2.0)
 	
 	mesh.scale = Vector3(width, height, length)
 	

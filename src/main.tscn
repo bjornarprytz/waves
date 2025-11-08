@@ -40,7 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.961, 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.5608557, 0.20317739, -0.8025957, -2.1454326e-08, 0.96941966, 0.24540895, 0.8279136, 0.13763902, -0.5437045, 0, 0, -66.45788)
+transform = Transform3D(-0.9134531, 0.09986766, -0.3944995, -3.128903e-08, 0.9694197, 0.24540894, 0.40694404, 0.22416957, -0.8855195, 0, 0, -66.45788)
 light_color = Color(1, 0.4, 0.9, 1)
 light_energy = 7.642
 shadow_enabled = true

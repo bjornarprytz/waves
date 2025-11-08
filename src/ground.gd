@@ -31,30 +31,30 @@ func _physics_process(delta: float) -> void:
 	
 func _spawn_buildings():
 	for d in range(360):
-		# Spawn buildings on either side of the road
-		var bldg_instance = building_spawner.instantiate() as Building
-		var is_left = randi() % 2 == 0
-		var placement = 0.0
-		if is_left:
-			placement = randf_range(left_building_range.x, left_building_range.y)
-		else:
-			placement = randf_range(right_building_range.x, right_building_range.y)
-		
-		var angle_rad = deg_to_rad(d)
-		var x = cos(angle_rad) * (self.mesh.top_radius)
-		var z = sin(angle_rad) * (self.mesh.top_radius)
-		var y = placement
-		add_child(bldg_instance)
-		bldg_instance.position = Vector3(x, y, z)
+		for is_left in [true, false]:
+			# Spawn buildings on either side of the road
+			var bldg_instance = building_spawner.instantiate() as Building
+			var placement = 0.0
+			if is_left:
+				placement = randf_range(left_building_range.x, left_building_range.y)
+			else:
+				placement = randf_range(right_building_range.x, right_building_range.y)
+			
+			var angle_rad = deg_to_rad(d)
+			var x = cos(angle_rad) * (self.mesh.top_radius)
+			var z = sin(angle_rad) * (self.mesh.top_radius)
+			var y = placement
+			add_child(bldg_instance)
+			bldg_instance.position = Vector3(x, y, z)
 
-		# Rotate building to stand upright and face away from center
-		# The outward direction from center
-		var outward = Vector3(x, 0, z).normalized()
-		# Building's up should be the outward direction
-		# Building's forward should point along the wheel's tangent
-		var forward = Vector3.UP.cross(outward).normalized()
-		var right = outward.cross(forward).normalized()
-		
-		# Create basis: X=right, Y=up(outward), Z=-forward
-		var b = Basis(right, outward, -forward)
-		bldg_instance.basis = b
+			# Rotate building to stand upright and face away from center
+			# The outward direction from center
+			var outward = Vector3(x, 0, z).normalized()
+			# Building's up should be the outward direction
+			# Building's forward should point along the wheel's tangent
+			var forward = Vector3.UP.cross(outward).normalized()
+			var right = outward.cross(forward).normalized()
+			
+			# Create basis: X=right, Y=up(outward), Z=-forward
+			var b = Basis(right, outward, -forward)
+			bldg_instance.basis = b
