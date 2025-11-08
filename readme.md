@@ -4,7 +4,6 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Experiment with lighting
 
 - Push release with `./push_release.sh`
 

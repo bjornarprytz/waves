@@ -15,9 +15,11 @@ sky_material = SubResource("ProceduralSkyMaterial_synth")
 
 [sub_resource type="Environment" id="Environment_synth"]
 background_mode = 2
+background_energy_multiplier = 0.79
 sky = SubResource("Sky_synth")
+sky_custom_fov = 100.0
 ambient_light_source = 3
-ambient_light_color = Color(0.545098, 0, 1, 1)
+ambient_light_color = Color(0.90588236, 0.14901961, 0.13333334, 1)
 ambient_light_energy = 0.3
 
 [node name="Main" type="Node3D"]
@@ -41,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.961, 
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.9134531, 0.09986766, -0.3944995, -3.128903e-08, 0.9694197, 0.24540894, 0.40694404, 0.22416957, -0.8855195, 0, 0, -66.45788)
-light_color = Color(1, 0.4, 0.9, 1)
+light_color = Color(0.90588236, 0.14901961, 0.13333334, 1)
 light_energy = 7.642
 shadow_enabled = true
 shadow_opacity = 0.5
