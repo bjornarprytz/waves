@@ -1,16 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=8 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dnlnc82km7nue" path="res://car.tscn" id="3_h2yge"]
+[ext_resource type="Shader" uid="uid://c8n24bpcms5uf" path="res://sky.gdshader" id="4_sky"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_synth"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0.28627452, 0.7254902, 0.7490196, 1)
-sky_curve = 0.26116505
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sky"]
+shader = ExtResource("4_sky")
+shader_parameter/horizon_color = Color(0.545, 0, 1, 1)
+shader_parameter/sky_color = Color(0.063, 0, 0.173, 1)
+shader_parameter/star_color = Color(1, 1, 1, 1)
+shader_parameter/cloud_color = Color(0.5, 0, 0.8, 1)
+shader_parameter/star_density = 0.4710000223725
+shader_parameter/star_brightness = 0.7590000360525
+shader_parameter/cloud_speed = 0.05
+shader_parameter/cloud_scale = 3.0
 
 [sub_resource type="Sky" id="Sky_synth"]
-sky_material = SubResource("ProceduralSkyMaterial_synth")
+sky_material = SubResource("ShaderMaterial_sky")
 
 [sub_resource type="Environment" id="Environment_synth"]
 background_mode = 2
