@@ -8,7 +8,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sky"]
 shader = ExtResource("4_sky")
-shader_parameter/horizon_color = Color(0.545, 0, 1, 1)
+shader_parameter/horizon_color = Color(0.5061762, 0.039820664, 0.117097475, 1)
 shader_parameter/sky_color = Color(0.063, 0, 0.173, 1)
 shader_parameter/star_color = Color(1, 1, 1, 1)
 shader_parameter/star_density = 1.0

@@ -1,6 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://oyfamr18wj3p"]
+[gd_scene load_steps=9 format=3 uid="uid://oyfamr18wj3p"]
 
 [ext_resource type="Shader" uid="uid://bnnvfessi7cy2" path="res://aurora.gdshader" id="1_aurora"]
+
+[sub_resource type="Gradient" id="Gradient_j0n6b"]
+offsets = PackedFloat32Array(0, 0.8623482)
+colors = PackedColorArray(0, 0.79607844, 0, 1, 0, 0.45585078, 0.75771403, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3yll8"]
+gradient = SubResource("Gradient_j0n6b")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j0n6b"]
 noise_type = 4
@@ -12,13 +19,13 @@ noise = SubResource("FastNoiseLite_j0n6b")
 render_priority = 0
 shader = ExtResource("1_aurora")
 shader_parameter/speed = 0.01
-shader_parameter/color = Color(0, 1, 0.5, 1)
 shader_parameter/emission_strength = 5.0
 shader_parameter/noise = SubResource("NoiseTexture2D_3yll8")
 shader_parameter/offset = 0.0
 shader_parameter/smoothness = 0.3
 shader_parameter/distort = 1.0
 shader_parameter/scale = 1.0
+shader_parameter/colourgrad = SubResource("GradientTexture1D_3yll8")
 shader_parameter/STEP = 0.01
 shader_parameter/BASE_DENSITY = 5.0
 
