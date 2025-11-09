@@ -4,6 +4,8 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
+- Make the houses look scandinavian
+
 - Push release with `./push_release.sh`
 
 - Add attribution:
