@@ -3,12 +3,9 @@ shader_type sky;
 uniform vec3 horizon_color : source_color = vec3(0.545, 0.0, 1.0);
 uniform vec3 sky_color : source_color = vec3(0.063, 0.0, 0.173);
 uniform vec3 star_color : source_color = vec3(1.0, 1.0, 1.0);
-uniform vec3 cloud_color : source_color = vec3(0.5, 0.0, 0.8);
 
 uniform float star_density : hint_range(0.0, 1.0) = 0.3;
 uniform float star_brightness : hint_range(0.0, 2.0) = 1.0;
-uniform float cloud_speed : hint_range(0.0, 0.5) = 0.05;
-uniform float cloud_scale : hint_range(1.0, 10.0) = 3.0;
 
 // Simple hash function for pseudo-random values
 float hash(vec2 p) {
@@ -31,18 +28,6 @@ float noise(vec2 p) {
     float d = hash(i + vec2(1.0, 1.0));
     
     return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
-}
-
-// FBM (Fractal Brownian Motion) for clouds
-float fbm(vec2 p) {
-    float value = 0.0;
-    float amplitude = 0.5;
-    for(int i = 0; i < 4; i++) {
-        value += amplitude * noise(p);
-        p *= 2.0;
-        amplitude *= 0.5;
-    }
-    return value;
 }
 
 // Generate stars with smooth falloff
@@ -91,15 +76,7 @@ void sky() {
     float star_mask = smoothstep(-0.1, 0.3, elevation);
     vec2 star_uv = vec2(azimuth * 4.0, (elevation + 1.0) * 2.0);
     float star_field = stars(star_uv, star_density) * star_mask * star_brightness;
-    vec3 sky_with_stars = base_sky + star_color * star_field;
-    
-    // Clouds (parallax layer 1)
-    vec2 cloud_uv = vec2(azimuth * 2.0 + TIME * cloud_speed, (elevation + 0.5) * 2.0);
-    float clouds = fbm(cloud_uv * cloud_scale);
-    clouds = smoothstep(0.4, 0.7, clouds);
-    clouds *= smoothstep(-0.2, 0.5, elevation);
-    clouds *= smoothstep(0.8, 0.5, elevation);
-    vec3 final_sky = mix(sky_with_stars, cloud_color, clouds * 0.4);
+    vec3 final_sky = base_sky + star_color * star_field;
     
     COLOR = final_sky;
 }

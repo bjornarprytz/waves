@@ -4,8 +4,10 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-
 - Push release with `./push_release.sh`
+
+- Add attribution:
+  - Aurora Borealis shader: https://godotshaders.com/shader/aurora-borealis/ (Miskatonic studio)
 
 ### Extra
 

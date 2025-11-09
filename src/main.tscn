@@ -1,20 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=9 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dnlnc82km7nue" path="res://car.tscn" id="3_h2yge"]
 [ext_resource type="Shader" uid="uid://c8n24bpcms5uf" path="res://sky.gdshader" id="4_sky"]
+[ext_resource type="PackedScene" uid="uid://oyfamr18wj3p" path="res://aurora.tscn" id="5_aurora"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sky"]
 shader = ExtResource("4_sky")
 shader_parameter/horizon_color = Color(0.545, 0, 1, 1)
 shader_parameter/sky_color = Color(0.063, 0, 0.173, 1)
 shader_parameter/star_color = Color(1, 1, 1, 1)
-shader_parameter/cloud_color = Color(0.5, 0, 0.8, 1)
-shader_parameter/star_density = 0.4710000223725
-shader_parameter/star_brightness = 0.7590000360525
-shader_parameter/cloud_speed = 0.05
-shader_parameter/cloud_scale = 3.0
+shader_parameter/star_density = 1.0
+shader_parameter/star_brightness = 0.78000003705
 
 [sub_resource type="Sky" id="Sky_synth"]
 sky_material = SubResource("ShaderMaterial_sky")
@@ -42,6 +40,9 @@ transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, -
 [node name="Car" parent="." instance=ExtResource("3_h2yge")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.961, -1.59)
+
+[node name="Aurora" parent="." instance=ExtResource("5_aurora")]
+transform = Transform3D(1000.00006, 0, 0, 0, 65.23367, 75.79295, 0, -75.79295, 65.23367, 0, 35.249466, -167.2198)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

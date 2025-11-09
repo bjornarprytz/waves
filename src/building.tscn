@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bse3vt7tgbpc2"]
 
 [ext_resource type="Script" uid="uid://btyufctcif3vb" path="res://building.gd" id="1_5j34s"]
-[ext_resource type="Shader" path="res://building.gdshader" id="2_shader"]
+[ext_resource type="Shader" uid="uid://c66d5b73aoxyv" path="res://building.gdshader" id="2_shader"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_building"]
 render_priority = 0
