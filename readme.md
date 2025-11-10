@@ -4,11 +4,12 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Snowy ground
+
 - Houses
   - Add windows
     - Some may emit light
 - Controls for game pad and WASD
+- Move camera with the car
 
 - Push release with `./push_release.sh`
 

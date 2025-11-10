@@ -91,16 +91,25 @@ void sky() {
     );
     
     // Calculate angular distance using dot product
-    float angular_dist = acos(clamp(dot(normalize(dir), moon_dir), -1.0, 1.0));
+    float angular_dist = acos(clamp(dot(normalize(dir), normalize(moon_dir)), -1.0, 1.0));
     
     // Moon disc with soft edge
     float moon_disc = smoothstep(moon_size, moon_size * 0.9, angular_dist);
+    
+    // Moon texture - create crater-like patterns
+    vec2 moon_uv = (dir.xy - moon_dir.xy) / moon_size;
+    float crater_noise = noise(moon_uv * 8.0);
+    crater_noise += noise(moon_uv * 16.0) * 0.5;
+    crater_noise += noise(moon_uv * 32.0) * 0.25;
+    
+    // Moon surface color variation (darker craters, brighter highlands)
+    vec3 moon_surface = moon_color * (0.7 + crater_noise * 0.3);
     
     // Moon glow
     float moon_glow = smoothstep(moon_size * 2.5, moon_size, angular_dist) * 0.3;
     
     // Combine moon
-    vec3 moon = moon_color * (moon_disc + moon_glow);
+    vec3 moon = moon_surface * moon_disc + moon_color * moon_glow;
     final_sky += moon;
     
     COLOR = final_sky;

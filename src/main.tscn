@@ -11,11 +11,11 @@ shader = ExtResource("4_sky")
 shader_parameter/horizon_color = Color(0.5061762, 0.039820664, 0.117097475, 1)
 shader_parameter/sky_color = Color(0.063, 0, 0.173, 1)
 shader_parameter/star_color = Color(1, 1, 1, 1)
-shader_parameter/moon_color = Color(0.95, 0.95, 1, 1)
+shader_parameter/moon_color = Color(0.627451, 1, 0.8901961, 1)
 shader_parameter/star_density = 1.0
-shader_parameter/star_brightness = 0.78000003705
-shader_parameter/moon_position = Vector2(0.83, 0.17)
-shader_parameter/moon_size = 0.05600000196148
+shader_parameter/star_brightness = 1.4470000687325
+shader_parameter/moon_position = Vector2(0.83, 0.185)
+shader_parameter/moon_size = 0.04300000134398
 
 [sub_resource type="Sky" id="Sky_synth"]
 sky_material = SubResource("ShaderMaterial_sky")
@@ -42,7 +42,7 @@ transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, -
 
 [node name="Car" parent="." instance=ExtResource("3_h2yge")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.99747795, -0.07097516, 0, 0.07097516, 0.99747795, 0, -1.2248427, -1.59)
+transform = Transform3D(1, 0, 0, 0, 0.9998934, -0.014590427, 0, 0.014590427, 0.9998934, 0, -1.205693, -2.2088487)
 
 [node name="Aurora" parent="." instance=ExtResource("5_aurora")]
 transform = Transform3D(1000.00006, 0, 0, 0, 65.23367, 75.79295, 0, -75.79295, 65.23367, 0, 35.249466, -167.2198)
@@ -50,7 +50,7 @@ transform = Transform3D(1000.00006, 0, 0, 0, 65.23367, 75.79295, 0, -75.79295, 6
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.9134531, 0.09986766, -0.3944995, -3.128903e-08, 0.9694197, 0.24540894, 0.40694404, 0.22416957, -0.8855195, 0, 0, -66.45788)
+transform = Transform3D(-0.92512363, -0.093173444, 0.3680557, -4.1320217e-08, 0.96941966, 0.24540879, -0.3796659, 0.2270335, -0.896833, 0, 0, -69.9392)
 light_color = Color(0.6256624, 0.9999997, 0.8915878, 1)
 light_angular_distance = 14.15
 shadow_enabled = true

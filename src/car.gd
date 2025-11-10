@@ -2,8 +2,6 @@ class_name Car
 extends Node3D
 
 @onready var car: MeshInstance3D = %Car
-@onready var tilt_anchor_left: Node3D = %TiltAnchorLeft
-@onready var tilt_anchor_right: Node3D = %TiltAnchorRight
 
 var left_bound := -1.5
 var right_bound := 1.5
