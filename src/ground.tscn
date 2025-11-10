@@ -6,18 +6,12 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
 render_priority = 0
 shader = ExtResource("1_t7tip")
-shader_parameter/road_color = Color(0.1, 0.1, 0.1, 1)
-shader_parameter/sidewalk_color = Color(0, 0, 0, 1)
-shader_parameter/line_color = Color(1, 1, 0, 1)
-shader_parameter/grid_color = Color(1, 0.9019608, 0.16078432, 1)
-shader_parameter/line_repeat = 0.0
-shader_parameter/sidewalk_width = 0.2
-shader_parameter/line_width = 0.05
-shader_parameter/scroll_speed = 0.5
-shader_parameter/time_offset = 0.0
-shader_parameter/grid_intensity = 0.50000002375
-shader_parameter/grid_scale = 50.0
-shader_parameter/edge_glow = 0.0
+shader_parameter/snow_color = Color(0.95, 0.95, 1, 1)
+shader_parameter/snow_shadow = Color(0.7, 0.75, 0.85, 1)
+shader_parameter/track_color = Color(0.8, 0.82, 0.9, 1)
+shader_parameter/track_width = 0.3
+shader_parameter/drift_scale = 15.0
+shader_parameter/sparkle_amount = 0.3
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ig7tw"]
 material = SubResource("ShaderMaterial_h2yge")

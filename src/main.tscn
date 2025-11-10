@@ -11,8 +11,11 @@ shader = ExtResource("4_sky")
 shader_parameter/horizon_color = Color(0.5061762, 0.039820664, 0.117097475, 1)
 shader_parameter/sky_color = Color(0.063, 0, 0.173, 1)
 shader_parameter/star_color = Color(1, 1, 1, 1)
+shader_parameter/moon_color = Color(0.95, 0.95, 1, 1)
 shader_parameter/star_density = 1.0
 shader_parameter/star_brightness = 0.78000003705
+shader_parameter/moon_position = Vector2(0.83, 0.17)
+shader_parameter/moon_size = 0.05600000196148
 
 [sub_resource type="Sky" id="Sky_synth"]
 sky_material = SubResource("ShaderMaterial_sky")
@@ -46,9 +49,9 @@ transform = Transform3D(1000.00006, 0, 0, 0, 65.23367, 75.79295, 0, -75.79295, 6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
+[node name="Moon" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.9134531, 0.09986766, -0.3944995, -3.128903e-08, 0.9694197, 0.24540894, 0.40694404, 0.22416957, -0.8855195, 0, 0, -66.45788)
-light_color = Color(1, 0.9019608, 0.16078432, 1)
+light_color = Color(0.6256624, 0.9999997, 0.8915878, 1)
 light_angular_distance = 14.15
 shadow_enabled = true
 shadow_opacity = 0.69

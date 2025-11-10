@@ -49,15 +49,7 @@ void fragment() {
     vec3 track_detail = mix(track_color, snow_shadow, track_noise);
     color = mix(color, track_detail, tracks);
     
-    // Ice sparkles
-    float sparkle = hash(floor(uv * 200.0));
-    sparkle = step(1.0 - sparkle_amount * 0.1, sparkle);
-    sparkle *= hash(floor(uv * 200.0) + vec2(1.3, 2.7));
-    
-    color += vec3(sparkle * 0.5);
-    
     ALBEDO = color;
-    EMISSION = vec3(sparkle * sparkle_amount);
-    ROUGHNESS = 0.3;
+    ROUGHNESS = 0.95;
     METALLIC = 0.0;
 }

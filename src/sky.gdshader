@@ -3,9 +3,12 @@ shader_type sky;
 uniform vec3 horizon_color : source_color = vec3(0.545, 0.0, 1.0);
 uniform vec3 sky_color : source_color = vec3(0.063, 0.0, 0.173);
 uniform vec3 star_color : source_color = vec3(1.0, 1.0, 1.0);
+uniform vec3 moon_color : source_color = vec3(0.95, 0.95, 1.0);
 
 uniform float star_density : hint_range(0.0, 1.0) = 0.3;
 uniform float star_brightness : hint_range(0.0, 2.0) = 1.0;
+uniform vec2 moon_position = vec2(0.7, 0.6); // azimuth (0-1), elevation (-1 to 1)
+uniform float moon_size : hint_range(0.01, 0.2) = 0.05;
 
 // Simple hash function for pseudo-random values
 float hash(vec2 p) {
@@ -77,6 +80,28 @@ void sky() {
     vec2 star_uv = vec2(azimuth * 4.0, (elevation + 1.0) * 2.0);
     float star_field = stars(star_uv, star_density) * star_mask * star_brightness;
     vec3 final_sky = base_sky + star_color * star_field;
+    
+    // Moon - convert moon position to 3D direction
+    float moon_azimuth_rad = moon_position.x * 2.0 * PI;
+    float moon_elevation_rad = moon_position.y * PI * 0.5;
+    vec3 moon_dir = vec3(
+        cos(moon_elevation_rad) * cos(moon_azimuth_rad),
+        sin(moon_elevation_rad),
+        cos(moon_elevation_rad) * sin(moon_azimuth_rad)
+    );
+    
+    // Calculate angular distance using dot product
+    float angular_dist = acos(clamp(dot(normalize(dir), moon_dir), -1.0, 1.0));
+    
+    // Moon disc with soft edge
+    float moon_disc = smoothstep(moon_size, moon_size * 0.9, angular_dist);
+    
+    // Moon glow
+    float moon_glow = smoothstep(moon_size * 2.5, moon_size, angular_dist) * 0.3;
+    
+    // Combine moon
+    vec3 moon = moon_color * (moon_disc + moon_glow);
+    final_sky += moon;
     
     COLOR = final_sky;
 }
