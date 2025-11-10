@@ -9,7 +9,7 @@ var move_speed := 3.0
 
 var direction := 0
 
-const rubber_band_strength := 20.0
+const rubber_band_strength := 10.0
 const max_momentum := 6.9
 var momentum := 0.0
 var inertia := 0.0

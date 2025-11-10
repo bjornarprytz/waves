@@ -4,7 +4,6 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-
 - Houses
   - Add windows
     - Some may emit light

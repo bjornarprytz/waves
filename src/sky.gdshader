@@ -77,7 +77,8 @@ void sky() {
     
     // Stars (only in upper hemisphere)
     float star_mask = smoothstep(-0.1, 0.3, elevation);
-    vec2 star_uv = vec2(azimuth * 4.0, (elevation + 1.0) * 2.0);
+    // Use direct spherical coordinates without tiling to keep stars fixed
+    vec2 star_uv = vec2(azimuth, (elevation + 1.0) * 0.5);
     float star_field = stars(star_uv, star_density) * star_mask * star_brightness;
     vec3 final_sky = base_sky + star_color * star_field;
     
