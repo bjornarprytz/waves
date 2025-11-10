@@ -1,57 +1,63 @@
 shader_type spatial;
 
-uniform vec3 road_color : source_color = vec3(0.1, 0.1, 0.1);
-uniform vec3 sidewalk_color : source_color = vec3(0.3, 0.3, 0.3);
-uniform vec3 line_color : source_color = vec3(1.0, 1.0, 0.0);
-uniform vec3 grid_color : source_color = vec3(0.0, 1.0, 1.0);
-uniform float line_repeat = 4.0;
-uniform float sidewalk_width = 0.2;
-uniform float line_width = 0.05;
-uniform float scroll_speed = 0.5;
-uniform float time_offset;
-uniform float grid_intensity : hint_range(0.0, 1.0) = 0.3;
-uniform float grid_scale = 20.0;
-uniform float edge_glow : hint_range(0.0, 2.0) = 0.5;
+uniform vec3 snow_color : source_color = vec3(0.95, 0.95, 1.0);
+uniform vec3 snow_shadow : source_color = vec3(0.7, 0.75, 0.85);
+uniform vec3 track_color : source_color = vec3(0.8, 0.82, 0.9);
+uniform float track_width : hint_range(0.1, 0.5) = 0.3;
+uniform float drift_scale : hint_range(5.0, 30.0) = 15.0;
+uniform float sparkle_amount : hint_range(0.0, 1.0) = 0.3;
+
+// Hash function
+float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+}
+
+// Noise function
+float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    
+    float a = hash(i);
+    float b = hash(i + vec2(1.0, 0.0));
+    float c = hash(i + vec2(0.0, 1.0));
+    float d = hash(i + vec2(1.0, 1.0));
+    
+    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
 
 void fragment() {
     vec2 uv = UV;
+    float u = fract(uv.x);
     
-    // Split road and sidewalks across X (U axis)
-    float u = fract(uv.x); // repeat across the circumference
-    float v = fract(uv.y * line_repeat); // repeating pattern along road
+    // Base snow color
+    vec3 color = snow_color;
     
-    // Define the central road section
-    float left_sidewalk = sidewalk_width;
-    float right_sidewalk = 1.0 - sidewalk_width;
+    // Snow drifts (subtle height variation)
+    float drift = noise(uv * drift_scale);
+    drift += noise(uv * drift_scale * 2.0) * 0.5;
+    color = mix(snow_shadow, snow_color, drift);
     
-    vec3 color = road_color;
+    // Tire/ski tracks down the middle
+    float center_dist = abs(u - 0.5);
+    float left_track = smoothstep(0.2, 0.18, abs(u - 0.35));
+    float right_track = smoothstep(0.2, 0.18, abs(u - 0.65));
+    float tracks = max(left_track, right_track);
     
-    // Add grid pattern to road
-    vec2 grid_uv = uv * grid_scale;
-    float grid_x = abs(fract(grid_uv.x) - 0.5);
-    float grid_y = abs(fract(grid_uv.y) - 0.5);
-    float grid = step(0.48, max(grid_x, grid_y));
+    // Add track texture
+    float track_noise = noise(uv * vec2(5.0, 100.0));
+    vec3 track_detail = mix(track_color, snow_shadow, track_noise);
+    color = mix(color, track_detail, tracks);
     
-    if (u < left_sidewalk || u > right_sidewalk) {
-        // Sidewalk region with grid
-        color = mix(sidewalk_color, grid_color, grid * grid_intensity * 0.5);
-    } else {
-        // Road with grid
-        color = mix(road_color, grid_color, grid * grid_intensity);
-        
-        // Road lane lines (e.g., dashed center)
-        float line = step(0.5 - line_width * 0.5, abs(u - 0.5));
-        float dash = step(0.9, v); // dashed pattern
-        if (line < 1.0 && dash > 0.5) {
-            color = mix(color, line_color, 1.0);
-        }
-    }
+    // Ice sparkles
+    float sparkle = hash(floor(uv * 200.0));
+    sparkle = step(1.0 - sparkle_amount * 0.1, sparkle);
+    sparkle *= hash(floor(uv * 200.0) + vec2(1.3, 2.7));
     
-    // Add edge glow at sidewalk boundaries
-    float edge_dist = min(abs(u - left_sidewalk), abs(u - right_sidewalk));
-    float edge_mask = smoothstep(0.02, 0.0, edge_dist);
-    color = mix(color, line_color, edge_mask * edge_glow);
-
+    color += vec3(sparkle * 0.5);
+    
     ALBEDO = color;
-    EMISSION = grid_color * grid * grid_intensity * 0.5 + line_color * edge_mask * edge_glow;
+    EMISSION = vec3(sparkle * sparkle_amount);
+    ROUGHNESS = 0.3;
+    METALLIC = 0.0;
 }

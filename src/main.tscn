@@ -39,7 +39,7 @@ transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, -
 
 [node name="Car" parent="." instance=ExtResource("3_h2yge")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.961, -1.59)
+transform = Transform3D(1, 0, 0, 0, 0.99747795, -0.07097516, 0, 0.07097516, 0.99747795, 0, -1.2248427, -1.59)
 
 [node name="Aurora" parent="." instance=ExtResource("5_aurora")]
 transform = Transform3D(1000.00006, 0, 0, 0, 65.23367, 75.79295, 0, -75.79295, 65.23367, 0, 35.249466, -167.2198)

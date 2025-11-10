@@ -1,21 +1,25 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnlnc82km7nue"]
 
 [ext_resource type="Script" uid="uid://ghdg8kw3r0wl" path="res://car.gd" id="1_7822p"]
-[ext_resource type="Shader" uid="uid://c66d5b73aoxyv" path="res://building.gdshader" id="2_shader"]
+[ext_resource type="ArrayMesh" uid="uid://cgymitcxs8u6v" path="res://assets/img/Car.obj" id="1_k61xc"]
+[ext_resource type="Texture2D" uid="uid://cylxt80vrmuyl" path="res://assets/img/car_snow_red.png" id="2_06lh1"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
-size = Vector3(0.605, 0.4, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_td361"]
+albedo_texture = ExtResource("2_06lh1")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_car"]
-render_priority = 0
-shader = ExtResource("2_shader")
-shader_parameter/edge_color = Color(0.99051315, 0.46834642, 0.41103393, 1)
-shader_parameter/base_color = Color(0.905882, 0.14902, 0.133333, 1)
-shader_parameter/edge_thickness = 0.3
-shader_parameter/edge_glow = 2.5
-
-[node name="Car" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
-mesh = SubResource("BoxMesh_h2yge")
-surface_material_override/0 = SubResource("ShaderMaterial_car")
+[node name="CarAnchor" type="Node3D"]
 script = ExtResource("1_7822p")
+
+[node name="Car" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.29999998, 0, 4.5298737e-08, 0, 0.29999998, 0, -4.5298737e-08, 0, -0.29999998, 0, 0, 0)
+mesh = ExtResource("1_k61xc")
+surface_material_override/0 = SubResource("StandardMaterial3D_td361")
+
+[node name="TiltAnchorLeft" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.29999998, 0, 2.6226832e-08, 0, 0.29999998, 0, -2.6226832e-08, 0, -0.29999998, -0.2543087, 0, 0)
+
+[node name="TiltAnchorRight" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.29999998, 0, 2.6226832e-08, 0, 0.29999998, 0, -2.6226832e-08, 0, -0.29999998, 0.29700518, 0, 0)

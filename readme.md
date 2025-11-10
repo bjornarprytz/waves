@@ -4,7 +4,10 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Make the houses look scandinavian
+- Snowy ground
+- Houses
+  - Add windows
+    - Some may emit light
 - Controls for game pad and WASD
 
 - Push release with `./push_release.sh`
