@@ -8,12 +8,12 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
   - Add windows
     - Some may emit light
 - Controls for game pad and WASD
-- Move camera with the car
 
 - Push release with `./push_release.sh`
 
 - Add attribution:
   - Aurora Borealis shader: https://godotshaders.com/shader/aurora-borealis/ (Miskatonic studio)
+  - Car: [GGBotNet](https://ggbot.itch.io/)
 
 ### Extra
 
