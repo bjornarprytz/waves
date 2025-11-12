@@ -52,7 +52,7 @@ transform = Transform3D(1000.00006, 0, 0, 0, 65.23367, 75.79295, 0, -75.79295, 6
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.92512363, -0.093173444, 0.3680557, -4.1320217e-08, 0.96941966, 0.24540879, -0.3796659, 0.2270335, -0.896833, 0, 0, -69.9392)
-light_color = Color(0.6256624, 0.9999997, 0.8915878, 1)
+light_color = Color(1.5883148e-06, 0.54654634, 0.44373995, 1)
 light_angular_distance = 14.15
 shadow_enabled = true
 shadow_opacity = 0.69

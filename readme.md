@@ -5,11 +5,10 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 ## TODO
 
 - Houses
-  - Add windows
-    - Some may emit light
+  - Add chimneys
 - Car
   - Honk
-  - 
+    - Houses turn on light
 - Controls for game pad and WASD
 
 - Push release with `./push_release.sh`

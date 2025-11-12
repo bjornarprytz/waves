@@ -1,17 +1,22 @@
 class_name Building
 extends Node3D
 
+var window_spawner = preload("res://window.tscn")
+
 @onready var house: MeshInstance3D = %House
 @onready var roof: MeshInstance3D = %Roof
 
+var height: float
+var width: float
+var length: float
 
 func _ready() -> void:
 	_randomize()
 
 func _randomize():
-	var height = randf_range(2.0, 4.0)
-	var width = randf_range(1.0, 4.0)
-	var length = randf_range(1.0, 2.0)
+	height = randf_range(2.0, 4.0)
+	width = randf_range(1.0, 4.0)
+	length = randf_range(1.0, 2.0)
 	
 	house.scale = Vector3(width, height, length)
 
@@ -36,3 +41,20 @@ func _randomize():
 	mat.albedo_color = random_color
 	# Use set_surface_override_material on the MeshInstance3D, not the mesh
 	house.set_surface_override_material(0, mat)
+
+func add_windows(left_side: bool) -> void:
+	# Place one or two windows (at half scale) around the middle of the inward face
+	var n_windows = 1
+	if length > 1.5:
+		n_windows = 2
+
+	for w in range(n_windows):
+		var y_offset = ((length * 0.5) - (n_windows * 0.59) + (w * .69))
+		var vertical_placement = ((height / 2) * .69)
+		var side = 1 if left_side else -1
+		var window_instance = window_spawner.instantiate() as HouseWindow
+
+		add_child(window_instance)
+		window_instance.scale = Vector3(0.5, 0.5, 0.5)
+		window_instance.position = Vector3(side * (width * 0.5), vertical_placement, y_offset)
+		window_instance.rotation = Vector3(0, deg_to_rad(90 * side), 0)

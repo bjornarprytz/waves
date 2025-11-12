@@ -58,3 +58,5 @@ func _spawn_buildings():
 			# Create basis: X=right, Y=up(outward), Z=-forward
 			var b = Basis(right, outward, -forward)
 			bldg_instance.basis = b
+
+			bldg_instance.add_windows(is_left)

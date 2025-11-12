@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dub4kkmxs8g6s"]
+
+[ext_resource type="Script" uid="uid://cccjrxoor7ktv" path="res://window.gd" id="1_mvsta"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ebo7"]
+albedo_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
+emission = Color(0.45826262, 0.25049698, 0.07211808, 1)
+emission_energy_multiplier = 8.1
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_3ebo7"]
+material = SubResource("StandardMaterial3D_3ebo7")
+size = Vector3(1, 1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvsta"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hjewq"]
+material = SubResource("StandardMaterial3D_mvsta")
+size = Vector3(0.115, 1, 0.2)
+
+[node name="Window" type="Node3D"]
+script = ExtResource("1_mvsta")
+
+[node name="Pane" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.0063523343, 0, -0.002979653)
+layers = 2
+mesh = SubResource("BoxMesh_3ebo7")
+
+[node name="Frame" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.45734933, 0, -0.0075520943)
+mesh = SubResource("BoxMesh_hjewq")
+
+[node name="Frame2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.4382688, 0, -0.0075521725)
+mesh = SubResource("BoxMesh_hjewq")
+
+[node name="Frame3" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, -0.00079994486, -0.44287223, 0.0050690896)
+mesh = SubResource("BoxMesh_hjewq")
+
+[node name="Frame5" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, -0.00079994486, 0.01651147, 0.0050690896)
+mesh = SubResource("BoxMesh_hjewq")
+
+[node name="Frame6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, -8.742278e-08, 8.742278e-08, -8.742278e-08, -1, 0, 8.742278e-08, -7.642742e-15, -1, -0.00079994486, -0.003533095, 0.0050690896)
+mesh = SubResource("BoxMesh_hjewq")
+
+[node name="Frame4" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.371139e-08, 1, 8.742278e-08, 1, -4.371139e-08, 0, 3.821371e-15, 8.742278e-08, -1, -0.00079990574, 0.44389942, -0.0075521343)
+mesh = SubResource("BoxMesh_hjewq")

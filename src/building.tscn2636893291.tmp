@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://bse3vt7tgbpc2"]
+
+[ext_resource type="Script" uid="uid://btyufctcif3vb" path="res://building.gd" id="1_5j34s"]
+[ext_resource type="Texture2D" uid="uid://cglac1jjyygjg" path="res://assets/img/husvegg.png" id="2_2yopf"]
+[ext_resource type="Texture2D" uid="uid://dqycmo2lb8224" path="res://assets/img/hustak.png" id="3_f1gjg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1gjg"]
+albedo_texture = ExtResource("2_2yopf")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5j34s"]
+material = SubResource("StandardMaterial3D_f1gjg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnfc1"]
+albedo_texture = ExtResource("3_f1gjg")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="PrismMesh" id="PrismMesh_f1gjg"]
+material = SubResource("StandardMaterial3D_qnfc1")
+
+[node name="Building" type="Node3D"]
+script = ExtResource("1_5j34s")
+
+[node name="House" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+mesh = SubResource("BoxMesh_5j34s")
+
+[node name="Roof" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("PrismMesh_f1gjg")
