@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwprejcgidb85"]
+
+[ext_resource type="Script" uid="uid://d1f4uk5sjgjev" path="res://chimney.gd" id="1_5kd4s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h5s12"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5kd4s"]
+albedo_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8wnls"]
+material = SubResource("StandardMaterial3D_5kd4s")
+
+[node name="Chimney" type="Node3D"]
+script = ExtResource("1_5kd4s")
+
+[node name="Pipe" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_h5s12")
+
+[node name="Smoke" type="CPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35823095, 0)
+emitting = false
+amount = 25
+lifetime = 3.0
+lifetime_randomness = 0.65
+local_coords = true
+mesh = SubResource("BoxMesh_8wnls")
+emission_shape = 1
+emission_sphere_radius = 0.2
+gravity = Vector3(0, 0.69, 0)
+scale_amount_min = 0.05
+scale_amount_max = 0.1

@@ -2,9 +2,12 @@ class_name Building
 extends Node3D
 
 var window_spawner = preload("res://window.tscn")
+var chimney_spawner = preload("res://chimney.tscn")
 
 @onready var house: MeshInstance3D = %House
 @onready var roof: MeshInstance3D = %Roof
+
+var windows: Array[HouseWindow] = []
 
 var height: float
 var width: float
@@ -42,19 +45,34 @@ func _randomize():
 	# Use set_surface_override_material on the MeshInstance3D, not the mesh
 	house.set_surface_override_material(0, mat)
 
-func add_windows(left_side: bool) -> void:
+func add_features(left_side: bool) -> void:
 	# Place one or two windows (at half scale) around the middle of the inward face
 	var n_windows = 1
 	if length > 1.5:
 		n_windows = 2
+	
+	var side = 1 if left_side else -1
 
 	for w in range(n_windows):
 		var y_offset = ((length * 0.5) - (n_windows * 0.59) + (w * .69))
 		var vertical_placement = ((height / 2) * .69)
-		var side = 1 if left_side else -1
 		var window_instance = window_spawner.instantiate() as HouseWindow
 
 		add_child(window_instance)
 		window_instance.scale = Vector3(0.5, 0.5, 0.5)
 		window_instance.position = Vector3(side * (width * 0.5), vertical_placement, y_offset)
 		window_instance.rotation = Vector3(0, deg_to_rad(90 * side), 0)
+		
+		windows.push_back(window_instance)
+	
+	# Add chimney
+
+	var chimney_instance = chimney_spawner.instantiate() as Chimney
+	add_child(chimney_instance)
+	chimney_instance.position = Vector3(width * 0.2 * side, (height / 2) + (roof.scale.y * 0.7), randf_range(-length * 0.25, length * 0.25))
+	chimney_instance.scale = Vector3(0.5, 0.5, 0.5)
+		
+	if (randf() < 0.3):
+		for w in windows:
+			w.turn_on_light()
+		chimney_instance.start()

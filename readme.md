@@ -4,8 +4,6 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Houses
-  - Add chimneys
 - Car
   - Honk
     - Houses turn on light
