@@ -1,22 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnlnc82km7nue"]
+[gd_scene load_steps=8 format=3 uid="uid://dnlnc82km7nue"]
 
 [ext_resource type="Script" uid="uid://ghdg8kw3r0wl" path="res://car.gd" id="1_7822p"]
 [ext_resource type="ArrayMesh" uid="uid://cgymitcxs8u6v" path="res://assets/img/Car.obj" id="1_k61xc"]
 [ext_resource type="Texture2D" uid="uid://cylxt80vrmuyl" path="res://assets/img/car_snow_red.png" id="2_06lh1"]
-[ext_resource type="Texture2D" uid="uid://0i6fkyaoslsg" path="res://assets/img/white-square-big.png" id="4_06lh1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_td361"]
 albedo_texture = ExtResource("2_06lh1")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k61xc"]
-albedo_texture = ExtResource("4_06lh1")
-
-[sub_resource type="QuadMesh" id="QuadMesh_k61xc"]
-material = SubResource("StandardMaterial3D_k61xc")
+[sub_resource type="SphereMesh" id="SphereMesh_06lh1"]
 
 [sub_resource type="Gradient" id="Gradient_td361"]
 offsets = PackedFloat32Array(0.007380074, 1)
 colors = PackedColorArray(0.29219356, 0.2921887, 0.2921899, 1, 1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_k61xc"]
 
 [node name="CarAnchor" type="Node3D"]
 script = ExtResource("1_7822p")
@@ -30,22 +27,58 @@ surface_material_override/0 = SubResource("StandardMaterial3D_td361")
 [node name="SnowTrailLeft" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3180419, 0.02916807, 0.5743383)
 amount = 20
-mesh = SubResource("QuadMesh_k61xc")
-direction = Vector3(1, 0, 30)
-spread = 15.0
+mesh = SubResource("SphereMesh_06lh1")
+direction = Vector3(0, 20, 45)
+spread = 10.0
+gravity = Vector3(0, -5.8, 0)
 initial_velocity_min = 3.0
 initial_velocity_max = 5.0
 scale_amount_min = 0.01
-scale_amount_max = 0.07
+scale_amount_max = 0.02
 color_ramp = SubResource("Gradient_td361")
 
 [node name="SnowTrailRight" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31309453, 0.02916807, 0.5743383)
 amount = 20
-mesh = SubResource("QuadMesh_k61xc")
-direction = Vector3(1, 0, 30)
-spread = 15.0
+mesh = SubResource("SphereMesh_06lh1")
+direction = Vector3(0, 20, 45)
+spread = 10.0
+gravity = Vector3(0, -5.8, 0)
 initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.01
+scale_amount_max = 0.02
+color_ramp = SubResource("Gradient_td361")
+
+[node name="WaveLeft" type="CPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.33801606, 0.02916807, 0.3393607)
+emitting = false
+amount = 50
+lifetime = 0.19
+mesh = SubResource("SphereMesh_k61xc")
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0.2, 0.2)
+direction = Vector3(90, 90, 0)
+spread = 30.0
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+scale_amount_min = 0.01
+scale_amount_max = 0.07
+color_ramp = SubResource("Gradient_td361")
+
+[node name="WaveRight" type="CPUParticles3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31309453, 0.02916807, 0.3393607)
+emitting = false
+amount = 50
+lifetime = 0.19
+mesh = SubResource("SphereMesh_k61xc")
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0.2, 0.2)
+direction = Vector3(90, 90, 0)
+spread = 30.0
+initial_velocity_min = 2.0
 initial_velocity_max = 5.0
 scale_amount_min = 0.01
 scale_amount_max = 0.07

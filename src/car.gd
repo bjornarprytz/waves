@@ -3,6 +3,9 @@ extends Node3D
 
 @onready var car: MeshInstance3D = %Car
 
+@onready var wave_left: CPUParticles3D = %WaveLeft
+@onready var wave_right: CPUParticles3D = %WaveRight
+
 var left_bound := -3.5
 var right_bound := 3.5
 var move_speed := 3.0
@@ -15,6 +18,7 @@ const max_momentum := 5.9
 # From being outside the bounds
 var extra_momentum := 0.0
 
+var prev_momentum := 0.0
 var momentum := 0.0
 var inertia := 0.0
 
@@ -54,6 +58,23 @@ func _process(delta: float) -> void:
 	
 	momentum = clamp(momentum, -max_momentum, max_momentum)
 	
+	var change = momentum - prev_momentum
+	
+	if (abs(change) > 0.139):
+		print(change)
+		if (change < 0):
+			wave_left.emitting = false
+			wave_right.emitting = true
+		else:
+			wave_right.emitting = false
+			wave_left.emitting = true
+	else:
+		wave_right.emitting = false
+		wave_left.emitting = false
+		
+	
 	# Move self based on momentum
 	self.position.x += (momentum + extra_momentum) * delta
 	self.rotation.y = - (momentum + extra_momentum) * .169
+	
+	prev_momentum = momentum
