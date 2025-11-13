@@ -4,10 +4,12 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
+- Mountains
 - Car
   - Honk
     - Houses turn on light
-- Controls for game pad and WASD
+- Gameloop
+  - Obstacles
 
 - Push release with `./push_release.sh`
 

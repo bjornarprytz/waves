@@ -23,8 +23,8 @@ var deceleration := 5.69
 
 
 func _process(delta: float) -> void:
-	var left_pressed = Input.is_action_pressed("ui_left")
-	var right_pressed = Input.is_action_pressed("ui_right")
+	var left_pressed = Input.is_action_pressed("steer_left")
+	var right_pressed = Input.is_action_pressed("steer_right")
 
 	inertia = lerp(inertia, momentum, delta * 5.0)
 
