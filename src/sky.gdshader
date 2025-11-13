@@ -1,5 +1,13 @@
 shader_type sky;
 
+uniform sampler2D background_texture : filter_linear;
+uniform bool use_background_texture = false;
+uniform float background_blend : hint_range(0.0, 1.0) = 1.0;
+uniform float background_height : hint_range(0.0, 5.0) = 0.3; // How far up the texture extends
+uniform float background_width : hint_range(0.1, 1.0) = 0.3; // How much of the horizon it covers (0-1)
+uniform float background_vertical_offset : hint_range(-0.5, 0.5) = 0.05; // Vertical position adjustment
+uniform float background_horizontal_offset : hint_range(-3.14159, 3.14159) = 0.0; // Horizontal position adjustment in radians
+
 uniform vec3 horizon_color : source_color = vec3(0.545, 0.0, 1.0);
 uniform vec3 sky_color : source_color = vec3(0.063, 0.0, 0.173);
 uniform vec3 star_color : source_color = vec3(1.0, 1.0, 1.0);
@@ -9,6 +17,7 @@ uniform float star_density : hint_range(0.0, 1.0) = 0.3;
 uniform float star_brightness : hint_range(0.0, 2.0) = 1.0;
 uniform vec2 moon_position = vec2(0.7, 0.6); // azimuth (0-1), elevation (-1 to 1)
 uniform float moon_size : hint_range(0.01, 0.2) = 0.05;
+uniform float background_moonlight_intensity : hint_range(0.0, 2.0) = 0.5; // How much moonlight affects the background texture
 
 // Simple hash function for pseudo-random values
 float hash(vec2 p) {
@@ -75,6 +84,57 @@ void sky() {
     float horizon_blend = smoothstep(-0.3, 0.3, elevation);
     vec3 base_sky = mix(horizon_color, sky_color, horizon_blend);
     
+    // Calculate moon direction early (needed for moonlight on background)
+    float moon_azimuth_rad = moon_position.x * 2.0 * PI;
+    float moon_elevation_rad = moon_position.y * PI * 0.5;
+    vec3 moon_dir = normalize(vec3(
+        cos(moon_elevation_rad) * cos(moon_azimuth_rad),
+        sin(moon_elevation_rad),
+        cos(moon_elevation_rad) * sin(moon_azimuth_rad)
+    ));
+    
+    // Track if we rendered the background texture
+    bool texture_was_rendered = false;
+    
+    // Optionally blend with background texture (only at horizon)
+    if (use_background_texture) {
+        // Simple approach: map view direction to texture coordinates
+        // Calculate angle from -z axis with horizontal offset
+        float angle = atan(dir.x, -dir.z) - background_horizontal_offset;
+        
+        // Only show texture in a narrow horizontal band near horizon
+        // and within a limited angular range
+        if (abs(angle) < background_width * PI && 
+            elevation > background_vertical_offset - background_height * 0.1 &&
+            elevation < background_vertical_offset + background_height * 0.1) {
+            
+            // Map to texture coordinates
+            float u = (angle / (background_width * PI)) * 0.5 + 0.5;
+            float v = 1.0 - ((elevation - background_vertical_offset) / (background_height * 0.2) + 0.5);
+            v = clamp(v, 0.0, 1.0);
+            
+            vec4 tex = texture(background_texture, vec2(u, v));
+            
+            // Apply moonlight to the texture before blending
+            if (tex.a > 0.001) {
+                texture_was_rendered = true;
+                
+                // Calculate moonlight on this part of the texture
+                float moonlight_factor = max(0.0, dot(normalize(dir), moon_dir));
+                moonlight_factor = pow(moonlight_factor, 2.0);
+                
+                // Tint the texture with moonlight, affecting brighter areas more
+                // Use the texture brightness to determine how much tint to apply
+                float tex_brightness = (tex.r + tex.g + tex.b) / 3.0;
+                vec3 moonlight_tint = mix(vec3(1.0), moon_color, moonlight_factor * background_moonlight_intensity);
+                vec3 lit_texture = tex.rgb * moonlight_tint;
+                
+                // Blend lit texture with sky
+                base_sky = mix(base_sky, lit_texture, tex.a);
+            }
+        }
+    }
+    
     // Stars (only in upper hemisphere)
     float star_mask = smoothstep(-0.1, 0.3, elevation);
     // Use direct spherical coordinates without tiling to keep stars fixed
@@ -82,17 +142,9 @@ void sky() {
     float star_field = stars(star_uv, star_density) * star_mask * star_brightness;
     vec3 final_sky = base_sky + star_color * star_field;
     
-    // Moon - convert moon position to 3D direction
-    float moon_azimuth_rad = moon_position.x * 2.0 * PI;
-    float moon_elevation_rad = moon_position.y * PI * 0.5;
-    vec3 moon_dir = vec3(
-        cos(moon_elevation_rad) * cos(moon_azimuth_rad),
-        sin(moon_elevation_rad),
-        cos(moon_elevation_rad) * sin(moon_azimuth_rad)
-    );
-    
+    // Moon rendering (direction already calculated above)
     // Calculate angular distance using dot product
-    float angular_dist = acos(clamp(dot(normalize(dir), normalize(moon_dir)), -1.0, 1.0));
+    float angular_dist = acos(clamp(dot(normalize(dir), moon_dir), -1.0, 1.0));
     
     // Moon disc with soft edge
     float moon_disc = smoothstep(moon_size, moon_size * 0.9, angular_dist);
