@@ -158,8 +158,8 @@ void sky() {
     // Moon surface color variation (darker craters, brighter highlands)
     vec3 moon_surface = moon_color * (0.7 + crater_noise * 0.3);
     
-    // Moon glow
-    float moon_glow = smoothstep(moon_size * 2.5, moon_size, angular_dist) * 0.3;
+    // Moon glow - smaller halo
+    float moon_glow = smoothstep(moon_size * 1.5, moon_size, angular_dist) * 0.15;
     
     // Combine moon
     vec3 moon = moon_surface * moon_disc + moon_color * moon_glow;

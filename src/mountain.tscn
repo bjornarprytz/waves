@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://7wf22o12pssd"]
+
+[ext_resource type="Texture2D" uid="uid://d2posvfofjoqg" path="res://assets/img/tromsdalstinden.png" id="1_mountain"]
+[ext_resource type="Shader" uid="uid://u3qol3s67byc" path="res://mountain.gdshader" id="2_mountain_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mountain"]
+render_priority = 0
+shader = ExtResource("2_mountain_shader")
+shader_parameter/mountain_texture = ExtResource("1_mountain")
+shader_parameter/moon_color = Color(0.627451, 1, 0.8901961, 1)
+shader_parameter/moon_direction = Vector3(-1, -0.2, 1)
+shader_parameter/moonlight_intensity = 2.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_mountain"]
+material = SubResource("ShaderMaterial_mountain")
+size = Vector2(100, 30)
+
+[node name="Mountain" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_mountain")

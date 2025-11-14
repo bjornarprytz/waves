@@ -61,7 +61,6 @@ func _process(delta: float) -> void:
 	var change = momentum - prev_momentum
 	
 	if (abs(change) > 0.139):
-		print(change)
 		if (change < 0):
 			wave_left.emitting = false
 			wave_right.emitting = true

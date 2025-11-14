@@ -3,8 +3,7 @@
 game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
-
-- Mountains
+ 
 - Car
   - Honk
     - Houses turn on light
