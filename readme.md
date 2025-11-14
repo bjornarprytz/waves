@@ -13,8 +13,9 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 - Push release with `./push_release.sh`
 
 - Add attribution:
-  - Aurora Borealis shader: https://godotshaders.com/shader/aurora-borealis/ (Miskatonic studio)
+  - Aurora Borealis shader: [Miskatonic studio](https://godotshaders.com/shader/aurora-borealis/)
   - Car: [GGBotNet](https://ggbot.itch.io/)
+  - Tromsdalstinden picture: [Asbjørn Floden](https://www.flickr.com/photos/asbjorn_floden/7850098520)
 
 ### Extra
 
