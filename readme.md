@@ -3,7 +3,8 @@
 game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
- 
+
+- Unify texture-resolution
 - Car
   - Honk
     - Houses turn on light

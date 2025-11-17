@@ -12,7 +12,7 @@ var move_speed := 3.0
 
 var direction := 0
 
-const rubber_band_strength := 20.0
+const rubber_band_strength := 30.0
 const max_momentum := 5.9
 
 # From being outside the bounds
