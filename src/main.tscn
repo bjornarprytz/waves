@@ -45,7 +45,7 @@ environment = SubResource("Environment_synth")
 
 [node name="Camera" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.9598151, 0.28063318, 0, -0.28063318, 0.9598151, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9429557, 0.3329183, 0, -0.3329183, 0.9429557, 0, 0.9204564, 0)
 
 [node name="Ground" parent="." instance=ExtResource("2_0xm2m")]
 unique_name_in_owner = true
