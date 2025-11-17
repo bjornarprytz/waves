@@ -10,6 +10,9 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
     - Houses turn on light
 - Gameloop
   - Obstacles
+    - Tourists
+    - Sidewalk
+- Game score and multiplier leads to more aurora
 
 - Push release with `./push_release.sh`
 
