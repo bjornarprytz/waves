@@ -3,11 +3,12 @@
 [ext_resource type="Shader" uid="uid://bnnvfessi7cy2" path="res://aurora.gdshader" id="1_aurora"]
 
 [sub_resource type="Gradient" id="Gradient_j0n6b"]
-offsets = PackedFloat32Array(0, 0.8623482)
-colors = PackedColorArray(0, 0.79607844, 0, 1, 0, 0.45585078, 0.75771403, 1)
+offsets = PackedFloat32Array(0.31983805, 1)
+colors = PackedColorArray(0, 0.69411767, 0, 1, 1.347661e-06, 0.576249, 0.6660274, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3yll8"]
 gradient = SubResource("Gradient_j0n6b")
+width = 32
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j0n6b"]
 noise_type = 4
@@ -18,7 +19,7 @@ noise = SubResource("FastNoiseLite_j0n6b")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j0n6b"]
 render_priority = 0
 shader = ExtResource("1_aurora")
-shader_parameter/speed = 0.01
+shader_parameter/speed = 0.005
 shader_parameter/emission_strength = 5.0
 shader_parameter/noise = SubResource("NoiseTexture2D_3yll8")
 shader_parameter/offset = 0.0
@@ -36,7 +37,7 @@ material = SubResource("ShaderMaterial_j0n6b")
 background_mode = 1
 
 [node name="Aurora" type="MeshInstance3D"]
-transform = Transform3D(1000.00006, 0, 0, 0, 65.23367, 75.79295, 0, -75.79295, 65.23367, 0, 0, 0)
+transform = Transform3D(1000.0002, 0, 0, 0, 97.80062, 20.857738, 0, -20.857738, 97.80062, 0, 0, 0)
 mesh = SubResource("BoxMesh_3yll8")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

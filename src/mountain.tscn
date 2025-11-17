@@ -7,9 +7,9 @@
 render_priority = 0
 shader = ExtResource("2_mountain_shader")
 shader_parameter/mountain_texture = ExtResource("1_mountain")
-shader_parameter/moon_color = Color(0.627451, 1, 0.8901961, 1)
+shader_parameter/moon_color = Color(0, 0.5599964, 0.45542538, 1)
 shader_parameter/moon_direction = Vector3(-1, -0.2, 1)
-shader_parameter/moonlight_intensity = 2.0
+shader_parameter/moonlight_intensity = 1.4830000704425
 
 [sub_resource type="QuadMesh" id="QuadMesh_mountain"]
 material = SubResource("ShaderMaterial_mountain")
