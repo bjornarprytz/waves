@@ -11,11 +11,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sky"]
 shader = ExtResource("4_sky")
-shader_parameter/horizon_color = Color(0.5061762, 0.039820664, 0.117097475, 1)
+shader_parameter/horizon_color = Color(0, 0, 0, 1)
 shader_parameter/sky_color = Color(0.063, 0, 0.173, 1)
 shader_parameter/star_color = Color(1, 1, 1, 1)
 shader_parameter/star_density = 1.0
-shader_parameter/star_brightness = 1.3330000633175
+shader_parameter/star_brightness = 2.0
 
 [sub_resource type="Sky" id="Sky_synth"]
 sky_material = SubResource("ShaderMaterial_sky")
@@ -31,6 +31,10 @@ ambient_light_energy = 0.01
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
 render_priority = 0
 shader = ExtResource("8_kek77")
+shader_parameter/moon_color = Color(0.62731296, 1, 0.8886741, 1)
+shader_parameter/crater_intensity = 0.4770000226575
+shader_parameter/crater_scale = 12.702000555845
+shader_parameter/moon_phase = 0.3050000144875
 
 [sub_resource type="SphereMesh" id="SphereMesh_kek77"]
 material = SubResource("ShaderMaterial_4c57u")
@@ -74,5 +78,5 @@ shadow_enabled = true
 shadow_opacity = 0.69
 
 [node name="Moon" type="MeshInstance3D" parent="."]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 238.6495, 106.64763, -565.4971)
+transform = Transform3D(17.677675, 0, 17.677673, 0, 25, 0, -17.677675, 0, 17.677673, 238.6495, 106.64763, -565.4971)
 mesh = SubResource("SphereMesh_kek77")
