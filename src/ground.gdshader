@@ -33,7 +33,6 @@ void fragment() {
     vec3 color = mix(snow_shadow, snow_color, variation);
     
     ALBEDO = color;
-    ROUGHNESS = 0.75
-    ;
+    ROUGHNESS = 0.75;
     METALLIC = 0.0;
 }

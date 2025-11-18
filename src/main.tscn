@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=14 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://c8n24bpcms5uf" path="res://sky.gdshader" id="4_sky"]
 [ext_resource type="PackedScene" uid="uid://oyfamr18wj3p" path="res://aurora.tscn" id="5_aurora"]
 [ext_resource type="PackedScene" uid="uid://7wf22o12pssd" path="res://mountain.tscn" id="7_272bh"]
+[ext_resource type="AudioStream" uid="uid://dntxq22lnlcgt" path="res://assets/sound/bossfightfeeling - 02.04.2023, 12.26.wav" id="8_5vw27"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sky"]
 shader = ExtResource("4_sky")
@@ -38,6 +39,14 @@ ambient_light_source = 2
 ambient_light_color = Color(0, 0.1871664, 0.1465011, 1)
 ambient_light_energy = 0.01
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+albedo_color = Color(0, 0.54509807, 0.44313726, 1)
+emission_enabled = true
+emission = Color(0, 0.54509807, 0.44313726, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kek77"]
+material = SubResource("StandardMaterial3D_5vw27")
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_h2yge")
 
@@ -62,12 +71,20 @@ transform = Transform3D(2000, 0, 0, 0, 76.95932, 171.67029, 0, -128.75272, 102.6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.92512363, -0.093173444, 0.3680557, -4.1320217e-08, 0.96941966, 0.24540879, -0.3796659, 0.2270335, -0.896833, 0, 0, -69.9392)
+[node name="Mountain" parent="." instance=ExtResource("7_272bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.761629, 1.5240517, -78.004196)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_5vw27")
+autoplay = true
+
+[node name="Light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.9251237, -0.09317341, 0.36805564, -4.132022e-08, 0.9694197, 0.24540883, -0.37966594, 0.22703351, -0.89683306, 238.6495, 106.64763, -565.4971)
 light_color = Color(1.5883148e-06, 0.54654634, 0.44373995, 1)
 light_angular_distance = 14.15
 shadow_enabled = true
 shadow_opacity = 0.69
 
-[node name="Mountain" parent="." instance=ExtResource("7_272bh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.761629, 1.5240517, -78.004196)
+[node name="Moon" type="MeshInstance3D" parent="."]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 238.6495, 106.64763, -565.4971)
+mesh = SubResource("SphereMesh_kek77")

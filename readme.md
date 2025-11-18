@@ -4,6 +4,8 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
+- Menu screen
+  - Mission statement (get some tomatoes får tacos)
 - Unify texture-resolution
 - Car
   - Honk
@@ -11,6 +13,7 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 - Gameloop
   - Obstacles
     - Tourists
+    - Troll / Polar bear
     - Sidewalk
 - Game score and multiplier leads to more aurora
 
