@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://2yxs0eqay0a2"]
+
+[ext_resource type="Script" uid="uid://s8nhae4eecy3" path="res://tourist.gd" id="1_1jonp"]
+[ext_resource type="Texture2D" uid="uid://bfmdqnchfsyfb" path="res://assets/img/tourist.png" id="1_uc8sr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkp31"]
+albedo_texture = ExtResource("1_uc8sr")
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_d4pc4"]
+material = SubResource("StandardMaterial3D_vkp31")
+size = Vector2(1, 2)
+
+[node name="Tourist" type="Node3D"]
+script = ExtResource("1_1jonp")
+
+[node name="Handle" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Texture" type="MeshInstance3D" parent="Handle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9807391, 0)
+mesh = SubResource("QuadMesh_d4pc4")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.923271)
