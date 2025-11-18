@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=15 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://7wf22o12pssd" path="res://mountain.tscn" id="7_272bh"]
 [ext_resource type="AudioStream" uid="uid://dntxq22lnlcgt" path="res://assets/sound/bossfightfeeling - 02.04.2023, 12.26.wav" id="8_5vw27"]
 [ext_resource type="Shader" uid="uid://b7mfuslajspmy" path="res://moon.gdshader" id="8_kek77"]
+[ext_resource type="PackedScene" uid="uid://duqsj6w7ve83k" path="res://tourist_grinder.tscn" id="9_kek77"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sky"]
 shader = ExtResource("4_sky")
@@ -80,3 +81,6 @@ shadow_opacity = 0.69
 [node name="Moon" type="MeshInstance3D" parent="."]
 transform = Transform3D(17.677675, 0, 17.677673, 0, 25, 0, -17.677675, 0, 17.677673, 238.6495, 106.64763, -565.4971)
 mesh = SubResource("SphereMesh_kek77")
+
+[node name="TouristGrinder" parent="." instance=ExtResource("9_kek77")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.211856, 7.9329987)

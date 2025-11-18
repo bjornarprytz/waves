@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bccp5jxnm18cp"]
+[gd_scene load_steps=10 format=3 uid="uid://bccp5jxnm18cp"]
 
 [ext_resource type="Shader" uid="uid://cey285dctf074" path="res://ground.gdshader" id="1_t7tip"]
 [ext_resource type="Script" uid="uid://cen7w6j0ng0py" path="res://ground.gd" id="3_tv015"]
+[ext_resource type="PackedScene" uid="uid://2yxs0eqay0a2" path="res://tourist.tscn" id="3_wnojy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
 render_priority = 0
@@ -67,3 +68,6 @@ mesh = SubResource("CylinderMesh_t7tip")
 [node name="SidewalkRight" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7145484e-07, 6.210163, 0)
 mesh = SubResource("CylinderMesh_tv015")
+
+[node name="Tourist" parent="." instance=ExtResource("3_wnojy")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -99.11859, -4.3326113e-06, -14.718791)

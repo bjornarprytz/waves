@@ -4,6 +4,7 @@ extends MeshInstance3D
 @export var rotation_speed: float = 1.0
 
 var building_spawner = preload("res://building.tscn")
+var tourist_spawner = preload("res://tourist.tscn")
 
 var left_building_range = Vector2(-6, -8)
 var right_building_range = Vector2(6, 8)
@@ -25,6 +26,7 @@ func _ready() -> void:
 	print("Rads/meter: %f" % rads_per_meter)
 	
 	_spawn_buildings()
+
 
 func _physics_process(delta: float) -> void:
 	self.rotate(Vector3.RIGHT, rads_per_meter * delta * rotation_speed)

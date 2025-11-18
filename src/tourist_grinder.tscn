@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://duqsj6w7ve83k"]
+
+[ext_resource type="Script" uid="uid://8bb7pd2rlv8" path="res://tourist_grinder.gd" id="1_y0f8v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5vw27"]
+size = Vector3(60.898438, 22.14746, 1)
+
+[node name="TouristGrinder" type="Area3D"]
+script = ExtResource("1_y0f8v")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5vw27")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
