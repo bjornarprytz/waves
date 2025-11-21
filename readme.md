@@ -6,14 +6,13 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 - Menu screen
   - Mission statement (get some tomatoes får tacos)
-- Unify texture-resolution
 - Car
   - Honk
     - Houses turn on light
 - Gameloop
   - Obstacles
     - Tourists
-      - Spawn at sidewalks in groups, then stumble into the road randomly
+      - Should avoid your car slightly
     - Troll / Polar bear
     - Sidewalk
 - Game score and multiplier leads to more aurora

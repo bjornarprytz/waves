@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b15ev0eotrj5"]
+
+[ext_resource type="Script" uid="uid://cue03ekkg2bh1" path="res://tourist_activator.gd" id="1_kwylg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kek77"]
+size = Vector3(60.898438, 22.14746, 1)
+
+[node name="TouristActivator" type="Area3D"]
+script = ExtResource("1_kwylg")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_kek77")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

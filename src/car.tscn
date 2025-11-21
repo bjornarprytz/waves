@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnlnc82km7nue"]
+[gd_scene load_steps=9 format=3 uid="uid://dnlnc82km7nue"]
 
 [ext_resource type="Script" uid="uid://ghdg8kw3r0wl" path="res://car.gd" id="1_7822p"]
 [ext_resource type="ArrayMesh" uid="uid://cgymitcxs8u6v" path="res://assets/img/Car.obj" id="1_k61xc"]
@@ -14,6 +14,9 @@ offsets = PackedFloat32Array(0.007380074, 1)
 colors = PackedColorArray(0.29219356, 0.2921887, 0.2921899, 1, 1, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_k61xc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k61xc"]
+size = Vector3(0.6328125, 0.4296875, 1.7290039)
 
 [node name="CarAnchor" type="Node3D"]
 script = ExtResource("1_7822p")
@@ -97,3 +100,11 @@ light_energy = 7.239
 spot_range = 20.0
 spot_attenuation = 2.33
 spot_angle = 20.0
+
+[node name="HitBox" type="Area3D" parent="."]
+
+[node name="Shape" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28515625, 0.022705078)
+shape = SubResource("BoxShape3D_k61xc")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

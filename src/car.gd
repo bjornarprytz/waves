@@ -77,3 +77,8 @@ func _process(delta: float) -> void:
 	self.rotation.y = - (momentum + extra_momentum) * .169
 	
 	prev_momentum = momentum
+
+
+func _on_hit_box_area_entered(area: Area3D) -> void:
+	if area.owner is Tourist:
+		Events.game_over.emit(false)
