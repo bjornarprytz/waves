@@ -13,6 +13,7 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 - Gameloop
   - Obstacles
     - Tourists
+      - Spawn at sidewalks in groups, then stumble into the road randomly
     - Troll / Polar bear
     - Sidewalk
 - Game score and multiplier leads to more aurora

@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
         _reset_tourist_timer()
 
 func _reset_tourist_timer():
-    next_tourist_spawn = randf_range(2.0, 6.0) # Random interval between 2-6 seconds
+    next_tourist_spawn = randf_range(1.0, 2.0) # Random interval between 1-2 seconds
     tourist_spawn_timer = 0.0
 
 func _spawn_tourist_group():
@@ -60,14 +60,18 @@ func _spawn_tourist_group():
         
         var x = cos(local_angle_rad) * self.mesh.top_radius
         var z = sin(local_angle_rad) * self.mesh.top_radius
-        var y = base_y + randf_range(-0.5, 0.5) # Slight variation within group
+        var y = base_y + randf_range(-2.5, 2.5) # Slight variation within group
         
         add_child(tourist_instance)
         tourist_instance.position = Vector3(x, y, z)
         
-        # Rotate tourist to stand upright on cylinder (outward = up)
+        # Rotate tourist so Y-axis points away from wheel center (outward)
         var outward = Vector3(x, 0, z).normalized()
-        tourist_instance.basis = Basis.looking_at(-outward, Vector3.FORWARD)
+        var forward = Vector3.UP.cross(outward).normalized()
+        var right = -outward.cross(forward).normalized()
+        
+        # Basis with Y-axis = outward, Z-axis = -forward, X-axis = right
+        tourist_instance.basis = Basis(right, outward, -forward)
     print("Spawned %d tourists" % group_size)
     
 func _spawn_buildings():

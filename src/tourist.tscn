@@ -4,14 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://bfmdqnchfsyfb" path="res://assets/img/tourist.png" id="1_uc8sr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkp31"]
+transparency = 4
+cull_mode = 2
 albedo_texture = ExtResource("1_uc8sr")
-billboard_mode = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_d4pc4"]
+lightmap_size_hint = Vector2i(7, 12)
 material = SubResource("StandardMaterial3D_vkp31")
-size = Vector2(1, 2)
+size = Vector2(0.5, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1jonp"]
+radius = 0.21923828
+height = 0.9428711
 
 [node name="Tourist" type="Node3D"]
 script = ExtResource("1_1jonp")
@@ -20,7 +24,7 @@ script = ExtResource("1_1jonp")
 unique_name_in_owner = true
 
 [node name="Texture" type="MeshInstance3D" parent="Handle"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9807391, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.505924, 0)
 mesh = SubResource("QuadMesh_d4pc4")
 skeleton = NodePath("../..")
 
@@ -29,5 +33,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7921288, 0)
 monitoring = false
 
 [node name="Shape" type="CollisionShape3D" parent="Handle/HitBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18784916, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3407153, 0)
 shape = SubResource("CapsuleShape3D_1jonp")
