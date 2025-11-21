@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjyt5qiwe4l2t"]
+
+[ext_resource type="Script" uid="uid://bhlmerkcl8cuh" path="res://honk_range.gd" id="1_eob7p"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k61xc"]
+radius = 0.05
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_eob7p"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.01
+
+[node name="HonkRange" type="Area3D"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+monitorable = false
+script = ExtResource("1_eob7p")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_k61xc")
+
+[node name="SoundBubble" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_eob7p")
+skeleton = NodePath("../..")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

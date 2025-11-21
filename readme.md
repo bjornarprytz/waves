@@ -9,12 +9,12 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 - Car
   - Honk
     - Houses turn on light
-- Gameloop
-  - Obstacles
     - Tourists
       - Should avoid your car slightly
+- Gameloop
+  - Obstacles
     - Troll / Polar bear
-    - Sidewalk
+  - Game over
 - Game score and multiplier leads to more aurora
 
 - Push release with `./push_release.sh`
@@ -23,6 +23,7 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
   - Aurora Borealis shader: [Miskatonic studio](https://godotshaders.com/shader/aurora-borealis/)
   - Car: [GGBotNet](https://ggbot.itch.io/)
   - Tromsdalstinden picture: [Asbjørn Floden](https://www.flickr.com/photos/asbjorn_floden/7850098520)
+  - Honk: Sound Effect by <a href="https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=189855">floraphonic</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=189855">Pixabay</a>
 
 ### Extra
 

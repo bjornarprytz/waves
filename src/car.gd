@@ -1,10 +1,17 @@
 class_name Car
 extends Node3D
 
+const CAR_HORN = preload("uid://oaxmdv814w57")
+
 @onready var car: MeshInstance3D = %Car
 
 @onready var wave_left: CPUParticles3D = %WaveLeft
 @onready var wave_right: CPUParticles3D = %WaveRight
+
+@onready var sound_source: AudioStreamPlayer3D = %SoundSource
+@onready var honk_range: Area3D = %HonkRange
+
+var _is_honking: bool = false
 
 var left_bound := -3.5
 var right_bound := 3.5
@@ -78,6 +85,29 @@ func _process(delta: float) -> void:
 	
 	prev_momentum = momentum
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if (event.is_action_pressed("honk")):
+		_honk()
+
+func _honk():
+	if (_is_honking):
+		return
+	
+	_is_honking = true
+	sound_source.stream = CAR_HORN
+	sound_source.play()
+	
+	honk_range.show()
+	var tween = create_tween()
+	tween.tween_property(honk_range, "scale", Vector3.ONE * 100.0, CAR_HORN.get_length())
+	
+	await tween.finished
+	
+	honk_range.scale = Vector3.ONE
+	honk_range.hide()
+	
+	_is_honking = false
+	
 
 func _on_hit_box_area_entered(area: Area3D) -> void:
 	if area.owner is Tourist:
