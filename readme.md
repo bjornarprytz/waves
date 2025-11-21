@@ -8,9 +8,8 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
   - Mission statement (get some tomatoes får tacos)
 - Car
   - Honk
-    - Houses turn on light
-    - Tourists
-      - Should avoid your car slightly
+    - Cooldown (UI)
+
 - Gameloop
   - Obstacles
     - Troll / Polar bear

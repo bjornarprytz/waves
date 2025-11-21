@@ -3,13 +3,15 @@ extends Node3D
 
 const CAR_HORN = preload("uid://oaxmdv814w57")
 
+@export var honk_range: float = 150.0
+
 @onready var car: MeshInstance3D = %Car
 
 @onready var wave_left: CPUParticles3D = %WaveLeft
 @onready var wave_right: CPUParticles3D = %WaveRight
 
 @onready var sound_source: AudioStreamPlayer3D = %SoundSource
-@onready var honk_range: Area3D = %HonkRange
+@onready var honk_aoe: Area3D = %HonkRange
 
 var _is_honking: bool = false
 
@@ -97,14 +99,14 @@ func _honk():
 	sound_source.stream = CAR_HORN
 	sound_source.play()
 	
-	honk_range.show()
+	honk_aoe.show()
 	var tween = create_tween()
-	tween.tween_property(honk_range, "scale", Vector3.ONE * 100.0, CAR_HORN.get_length())
+	tween.tween_property(honk_aoe, "scale", Vector3.ONE * honk_range, CAR_HORN.get_length())
 	
 	await tween.finished
 	
-	honk_range.scale = Vector3.ONE
-	honk_range.hide()
+	honk_aoe.scale = Vector3.ONE
+	honk_aoe.hide()
 	
 	_is_honking = false
 	

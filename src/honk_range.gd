@@ -9,3 +9,8 @@ func _on_area_entered(area: Area3D) -> void:
 		var tourist = area.owner as Tourist
 		
 		tourist.flee(car)
+	if area.owner is Building:
+		var house = area.owner as Building
+		
+		house.wake()
+		Events.house_startled.emit(house)

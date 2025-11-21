@@ -8,10 +8,13 @@ var chimney_spawner = preload("res://chimney.tscn")
 @onready var roof: MeshInstance3D = %Roof
 
 var windows: Array[HouseWindow] = []
+var chimney: Chimney
 
 var height: float
 var width: float
 var length: float
+
+var is_awake: bool = false
 
 func _ready() -> void:
 	_randomize()
@@ -66,13 +69,16 @@ func add_features(left_side: bool) -> void:
 		windows.push_back(window_instance)
 	
 	# Add chimney
-
-	var chimney_instance = chimney_spawner.instantiate() as Chimney
-	add_child(chimney_instance)
-	chimney_instance.position = Vector3(width * 0.2 * side, (height / 2) + (roof.scale.y * 0.7), randf_range(-length * 0.25, length * 0.25))
-	chimney_instance.scale = Vector3(0.5, 0.5, 0.5)
+	chimney = chimney_spawner.instantiate() as Chimney
+	add_child(chimney)
+	chimney.position = Vector3(width * 0.2 * side, (height / 2) + (roof.scale.y * 0.7), randf_range(-length * 0.25, length * 0.25))
+	chimney.scale = Vector3(0.5, 0.5, 0.5)
 		
 	if (randf() < 0.3):
-		for w in windows:
-			w.turn_on_light()
-		chimney_instance.start()
+		wake()
+
+func wake():
+	for w in windows:
+		w.turn_on_light()
+	chimney.start()
+	

@@ -7,3 +7,5 @@ extends Node2D
 signal game_over(win: bool)
 
 signal tourist_avoided(tourist: Tourist)
+
+signal house_startled(house: Building)
