@@ -6,15 +6,17 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 - Menu screen
   - Mission statement (get some tomatoes får tacos)
-- Car
-  - Honk
-    - Cooldown (UI)
-
-- Gameloop
-  - Obstacles
-    - Troll / Polar bear
-  - Game over
-- Game score and multiplier leads to more aurora
+  - Game modes
+    - Dash to the store (short, medium, long)
+    - Endless (faster and faster)
+- Houses awoken by the honk should go to sleep after a while (so they can be reawoken on the next goaround)
+- Score board
+  - Honks
+  - Houses startled
+  - Tourists avoided
+    - Longest streak
+  - Tourists hit
+  - Final score (some funciton of the above)
 
 - Push release with `./push_release.sh`
 
