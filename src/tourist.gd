@@ -34,15 +34,13 @@ func flee(car: Car):
 	var my_x = handle.global_position.x
 	var target_x = car.global_position.x
 	var fear_factor = .69
-	if (my_x < car.global_position.x):
-		target_x += fear_factor
-	else:
-		target_x -= fear_factor   
+	if (my_x > target_x):
+		fear_factor = -fear_factor   
 	
-	var flee_duration = randf_range(0.5, 1.5)
+	var flee_duration = randf_range(.2, .5)
 	var flee_tween = create_tween()
 	flee_tween.set_parallel()
-	flee_tween.tween_property(handle, "position:x", target_x, flee_duration).as_relative()
+	flee_tween.tween_property(handle, "position:x", fear_factor, flee_duration).as_relative()
 	flee_tween.tween_method(steps, handle.position.y, 0.0, flee_duration)
 	
 	await flee_tween.finished

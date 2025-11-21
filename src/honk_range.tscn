@@ -1,14 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjyt5qiwe4l2t"]
+[gd_scene load_steps=6 format=3 uid="uid://bjyt5qiwe4l2t"]
 
 [ext_resource type="Script" uid="uid://bhlmerkcl8cuh" path="res://honk_range.gd" id="1_eob7p"]
+[ext_resource type="Shader" uid="uid://dnk6oeimga8bi" path="res://honk.gdshader" id="2_24ia1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k61xc"]
 radius = 0.05
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bv5jv"]
+render_priority = 0
+shader = ExtResource("2_24ia1")
+shader_parameter/honk_color = Color(0.45507026, 0.99999994, 0.9482122, 1)
+shader_parameter/expansion = 0.0
+shader_parameter/wave_count = 3.0
+shader_parameter/opacity = 0.5
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_eob7p"]
+material = SubResource("ShaderMaterial_bv5jv")
 top_radius = 0.05
 bottom_radius = 0.05
 height = 0.01
+cap_top = false
+cap_bottom = false
 
 [node name="HonkRange" type="Area3D"]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
