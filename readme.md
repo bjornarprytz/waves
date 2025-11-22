@@ -4,16 +4,19 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Tourists
-  - Animations
-    - Take pictures of aurora
-    - Run scared
+- mmmm
 
 - Menu screen
   - Mission statement (get some tomatoes får tacos)
   - Game modes
     - Dash to the store (short, medium, long)
     - Endless (faster and faster)
+
+- Tourists
+  - Animations
+    - Take pictures of aurora
+    - Run scared
+
 - Score board
   - Final score (some funciton of the above)
 

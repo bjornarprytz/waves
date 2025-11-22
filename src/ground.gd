@@ -19,6 +19,8 @@ var tourist_spawn_timer: float = 0.0
 var next_tourist_spawn: float = 0.0
 var current_rotation: float = 0.0 # Track ground rotation
 
+
+
 func _ready() -> void:
 	assert(self.mesh.top_radius == self.mesh.bottom_radius)
 	
@@ -33,7 +35,10 @@ func _ready() -> void:
 	print("Rads/meter: %f" % rads_per_meter)
 	
 	_spawn_buildings()
+
+func start():
 	_reset_tourist_timer()
+	
 
 func _physics_process(delta: float) -> void:
 	var rotation_delta = rads_per_meter * delta * rotation_speed
