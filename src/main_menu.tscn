@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1cjdsnxpim6t"]
+
+[ext_resource type="Script" uid="uid://dfo3bohigotcl" path="res://main_menu.gd" id="1_06t4h"]
+
+[sub_resource type="Theme" id="Theme_06t4h"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_06t4h"]
+
+[node name="MainMenu" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06t4h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Modes" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_06t4h")
+
+[node name="Header" type="RichTextLabel" parent="VBoxContainer/PanelContainer/Modes"]
+layout_mode = 2
+text = "Mode"
+fit_content = true
+
+[node name="Short" type="CheckBox" parent="VBoxContainer/PanelContainer/Modes"]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = SubResource("ButtonGroup_06t4h")
+text = "Short"
+
+[node name="Long" type="CheckBox" parent="VBoxContainer/PanelContainer/Modes"]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_06t4h")
+text = "Long"
+
+[node name="Endless" type="CheckBox" parent="VBoxContainer/PanelContainer/Modes"]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_06t4h")
+text = "Endless"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

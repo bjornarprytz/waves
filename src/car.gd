@@ -34,7 +34,6 @@ var inertia := 0.0
 var acceleration := 10.0
 var deceleration := 5.69
 
-
 func _process(delta: float) -> void:
 	var left_pressed = Input.is_action_pressed("steer_left")
 	var right_pressed = Input.is_action_pressed("steer_right")
@@ -87,6 +86,9 @@ func _process(delta: float) -> void:
 	
 	prev_momentum = momentum
 
+	Events.car_movement.emit(abs(change))
+
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if (event.is_action_pressed("honk")):
 		_honk()

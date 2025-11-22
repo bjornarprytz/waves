@@ -18,6 +18,8 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
     - Run scared
 
 - Score board
+  - Total movement
+  - Length
   - Final score (some funciton of the above)
 
 - Push release with `./push_release.sh`

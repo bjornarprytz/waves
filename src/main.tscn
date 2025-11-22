@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=18 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://oyfamr18wj3p" path="res://aurora.tscn" id="5_aurora"]
 [ext_resource type="PackedScene" uid="uid://dljkuhk64w3qg" path="res://stats_ui.tscn" id="6_efxa6"]
 [ext_resource type="PackedScene" uid="uid://7wf22o12pssd" path="res://mountain.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://d1cjdsnxpim6t" path="res://main_menu.tscn" id="7_dg77c"]
 [ext_resource type="AudioStream" uid="uid://dntxq22lnlcgt" path="res://assets/sound/bossfightfeeling - 02.04.2023, 12.26.wav" id="8_5vw27"]
 [ext_resource type="Shader" uid="uid://b7mfuslajspmy" path="res://moon.gdshader" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://duqsj6w7ve83k" path="res://tourist_grinder.tscn" id="9_kek77"]
@@ -48,9 +49,17 @@ script = ExtResource("1_h2yge")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_synth")
 
-[node name="Camera" type="Camera3D" parent="."]
+[node name="CameraPauseAnchor" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.9429557, 0.3329183, 0, -0.3329183, 0.9429557, 0, 0.9204564, 0)
+transform = Transform3D(-4.1520305e-08, 0.31263337, -0.9498739, 1.36656375e-08, 0.9498739, 0.31263337, 1, 0, -4.371139e-08, -1.7908424, 0.21692151, -3.1008162)
+
+[node name="Camera" type="Camera3D" parent="CameraPauseAnchor"]
+unique_name_in_owner = true
+transform = Transform3D(1, -8.881784e-16, 0, -8.881784e-16, 1, -2.9802322e-08, 0, 2.9802322e-08, 1, 0, 0, 0)
+
+[node name="CameraPlayAnchor" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.94322276, 0.33216113, 0, -0.33216116, 0.94322264, 0, 0.92, 0)
 
 [node name="Ground" parent="." instance=ExtResource("2_0xm2m")]
 unique_name_in_owner = true
@@ -59,6 +68,7 @@ rotation_speed = 1.69
 
 [node name="Car" parent="." instance=ExtResource("3_h2yge")]
 unique_name_in_owner = true
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.998898, -0.046932105, 0, 0.046932105, 0.998898, 0, -1.1227423, -2.2088487)
 
 [node name="Aurora" parent="." instance=ExtResource("5_aurora")]
@@ -80,7 +90,7 @@ theme_override_constants/margin_bottom = 10
 [node name="Control" type="Control" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
 
-[node name="GameOver" type="RichTextLabel" parent="CanvasLayer/MarginContainer/Control"]
+[node name="Judgement" type="RichTextLabel" parent="CanvasLayer/MarginContainer/Control"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -103,21 +113,31 @@ autowrap_mode = 0
 [node name="Stats" parent="CanvasLayer/MarginContainer/Control" instance=ExtResource("6_efxa6")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -69.0
+offset_right = 129.0
+offset_bottom = 69.0
+
+[node name="MainMenu" parent="CanvasLayer/MarginContainer/Control" instance=ExtResource("7_dg77c")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 145.0
+offset_top = 384.0
+offset_right = -795.0
+offset_bottom = -133.0
 
 [node name="Mountain" parent="." instance=ExtResource("7_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.761629, 1.5240517, -78.004196)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("8_5vw27")
-autoplay = true
 
 [node name="Light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.9251237, -0.09317341, 0.36805564, -4.132022e-08, 0.9694197, 0.24540883, -0.37966594, 0.22703351, -0.89683306, 238.6495, 106.64763, -565.4971)
@@ -135,3 +155,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.211856, 7.9329987)
 
 [node name="TouristActivator" parent="." instance=ExtResource("10_4c57u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.77558)
+
+[connection signal="start_game" from="CanvasLayer/MarginContainer/Control/MainMenu" to="." method="_on_start_game"]
