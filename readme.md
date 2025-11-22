@@ -4,8 +4,10 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Bugs
-  - Tourists conflict if startled while walking
+- Tourists
+  - Animations
+    - Take pictures of aurora
+    - Run scared
 
 - Menu screen
   - Mission statement (get some tomatoes får tacos)
@@ -13,11 +15,6 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
     - Dash to the store (short, medium, long)
     - Endless (faster and faster)
 - Score board
-  - Honks
-  - Houses startled
-  - Tourists avoided
-    - Longest streak
-  - Tourists hit
   - Final score (some funciton of the above)
 
 - Push release with `./push_release.sh`

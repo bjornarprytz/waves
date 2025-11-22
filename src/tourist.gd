@@ -3,8 +3,9 @@ extends Node3D
 
 @onready var handle: Node3D = %Handle
 
-var is_walking: bool = false
 var is_left_side: bool = false
+
+var walk_tween: Tween
 
 func start_stumbling(delay: float = 0.0) -> void:
 	var target_x = randf_range(.5, 5.5)
@@ -18,32 +19,35 @@ func start_stumbling(delay: float = 0.0) -> void:
 	await walk(target_x, stumble_duration)
 
 func walk(x: float, duration: float):
-	if (is_walking):
-		return
-	is_walking = true
-	var walk_tween = create_tween()
+	if (walk_tween):
+		walk_tween.kill()
+	
+	walk_tween = create_tween()
 	walk_tween.set_parallel()
 	walk_tween.tween_property(handle, "position:x", x, duration)
 	walk_tween.tween_method(steps, 0.0, x, duration)
 	
 	await walk_tween.finished
-	
-	is_walking = false
 
-func flee(car: Car):    
+func flee(car: Car):
+	if (walk_tween):
+		walk_tween.kill()
+		print("Aborted walk tween for flee")
+	
 	var my_x = handle.global_position.x
 	var target_x = car.global_position.x
 	var fear_factor = .69
 	if (my_x > target_x):
-		fear_factor = -fear_factor   
+		fear_factor = - fear_factor
 	
 	var flee_duration = randf_range(.2, .5)
-	var flee_tween = create_tween()
-	flee_tween.set_parallel()
-	flee_tween.tween_property(handle, "position:x", fear_factor, flee_duration).as_relative()
-	flee_tween.tween_method(steps, handle.position.y, 0.0, flee_duration)
+	walk_tween = create_tween()
+	walk_tween.set_parallel()
+	walk_tween.tween_property(handle, "position:x", fear_factor, flee_duration).as_relative()
+	walk_tween.tween_method(steps, handle.position.y, 0.0, flee_duration)
 	
-	await flee_tween.finished
+	if (walk_tween):
+		await walk_tween.finished
 
 
 func steps(x: float):
