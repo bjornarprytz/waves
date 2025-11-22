@@ -77,8 +77,24 @@ func add_features(left_side: bool) -> void:
 	if (randf() < 0.3):
 		wake()
 
-func wake():
+func sleep():
+	for w in windows:
+		w.turn_off_light()
+	chimney.stop()
+	is_awake = false
+
+func wake(wake_time: float = -1.0):
+	if (is_awake):
+		return
+	is_awake = true
 	for w in windows:
 		w.turn_on_light()
 	chimney.start()
-	
+
+	if (wake_time > 0.0):
+		var timer = Timer.new()
+		timer.wait_time = wake_time
+		timer.one_shot = true
+		add_child(timer)
+		timer.start()
+		timer.timeout.connect(sleep)

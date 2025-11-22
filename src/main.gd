@@ -1,19 +1,27 @@
+class_name Game
 extends Node3D
 
 var _game_over_is_flashing = false
 
-var score: int = 0:
-	set(value):
-		score = value
-		score_label.text = str(score)
-@onready var score_label: RichTextLabel = %Score
 @onready var game_over_label: RichTextLabel = %GameOver
+@onready var stats_ui: StatsUI = %Stats
+
+var tourists_avoided := 0
+var houses_startled := 0
+var honks := 0
+var tourists_hit := 0
+
+var longest_streak := 0
+var current_streak := 0
+
 
 func _ready() -> void:
 	Events.game_over.connect(_on_game_over)
 	Events.tourist_avoided.connect(_on_tourist_avoided)
 	Events.house_startled.connect(_on_house_startled)
-	score_label.text = str(score)
+	Events.honk_made.connect(_on_honk)
+	Events.tourist_hit.connect(_on_tourist_hit)
+	
 
 func _on_game_over(result: bool):
 	print("Game over... won? %s!" % result)
@@ -29,8 +37,17 @@ func _on_game_over(result: bool):
 		await get_tree().create_timer(0.369).timeout
 	_game_over_is_flashing = false
 
+func _on_honk():
+	honks += 1
+
+func _on_tourist_hit(_tourist: Tourist):
+	tourists_hit += 1
+	current_streak = 0
+
 func _on_house_startled(_house: Building):
-	score -= 1
+	houses_startled += 1
 
 func _on_tourist_avoided(_tourist: Tourist):
-	score += 1
+	tourists_avoided += 1
+	current_streak += 1
+	longest_streak = max(longest_streak, current_streak)

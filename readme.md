@@ -4,12 +4,14 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
+- Bugs
+  - Tourists conflict if startled while walking
+
 - Menu screen
   - Mission statement (get some tomatoes får tacos)
   - Game modes
     - Dash to the store (short, medium, long)
     - Endless (faster and faster)
-- Houses awoken by the honk should go to sleep after a while (so they can be reawoken on the next goaround)
 - Score board
   - Honks
   - Houses startled
