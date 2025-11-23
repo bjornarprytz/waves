@@ -19,6 +19,7 @@ var _judgement_is_flashing = false
 @onready var car: Car = %Car
 
 var game_started = false
+var taco_acquired = false
 
 var lives := 3
 
@@ -47,8 +48,9 @@ func _ready() -> void:
 	Events.car_movement.connect(_on_car_movement)
 	Events.distance_traveled.connect(_on_distance_traveled)
 
-func _on_game_over(_result: bool):
+func _on_game_over(result: bool):
 	game_started = false
+	taco_acquired = result
 
 	stats_ui.update(self)
 	stats_ui.show()
@@ -101,7 +103,6 @@ func _on_start_game(settings: MainMenu.Settings) -> void:
 	if (game_started):
 		return
 	
-	print("Mode: %s" % settings.game_length)
 	main_menu.hide()
 	if (settings.game_length >= 0):
 		ground.place_taco_store(settings.game_length)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cx73vidme64cb"]
+[gd_scene load_steps=14 format=3 uid="uid://cx73vidme64cb"]
 
 [ext_resource type="Script" uid="uid://bpcjhu6mj43xa" path="res://taco_store.gd" id="1_ochrr"]
 [ext_resource type="Texture2D" uid="uid://cglac1jjyygjg" path="res://assets/img/husvegg.png" id="2_8wm86"]
@@ -32,6 +32,9 @@ viewport_path = NodePath("SubViewport")
 resource_local_to_scene = true
 transparency = 1
 albedo_texture = SubResource("ViewportTexture_y26aq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8wm86"]
+size = Vector3(10, 5, 10)
 
 [node name="TacoStore" type="Node3D"]
 script = ExtResource("1_ochrr")
@@ -99,3 +102,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4714003, 0.67881227, 0.490
 
 [node name="Window2" parent="." instance=ExtResource("4_8wm86")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.363889, 0.67881227, 0.4902315)
+
+[node name="HitBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.3531294)
+shape = SubResource("BoxShape3D_8wm86")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

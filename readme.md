@@ -4,11 +4,6 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Taco-butikk (finish line)
-
-- Game modes
-  - Dash to the store (short, medium, long)
-  - Endless (faster and faster)
 - Tutorial
 
 - Score board

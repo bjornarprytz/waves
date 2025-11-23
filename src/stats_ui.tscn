@@ -32,6 +32,17 @@ size_flags_vertical = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="Entries/PanelContainer"]
 layout_mode = 2
 
+[node name="Result" type="RichTextLabel" parent="Entries/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[wave freq=1.69]Jail time acquired :("
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="EntryContainer" type="VBoxContainer" parent="Entries/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2

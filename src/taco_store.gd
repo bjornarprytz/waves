@@ -31,3 +31,10 @@ func _process(delta: float) -> void:
 	
 	for w in windows:
 		w.change_hue(current_color)
+
+
+func _on_hit_box_area_entered(area: Area3D) -> void:
+	if (area.owner is Tourist):
+		area.owner.queue_free() # just keep it clear
+	if (area.owner is Car):
+		Events.game_over.emit(true)
