@@ -5,6 +5,7 @@ uniform vec3 moon_color : source_color = vec3(0.95, 0.95, 1.0);
 uniform float crater_intensity : hint_range(0.0, 1.0) = 0.3;
 uniform float crater_scale : hint_range(1.0, 20.0) = 8.0;
 uniform float moon_phase : hint_range(0.0, 1.0) = 0.5; // 0 = new moon, 0.5 = full moon, 1 = new moon
+uniform float brightness : hint_range(0.0, 5.0) = 2.0;
 
 // Noise function for craters
 float hash(vec2 p) {
@@ -49,5 +50,6 @@ void fragment() {
     // Add ambient light so dark side isn't completely black
     light = max(light, 0.05);
     
-    ALBEDO = surface_color * light;
+    ALBEDO = surface_color * light * brightness;
+    EMISSION = surface_color * light * (brightness - 1.0) * 0.5; // Add glow when brightness > 1
 }

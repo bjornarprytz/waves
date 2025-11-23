@@ -18,7 +18,6 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 - Menu screen
   - Phone: "Get some avocado for tacos!"
-- Se månen litt bedre
 - Street lights
 - Tourists
   - Visual variation
