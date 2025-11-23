@@ -4,23 +4,21 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- mmmm
-
 - Menu screen
   - Mission statement (get some tomatoes får tacos)
   - Game modes
     - Dash to the store (short, medium, long)
     - Endless (faster and faster)
+  - Juice it
 
 - Tourists
   - Animations
     - Take pictures of aurora
     - Run scared
+    - Hit by car (fly away?)
 
 - Score board
-  - Total movement
-  - Length
-  - Final score (some funciton of the above)
+  - Final score
 
 - Push release with `./push_release.sh`
 
