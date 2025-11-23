@@ -2,7 +2,19 @@
 
 [ext_resource type="Script" uid="uid://davk5vafac1xa" path="res://stats_ui.gd" id="1_h18qs"]
 
-[node name="Stats" type="MarginContainer"]
+[node name="Stats" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_h18qs")
+
+[node name="Entries" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,12 +24,20 @@ theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 60
-script = ExtResource("1_h18qs")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="Entries"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="EntryContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Entries/PanelContainer"]
+layout_mode = 2
+
+[node name="EntryContainer" type="VBoxContainer" parent="Entries/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="Button" type="Button" parent="Entries/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[connection signal="pressed" from="Entries/PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

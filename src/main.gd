@@ -26,10 +26,13 @@ var houses_startled := 0
 var honks := 0
 var tourists_hit := 0
 var car_movement := 0.0
+var distance_traveled := 0.0
 
 var longest_streak := 0
 var current_streak := 0
 
+func restart():
+	get_tree().reload_current_scene()
 
 func _ready() -> void:
 	Events.game_over.connect(_on_game_over)
@@ -38,6 +41,7 @@ func _ready() -> void:
 	Events.honk_made.connect(_on_honk)
 	Events.tourist_hit.connect(_on_tourist_hit)
 	Events.car_movement.connect(_on_car_movement)
+	Events.distance_traveled.connect(_on_distance_traveled)
 
 func _on_game_over(_result: bool):
 	game_started = false
@@ -85,6 +89,9 @@ func _on_tourist_avoided(_tourist: Tourist):
 
 func _on_car_movement(change: float) -> void:
 	car_movement += abs(change)
+
+func _on_distance_traveled(distance: float) -> void:
+	distance_traveled += abs(distance)
 
 func _on_start_game(settings: MainMenu.Settings) -> void:
 	if (game_started):

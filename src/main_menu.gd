@@ -21,6 +21,10 @@ signal start_game(settings: Settings)
 
 @onready var game_mode_button_group: ButtonGroup = %Short.button_group
 
+func _input(event: InputEvent) -> void:
+	if (event.is_action_pressed("start")):
+		_on_start_button_pressed()
+
 func _on_start_button_pressed() -> void:
 	var current_mode = game_mode_button_group.get_pressed_button()
 	var mode_name = "Endless"
