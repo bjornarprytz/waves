@@ -11,6 +11,7 @@ var _rotation_dimmer := 0.0
 
 var building_spawner = preload("res://building.tscn")
 var tourist_spawner = preload("res://tourist.tscn")
+var taco_store_spawner = preload("res://taco_store.tscn")
 
 var left_building_range = Vector2(-6, -8)
 var right_building_range = Vector2(6, 8)
@@ -37,6 +38,24 @@ func _ready() -> void:
 	print("Rads/meter: %f" % rads_per_meter)
 	
 	_spawn_buildings()
+
+func place_taco_store(degrees: float):
+	var angle_rad = deg_to_rad(degrees)
+	var x = cos(angle_rad) * (self.mesh.top_radius)
+	var z = sin(angle_rad) * (self.mesh.top_radius)
+	var y = 0.0
+	var taco_store_instance = taco_store_spawner.instantiate() as Node3D
+	add_child(taco_store_instance)
+	taco_store_instance.position = Vector3(x, y, z)
+
+	# Rotate taco store so Y-axis points away from wheel center (outward)
+	var outward = Vector3(x, 0, z).normalized()
+	var forward = Vector3.UP.cross(outward).normalized()
+	var right = outward.cross(forward).normalized()
+	
+	# Basis with Y-axis = outward, Z-axis = -forward, X-axis = right
+	taco_store_instance.basis = Basis(right, outward, forward)
+	
 
 func start():
 	if (_started):

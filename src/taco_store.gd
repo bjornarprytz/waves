@@ -1,0 +1,33 @@
+class_name TacoStore
+extends Node3D
+
+@onready var door: HouseWindow = %Door
+@onready var window: HouseWindow = $Window
+@onready var window_2: HouseWindow = $Window2
+
+
+@onready var windows: Array[HouseWindow] = [door, window, window_2]
+
+var target_color: Color = Utility.random_color()
+var current_color: Color = Color.WHITE
+
+func _ready() -> void:
+	for w in windows:
+		w.turn_on_light()
+	
+
+# Change target color every few seconds
+
+var color_change_timer: float = 0.0
+var color_change_interval: float = 1.0
+
+func _process(delta: float) -> void:
+	current_color = current_color.lerp(target_color, delta * 10.0)
+	
+	color_change_timer += delta
+	if color_change_timer >= color_change_interval:
+		color_change_timer = 0.0
+		target_color = Utility.random_color()
+	
+	for w in windows:
+		w.change_hue(current_color)

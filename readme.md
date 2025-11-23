@@ -4,23 +4,40 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Menu screen
-  - Mission statement (get some tomatoes får tacos)
-  - Game modes
-    - Dash to the store (short, medium, long)
-    - Endless (faster and faster)
-  - Juice it
+- Taco-butikk (finish line)
 
+- Game modes
+  - Dash to the store (short, medium, long)
+  - Endless (faster and faster)
+- Tutorial
+
+- Score board
+  - Rename High score
+  - Final score
+
+- Unify art style
+- Unify UI
+- Name the game
+
+### Nice to have
+
+- Menu screen
+  - Phone: "Get some avocado for tacos!"
+- Se månen litt bedre
+- Street lights
 - Tourists
+  - Visual variation
+  - Grouping together
   - Animations
     - Take pictures of aurora
     - Run scared
     - Hit by car (fly away?)
-
-- Street lights
-
-- Score board
-  - Final score
+- Other obstacles
+  - Tourist bus
+  - Polar bear
+- Lyd
+  - Annen musikk
+  - Klara-lyd
 
 - Push release with `./push_release.sh`
 
@@ -29,6 +46,7 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
   - Car: [GGBotNet](https://ggbot.itch.io/)
   - Tromsdalstinden picture: [Asbjørn Floden](https://www.flickr.com/photos/asbjorn_floden/7850098520)
   - Honk: Sound Effect by <a href="https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=189855">floraphonic</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=189855">Pixabay</a>
+  - Taco icon: <a href="https://www.flaticon.com/free-icons/taco" title="taco icons">Taco icons created by Freepik - Flaticon</a>
 
 ### Extra
 

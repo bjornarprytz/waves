@@ -132,6 +132,14 @@ offset_top = 384.0
 offset_right = -795.0
 offset_bottom = -133.0
 
+[node name="Debug" type="RichTextLabel" parent="CanvasLayer/MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+fit_content = true
+autowrap_mode = 0
+
 [node name="Mountain" parent="." instance=ExtResource("7_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.761629, 1.5240517, -78.004196)
 
