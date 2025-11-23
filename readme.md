@@ -17,6 +17,8 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
     - Run scared
     - Hit by car (fly away?)
 
+- Street lights
+
 - Score board
   - Final score
 

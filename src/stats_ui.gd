@@ -17,7 +17,7 @@ func update(game: Game):
     create("Tourists Hit", str(game.tourists_hit))
     create("Longest Streak", str(game.longest_streak))
     create("Manouver", str(int(game.car_movement)))
-    create("Distance Traveled", str(int(game.distance_traveled)) + " m")
+    create("Distance Traveled", "%sm" % str(int(game.distance_traveled)))
     create("Lives Left", str(game.lives))
 
 
