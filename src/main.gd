@@ -33,10 +33,13 @@ var distance_traveled := 0.0
 var longest_streak := 0
 var current_streak := 0
 
+var difficulty_timer := 0.0
+var difficulty_interval := 10.0
+
 func restart():
 	get_tree().reload_current_scene()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	debug_label.text = str(rad_to_deg(ground.current_rotation))
 
 func _ready() -> void:
@@ -48,7 +51,31 @@ func _ready() -> void:
 	Events.car_movement.connect(_on_car_movement)
 	Events.distance_traveled.connect(_on_distance_traveled)
 
+func _physics_process(delta: float) -> void:
+	if (not game_started):
+		return
+	
+	difficulty_timer += delta
+	if (difficulty_timer >= difficulty_interval):
+		difficulty_timer = 0.0
+		var mod = [_increase_group_size, _increase_speed, _increase_spawn_rate].pick_random()
+		mod.call()
+		print("Increased difficulty!")
+
+func _increase_group_size():
+	ground.tourist_max_group_size += 1
+
+func _increase_speed():
+	ground.rotation_speed += 0.1
+
+func _increase_spawn_rate():
+	ground.tourist_frequency = max(ground.tourist_frequency - 0.02, 0.1)
+
 func _on_game_over(result: bool):
+	if (game_started == false):
+		print("Game over called when game not started")
+		return
+	print("Game Over! Result: %s" % str(result))
 	game_started = false
 	taco_acquired = result
 
@@ -68,7 +95,8 @@ func _on_honk():
 func _on_tourist_hit(_tourist: Tourist):
 	tourists_hit += 1
 	current_streak = 0
-	lives -= 1
+	if (!car.is_invincible):
+		lives -= 1
 
 	if lives <= 0:
 		Events.game_over.emit(false)
@@ -102,6 +130,8 @@ func _on_distance_traveled(distance: float) -> void:
 func _on_start_game(settings: MainMenu.Settings) -> void:
 	if (game_started):
 		return
+	
+	game_started = true
 	
 	main_menu.hide()
 	if (settings.game_length >= 0):

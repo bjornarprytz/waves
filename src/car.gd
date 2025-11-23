@@ -15,6 +15,8 @@ const CAR_HORN = preload("uid://oaxmdv814w57")
 
 var _is_honking: bool = false
 
+var is_invincible: bool = false
+
 var left_bound := -3.5
 var right_bound := 3.5
 var move_speed := 3.0
@@ -118,3 +120,13 @@ func _honk():
 func _on_hit_box_area_entered(area: Area3D) -> void:
 	if area.owner is Tourist:
 		Events.tourist_hit.emit(area.owner)
+		area.owner.queue_free()
+		if is_invincible:
+			return
+		is_invincible = true
+		for i in range(5):
+			car.hide()
+			await get_tree().create_timer(.169).timeout
+			car.show()
+			await get_tree().create_timer(.169).timeout
+		is_invincible = false

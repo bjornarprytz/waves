@@ -24,6 +24,7 @@ script = ExtResource("1_1jonp")
 unique_name_in_owner = true
 
 [node name="Texture" type="MeshInstance3D" parent="Handle"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.505924, 0)
 mesh = SubResource("QuadMesh_d4pc4")
 skeleton = NodePath("../..")

@@ -3,6 +3,7 @@ extends MeshInstance3D
 
 @export var rotation_speed: float = 1.0
 @export var tourist_frequency: float = .269
+@export var tourist_max_group_size: int = 2
 
 const sidewalk_offset: float = 4.0
 
@@ -99,30 +100,38 @@ func _spawn_tourist():
     # Compensate for ground rotation to keep spawn at fixed world position
     var local_angle_rad = deg_to_rad(world_spawn_angle_deg) + current_rotation
     
-    var is_left_side = randf() < 0.5
-    var base_y = 0.0
-    if is_left_side:
-        base_y = - sidewalk_offset
-    else:
-        base_y = sidewalk_offset
-    
-    var tourist_instance = tourist_spawner.instantiate() as Tourist
-    
-    var x = cos(local_angle_rad) * self.mesh.top_radius
-    var z = sin(local_angle_rad) * self.mesh.top_radius
-    var y = base_y + randf_range(-.069, .069)
-    
-    add_child(tourist_instance)
-    tourist_instance.position = Vector3(x, y, z)
-    tourist_instance.is_left_side = is_left_side
-    
-    # Rotate tourist so Y-axis points away from wheel center (outward)
-    var outward = Vector3(x, 0, z).normalized()
-    var forward = Vector3.UP.cross(outward).normalized()
-    var right = - outward.cross(forward).normalized()
-    
-    # Basis with Y-axis = outward, Z-axis = -forward, X-axis = right
-    tourist_instance.basis = Basis(right, outward, -forward)
+    var target_x: float = 0.0
+    var group_color = Utility.random_color()
+    for i in range(randi() % tourist_max_group_size + 1):
+        var is_left_side = randf() < 0.5
+        var base_y = 0.0
+        if is_left_side:
+            base_y = - sidewalk_offset
+        else:
+            base_y = sidewalk_offset
+        
+        var tourist_instance = tourist_spawner.instantiate() as Tourist
+        
+        var x = cos(local_angle_rad) * self.mesh.top_radius
+        var z = sin(local_angle_rad) * self.mesh.top_radius
+        var y = base_y + randf_range(-.069, .069)
+        
+        add_child(tourist_instance)
+        if (target_x == 0.0):
+            target_x = tourist_instance.stumble_target_x
+        else:
+            tourist_instance.stumble_target_x = target_x + (randf_range(-.169, .169) * i)
+        tourist_instance.position = Vector3(x, y, z)
+        tourist_instance.is_left_side = is_left_side
+        tourist_instance.tint(group_color)
+        
+        # Rotate tourist so Y-axis points away from wheel center (outward)
+        var outward = Vector3(x, 0, z).normalized()
+        var forward = Vector3.UP.cross(outward).normalized()
+        var right = - outward.cross(forward).normalized()
+        
+        # Basis with Y-axis = outward, Z-axis = -forward, X-axis = right
+        tourist_instance.basis = Basis(right, outward, -forward)
     
 func _spawn_buildings():
     for d in range(360):

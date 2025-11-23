@@ -32,7 +32,7 @@ func create(header: String, value: String) -> void:
 	stats_entry_instance.set_it(header, value)
 	stats_entry_instance.modulate.a = 0.0
 	var tween = create_tween()
-	tween.tween_property(stats_entry_instance, "modulate:a", 1.0, .69)
+	tween.tween_property(stats_entry_instance, "modulate:a", 1.0, .369)
 	await tween.finished
 
 func _on_button_pressed() -> void:

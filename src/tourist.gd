@@ -2,27 +2,34 @@ class_name Tourist
 extends Node3D
 
 @onready var handle: Node3D = %Handle
+@onready var texture: MeshInstance3D = %Texture
 
 var is_left_side: bool = false
 
 var walk_tween: Tween
 
+var stumble_target_x: float = randf_range(.5, 5.5)
+
+func tint(color: Color) -> void:
+	var mat = texture.mesh.surface_get_material(0).duplicate() as StandardMaterial3D
+	mat.albedo_color = color
+	texture.set_surface_override_material(0, mat)
+
 func start_stumbling(delay: float = 0.0) -> void:
-	var target_x = randf_range(.5, 5.5)
 	if is_left_side:
-		target_x = - target_x
+		stumble_target_x = - stumble_target_x
 	
 	if (delay > 0.0):
 		await get_tree().create_timer(delay).timeout
 	
 	var stumble_duration = randf_range(1.0, 2.0)
-	await walk(target_x, stumble_duration)
+	await walk(stumble_target_x, stumble_duration)
 
 func walk(x: float, duration: float):
 	if (walk_tween):
 		walk_tween.kill()
 	
-	walk_tween = create_tween()
+	walk_tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	walk_tween.set_parallel()
 	walk_tween.tween_property(handle, "position:x", x, duration)
 	walk_tween.tween_method(steps, 0.0, x, duration)
