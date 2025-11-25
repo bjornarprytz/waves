@@ -13,7 +13,7 @@ var _judgement_is_flashing = false
 
 @onready var judgement_label: RichTextLabel = %Judgement
 @onready var stats_ui: StatsUI = %Stats
-@onready var main_menu: CenterContainer = %MainMenu
+@onready var main_menu: WorldMenu = %WorldMenu
 
 @onready var ground: Ground = %Ground
 @onready var car: Car = %Car
