@@ -39,6 +39,7 @@ shader_parameter/moon_color = Color(0.62731296, 1, 0.8886741, 1)
 shader_parameter/crater_intensity = 0.4770000226575
 shader_parameter/crater_scale = 12.702000555845
 shader_parameter/moon_phase = 0.3050000144875
+shader_parameter/brightness = 2.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_kek77"]
 material = SubResource("ShaderMaterial_4c57u")
@@ -114,15 +115,9 @@ autowrap_mode = 0
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 13
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -129.0
-offset_top = -69.0
-offset_right = 129.0
-offset_bottom = 69.0
 
 [node name="MainMenu" parent="CanvasLayer/MarginContainer/Control" instance=ExtResource("7_dg77c")]
 unique_name_in_owner = true

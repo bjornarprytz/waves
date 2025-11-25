@@ -14,6 +14,8 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 - Unify UI
 - Name the game
 
+- Remove #TOREMOVE
+
 ### Nice to have
 
 - Menu screen

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bhttketftlysp"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bhttketftlysp"]
 
 [ext_resource type="Texture2D" uid="uid://b3j5t5dtouj45" path="res://assets/panel-texture.png" id="1_hanp0"]
 [ext_resource type="FontFile" uid="uid://vf6yvj2lvqpc" path="res://assets/fonts/Fira_Code/static/FiraCode-Bold.ttf" id="2_hmq0m"]
@@ -6,6 +6,13 @@
 [ext_resource type="FontFile" uid="uid://b5skvr8ealnht" path="res://assets/fonts/Bona_Nova_SC/BonaNovaSC-Bold.ttf" id="4_hijak"]
 [ext_resource type="FontFile" uid="uid://bb122o3gnfkmh" path="res://assets/fonts/Bona_Nova_SC/BonaNovaSC-Italic.ttf" id="5_x5u83"]
 [ext_resource type="FontFile" uid="uid://dcf1hls2gfcfc" path="res://assets/fonts/Bona_Nova_SC/BonaNovaSC-Regular.ttf" id="6_m0kks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vp42j"]
+bg_color = Color(0, 0.69411767, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a20gn"]
 texture = ExtResource("1_hanp0")
@@ -15,6 +22,8 @@ texture_margin_right = 9.0
 texture_margin_bottom = 9.0
 
 [resource]
+ActionButton/base_type = &"Button"
+ActionButton/styles/normal = SubResource("StyleBoxFlat_vp42j")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_a20gn")
 RichTextLabel/font_sizes/normal_font_size = 24
 RichTextLabel/fonts/bold_font = ExtResource("2_hmq0m")

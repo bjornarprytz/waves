@@ -36,6 +36,11 @@ var current_streak := 0
 var difficulty_timer := 0.0
 var difficulty_interval := 10.0
 
+func _input(event: InputEvent) -> void:
+	#TOREMOVE
+	if (event is InputEventKey && event.is_pressed() && event.keycode == KEY_K):
+		Events.game_over.emit(false)
+
 func restart():
 	get_tree().reload_current_scene()
 

@@ -2,7 +2,9 @@ class_name Tourist
 extends Node3D
 
 @onready var handle: Node3D = %Handle
-@onready var texture: MeshInstance3D = %Texture
+
+@onready var head: MeshInstance3D = %Head
+@onready var body: MeshInstance3D = %Body
 
 var is_left_side: bool = false
 
@@ -11,9 +13,10 @@ var walk_tween: Tween
 var stumble_target_x: float = randf_range(.5, 5.5)
 
 func tint(color: Color) -> void:
-	var mat = texture.mesh.surface_get_material(0).duplicate() as StandardMaterial3D
-	mat.albedo_color = color
-	texture.set_surface_override_material(0, mat)
+	for texture in [head, body] as Array[MeshInstance3D]:
+		var mat = texture.mesh.surface_get_material(0).duplicate() as StandardMaterial3D
+		mat.albedo_color = color
+		texture.set_surface_override_material(0, mat)
 
 func start_stumbling(delay: float = 0.0) -> void:
 	if is_left_side:
