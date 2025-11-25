@@ -37,123 +37,118 @@ var current_streak := 0
 var difficulty_timer := 0.0
 var difficulty_interval := 10.0
 
-func _input(event: InputEvent) -> void:
-	#TOREMOVE
-	if (event is InputEventKey && event.is_pressed() && event.keycode == KEY_K):
-		Events.game_over.emit(false)
-
 func restart():
-	get_tree().reload_current_scene()
+    get_tree().reload_current_scene()
 
 func _process(_delta: float) -> void:
-	debug_label.text = str(rad_to_deg(ground.current_rotation))
+    debug_label.text = str(rad_to_deg(ground.current_rotation))
 
 func _ready() -> void:
-	Events.game_over.connect(_on_game_over)
-	Events.tourist_avoided.connect(_on_tourist_avoided)
-	Events.house_startled.connect(_on_house_startled)
-	Events.honk_made.connect(_on_honk)
-	Events.tourist_hit.connect(_on_tourist_hit)
-	Events.car_movement.connect(_on_car_movement)
-	Events.distance_traveled.connect(_on_distance_traveled)
-	
-	Events.start_game.connect(_on_start_game)
+    Events.game_over.connect(_on_game_over)
+    Events.tourist_avoided.connect(_on_tourist_avoided)
+    Events.house_startled.connect(_on_house_startled)
+    Events.honk_made.connect(_on_honk)
+    Events.tourist_hit.connect(_on_tourist_hit)
+    Events.car_movement.connect(_on_car_movement)
+    Events.distance_traveled.connect(_on_distance_traveled)
+    
+    Events.start_game.connect(_on_start_game)
 
 func _physics_process(delta: float) -> void:
-	if (not game_started):
-		return
-	
-	difficulty_timer += delta
-	if (difficulty_timer >= difficulty_interval):
-		difficulty_timer = 0.0
-		var mod = [_increase_group_size, _increase_speed, _increase_spawn_rate].pick_random()
-		mod.call()
-		print("Increased difficulty!")
+    if (not game_started):
+        return
+    
+    difficulty_timer += delta
+    if (difficulty_timer >= difficulty_interval):
+        difficulty_timer = 0.0
+        var mod = [_increase_group_size, _increase_speed, _increase_spawn_rate].pick_random()
+        mod.call()
+        print("Increased difficulty!")
 
 func _increase_group_size():
-	ground.tourist_max_group_size += 1
+    ground.tourist_max_group_size += 1
 
 func _increase_speed():
-	ground.rotation_speed += 0.1
+    ground.rotation_speed += 0.1
 
 func _increase_spawn_rate():
-	ground.tourist_frequency = max(ground.tourist_frequency - 0.02, 0.1)
+    ground.tourist_frequency = max(ground.tourist_frequency - 0.02, 0.1)
 
 func _on_game_over(result: bool):
-	if (game_started == false):
-		print("Game over called when game not started")
-		return
-	print("Game Over! Result: %s" % str(result))
-	game_started = false
-	taco_acquired = result
+    if (game_started == false):
+        print("Game over called when game not started")
+        return
+    print("Game Over! Result: %s" % str(result))
+    game_started = false
+    taco_acquired = result
 
-	stats_ui.update(self)
-	stats_ui.show()
-	#stats_ui.modulate.a = 0.0
-	var tween = create_tween()
-	# Tween alpha of stats UI or something here
-	tween.tween_property(stats_ui, "modulate:a", 1.0, 1.0)
+    stats_ui.update(self)
+    stats_ui.show()
+    #stats_ui.modulate.a = 0.0
+    var tween = create_tween()
+    # Tween alpha of stats UI or something here
+    tween.tween_property(stats_ui, "modulate:a", 1.0, 1.0)
 
-	ground.stop()
+    ground.stop()
 
-	
+    
 func _on_honk():
-	honks += 1
+    honks += 1
 
 func _on_tourist_hit(_tourist: Tourist):
-	tourists_hit += 1
-	current_streak = 0
-	if (!car.is_invincible):
-		lives -= 1
+    tourists_hit += 1
+    current_streak = 0
+    if (!car.is_invincible):
+        lives -= 1
 
-	if lives <= 0:
-		Events.game_over.emit(false)
-		return
+    if lives <= 0:
+        Events.game_over.emit(false)
+        return
 
-	if (_judgement_is_flashing):
-		return
-	
-	_judgement_is_flashing = true
-	for i in range(3):
-		judgement_label.show()
-		await get_tree().create_timer(0.369).timeout
-		judgement_label.hide()
-		await get_tree().create_timer(0.369).timeout
-	_judgement_is_flashing = false
+    if (_judgement_is_flashing):
+        return
+    
+    _judgement_is_flashing = true
+    for i in range(3):
+        judgement_label.show()
+        await get_tree().create_timer(0.369).timeout
+        judgement_label.hide()
+        await get_tree().create_timer(0.369).timeout
+    _judgement_is_flashing = false
 
 func _on_house_startled(_house: Building):
-	houses_startled += 1
+    houses_startled += 1
 
 func _on_tourist_avoided(_tourist: Tourist):
-	tourists_avoided += 1
-	current_streak += 1
-	longest_streak = max(longest_streak, current_streak)
+    tourists_avoided += 1
+    current_streak += 1
+    longest_streak = max(longest_streak, current_streak)
 
 func _on_car_movement(change: float) -> void:
-	car_movement += abs(change)
+    car_movement += abs(change)
 
 func _on_distance_traveled(distance: float) -> void:
-	distance_traveled += abs(distance)
+    distance_traveled += abs(distance)
 
 func _on_start_game(settings: MainMenu.Settings) -> void:
-	if (game_started):
-		return
-	
-	game_started = true
-	
-	main_menu.hide()
-	canvas_layer.show()
-	if (settings.game_length >= 0):
-		ground.place_taco_store(settings.game_length)
-	ground.start()
-	camera.reparent(camera_play_anchor)
-	
-	car.process_mode = Node.PROCESS_MODE_INHERIT
+    if (game_started):
+        return
+    
+    game_started = true
+    
+    main_menu.hide()
+    canvas_layer.show()
+    if (settings.game_length >= 0):
+        ground.place_taco_store(settings.game_length)
+    ground.start()
+    camera.reparent(camera_play_anchor)
+    
+    car.process_mode = Node.PROCESS_MODE_INHERIT
 
-	lives = settings.starting_lives
-	music.play()
-	
-	var move_camera_tween = create_tween()
-	move_camera_tween.set_parallel()
-	move_camera_tween.tween_property(camera, "position", Vector3.ZERO, 1.69)
-	move_camera_tween.tween_property(camera, "rotation", Vector3.ZERO, 1.69)
+    lives = settings.starting_lives
+    music.play()
+    
+    var move_camera_tween = create_tween()
+    move_camera_tween.set_parallel()
+    move_camera_tween.tween_property(camera, "position", Vector3.ZERO, 1.69)
+    move_camera_tween.tween_property(camera, "rotation", Vector3.ZERO, 1.69)
