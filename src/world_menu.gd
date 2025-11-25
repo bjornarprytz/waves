@@ -17,13 +17,11 @@ func _mouse_entered_area() -> void:
 	is_mouse_inside = true
 	# Notify the viewport that the mouse is now hovering it.
 	node_viewport.notification(NOTIFICATION_VP_MOUSE_ENTER)
-	print("Mouse entered area")
 
 func _mouse_exited_area() -> void:
 	# Notify the viewport that the mouse is no longer hovering it.
 	node_viewport.notification(NOTIFICATION_VP_MOUSE_EXIT)
 	is_mouse_inside = false
-	print("Mouse exited area")
 
 
 func _unhandled_input(event: InputEvent) -> void:

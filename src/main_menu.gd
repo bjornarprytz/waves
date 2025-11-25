@@ -18,8 +18,6 @@ class Settings:
 	
 		self.starting_lives = lives
 
-signal start_game(settings: Settings)
-
 @onready var game_mode_button_group: ButtonGroup = %Short.button_group
 
 func _input(event: InputEvent) -> void:
@@ -32,4 +30,4 @@ func _on_start_button_pressed() -> void:
 	if (current_mode):
 		mode_name = current_mode.name
 	
-	start_game.emit(Settings.new(mode_name))
+	Events.start_game.emit(Settings.new(mode_name))

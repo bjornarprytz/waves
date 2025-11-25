@@ -57,6 +57,7 @@ transform = Transform3D(-4.1520305e-08, 0.31263337, -0.9498739, 1.36656375e-08, 
 [node name="Camera" type="Camera3D" parent="CameraPauseAnchor"]
 unique_name_in_owner = true
 transform = Transform3D(1, -8.881784e-16, 0, -8.881784e-16, 1, -2.9802322e-08, 0, 2.9802322e-08, 1, 0, 0, 0)
+current = true
 
 [node name="CameraPlayAnchor" type="Node3D" parent="."]
 unique_name_in_owner = true
@@ -76,6 +77,8 @@ transform = Transform3D(1, 0, 0, 0, 0.998898, -0.046932105, 0, 0.046932105, 0.99
 transform = Transform3D(2000, 0, 0, 0, 76.95932, 171.67029, 0, -128.75272, 102.61243, 174.25262, 33.15435, -341.32916)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -154,4 +157,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.77558)
 
 [node name="WorldMenu" parent="." instance=ExtResource("13_ycdy4")]
 unique_name_in_owner = true
-transform = Transform3D(0.3074101, -0.8711988, 0.38276893, 0.9491965, 0.30917513, -0.058624543, -0.067269005, 0.38134474, 0.9219822, -0.22193933, -0.56265324, -4.616219)
+transform = Transform3D(1.0000002, 0, 0, 0, 0.9985208, -0.054375082, 0, 0.054375093, 0.99852055, -0.005360365, -0.9745831, -4.482312)

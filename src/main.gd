@@ -4,6 +4,7 @@ extends Node3D
 var _judgement_is_flashing = false
 
 @onready var debug_label: RichTextLabel = %Debug
+@onready var canvas_layer: CanvasLayer = %CanvasLayer
 
 @onready var camera_pause_anchor: Node3D = %CameraPauseAnchor
 @onready var camera_play_anchor: Node3D = %CameraPlayAnchor
@@ -55,6 +56,8 @@ func _ready() -> void:
 	Events.tourist_hit.connect(_on_tourist_hit)
 	Events.car_movement.connect(_on_car_movement)
 	Events.distance_traveled.connect(_on_distance_traveled)
+	
+	Events.start_game.connect(_on_start_game)
 
 func _physics_process(delta: float) -> void:
 	if (not game_started):
@@ -139,6 +142,7 @@ func _on_start_game(settings: MainMenu.Settings) -> void:
 	game_started = true
 	
 	main_menu.hide()
+	canvas_layer.show()
 	if (settings.game_length >= 0):
 		ground.place_taco_store(settings.game_length)
 	ground.start()
