@@ -5,6 +5,7 @@ extends Node3D
 
 @onready var head: MeshInstance3D = %Head
 @onready var body: MeshInstance3D = %Body
+@onready var hit_box: Area3D = %HitBox
 
 var is_left_side: bool = false
 
@@ -39,14 +40,57 @@ func walk(x: float, duration: float):
 	
 	await walk_tween.finished
 
-func flee(car: Car):
+func jump_away(car: Car) -> void:
+	if (walk_tween):
+		walk_tween.kill()
+		print("Aborted walk tween for jump_away")
+
+	hit_box.monitorable = false
+	
+	var jump_height = .69
+	var jump_duration = 0.469
+	var original_y = handle.position.y
+	
+	# Determine which direction to jump to avoid the car (same logic as flee)
+	var my_x = handle.global_position.x
+	var car_x = car.global_position.x
+	var jump_distance = 1.69
+	# Jump away from car: if I'm on the right side of car, jump right (positive)
+	if (my_x > car_x):
+		jump_distance = - jump_distance
+	var target_x = handle.position.x + jump_distance
+	
+	# Rotate in the direction of the jump (like a goalkeeper dive)
+	
+	var jump_tween = create_tween().set_ease(Tween.EASE_OUT)
+	jump_tween.set_parallel()
+	jump_tween.tween_method(steps, handle.position.y, jump_height, jump_duration / 2)
+	jump_tween.tween_property(handle, "position:y", jump_height, jump_duration / 2)
+	jump_tween.tween_property(handle, "position:x", target_x, jump_duration / 2)
+	
+	await jump_tween.finished
+	
+	var fall_tween = create_tween().set_ease(Tween.EASE_IN)
+	fall_tween.set_parallel()
+	fall_tween.tween_method(steps, handle.position.y, original_y, jump_duration / 2)
+	fall_tween.tween_property(handle, "position:y", original_y, jump_duration / 2)
+	fall_tween.tween_property(handle, "position:x", target_x, jump_duration / 2)
+	fall_tween.tween_property(handle, "rotation:z", 0.0, jump_duration / 2)
+	
+	await fall_tween.finished
+
+	# Run away and queue free
+	await flee(car, 10.69)
+	queue_free()
+
+func flee(car: Car, fear_factor: float = 0.69) -> void:
 	if (walk_tween):
 		walk_tween.kill()
 		print("Aborted walk tween for flee")
 	
 	var my_x = handle.global_position.x
 	var target_x = car.global_position.x
-	var fear_factor = .69
+	
 	if (my_x > target_x):
 		fear_factor = - fear_factor
 	

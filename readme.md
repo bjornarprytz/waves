@@ -4,7 +4,9 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Tourists jump out of the way instead of getting "killed"
+- Tourist
+  - flee:
+    - Run scared
 
 - Unify art style
 - Unify UI
@@ -19,7 +21,6 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
   - Visual variation
   - Animations
     - Take pictures of aurora
-    - Run scared
 - Other obstacles
   - Tourist bus
   - Polar bear

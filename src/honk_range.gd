@@ -8,7 +8,9 @@ func _on_area_entered(area: Area3D) -> void:
 	if area.owner is Tourist:
 		var tourist = area.owner as Tourist
 		
-		tourist.flee(car)
+		# TODO: change back to flee
+		tourist.jump_away(car)
+		
 	if area.owner is Building:
 		var house = area.owner as Building
 		

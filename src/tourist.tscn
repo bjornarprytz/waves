@@ -47,6 +47,7 @@ mesh = SubResource("QuadMesh_646cv")
 skeleton = NodePath("../..")
 
 [node name="HitBox" type="Area3D" parent="Handle"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7921288, 0)
 monitoring = false
 

@@ -119,8 +119,9 @@ func _honk():
 
 func _on_hit_box_area_entered(area: Area3D) -> void:
 	if area.owner is Tourist:
-		Events.tourist_hit.emit(area.owner)
-		area.owner.queue_free()
+		var tourist = area.owner as Tourist
+		Events.tourist_hit.emit(tourist)
+		tourist.jump_away(self)
 		if is_invincible:
 			return
 		is_invincible = true
