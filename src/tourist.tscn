@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://2yxs0eqay0a2"]
+[gd_scene load_steps=10 format=3 uid="uid://2yxs0eqay0a2"]
 
 [ext_resource type="Script" uid="uid://s8nhae4eecy3" path="res://tourist.gd" id="1_1jonp"]
 [ext_resource type="Texture2D" uid="uid://cum7qjtpjoy3i" path="res://assets/img/tourist-head-1.png" id="2_1jonp"]
 [ext_resource type="Texture2D" uid="uid://cq11ogq1gxkbw" path="res://assets/img/tourist-body-1.png" id="3_5njhx"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_5njhx"]
+size = Vector3(0.04, 0.13, 0.02)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkp31"]
 transparency = 4
@@ -33,6 +36,35 @@ script = ExtResource("1_1jonp")
 
 [node name="Handle" type="Node3D" parent="."]
 unique_name_in_owner = true
+
+[node name="Sweat" type="Node3D" parent="Handle"]
+unique_name_in_owner = true
+visible = false
+
+[node name="Sweat" type="MeshInstance3D" parent="Handle/Sweat"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045865387, 1.1049926, 0)
+mesh = SubResource("PrismMesh_5njhx")
+skeleton = NodePath("../..")
+
+[node name="Sweat2" type="MeshInstance3D" parent="Handle/Sweat"]
+transform = Transform3D(0.96809083, 0.25059965, 0, -0.25059965, 0.96809083, 0, 0, 0, 1, 0.0543485, 1.0912572, 0)
+mesh = SubResource("PrismMesh_5njhx")
+skeleton = NodePath("../..")
+
+[node name="Sweat3" type="MeshInstance3D" parent="Handle/Sweat"]
+transform = Transform3D(0.96369106, -0.26701975, 0, 0.26701975, 0.96369106, 0, 0, 0, 1, -0.13411961, 1.0912572, 0)
+mesh = SubResource("PrismMesh_5njhx")
+skeleton = NodePath("../..")
+
+[node name="Sweat4" type="MeshInstance3D" parent="Handle/Sweat"]
+transform = Transform3D(0.8394018, -0.54351145, 0, 0.54351145, 0.8394018, 0, 0, 0, 1, -0.20674154, 1.0553701, 0)
+mesh = SubResource("PrismMesh_5njhx")
+skeleton = NodePath("../..")
+
+[node name="Sweat5" type="MeshInstance3D" parent="Handle/Sweat"]
+transform = Transform3D(0.89039564, 0.45518762, 0, -0.45518762, 0.89039564, 0, 0, 0, 1, 0.14087251, 1.0553701, 0)
+mesh = SubResource("PrismMesh_5njhx")
+skeleton = NodePath("../..")
 
 [node name="Head" type="MeshInstance3D" parent="Handle"]
 unique_name_in_owner = true

@@ -4,10 +4,6 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Tourist
-  - flee:
-    - Run scared
-
 - Unify art style
 - Unify UI
 - Name the game
