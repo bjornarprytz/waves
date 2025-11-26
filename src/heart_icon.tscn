@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://l0xqdjg418d0"]
+
+[ext_resource type="Texture2D" uid="uid://f1y4r63pjnsy" path="res://assets/img/heart.png" id="1_0qe1d"]
+[ext_resource type="Script" uid="uid://cwxjexb3ntty8" path="res://heart_icon.gd" id="2_c1iva"]
+
+[node name="HeartIcon" type="TextureRect"]
+texture_filter = 3
+texture = ExtResource("1_0qe1d")
+stretch_mode = 2
+script = ExtResource("2_c1iva")

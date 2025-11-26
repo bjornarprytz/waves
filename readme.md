@@ -4,11 +4,7 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
-- Tutorial
-
-- Score board
-  - Rename High score
-  - Final score
+- Tourists jump out of the way instead of getting "killed"
 
 - Unify art style
 - Unify UI
