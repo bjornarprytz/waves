@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://c01jxtvblom5s"]
+
+[ext_resource type="Script" uid="uid://bc1e1gpxc7r0p" path="res://street_light.gd" id="1_1gtoh"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hmgps"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 4.513
+
+[sub_resource type="PrismMesh" id="PrismMesh_hmgps"]
+size = Vector3(0.2, 0.1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1gtoh"]
+size = Vector3(0.29296875, 1.1494141, 0.4658203)
+
+[node name="StreetLight" type="Node3D"]
+script = ExtResource("1_1gtoh")
+
+[node name="Pole" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_hmgps")
+
+[node name="Pole2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.29071, 0.18881917)
+mesh = SubResource("PrismMesh_hmgps")
+
+[node name="Light" type="SpotLight3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.8660253, 0, -0.8660253, -0.5, 0, 2.2414486, 0.24963295)
+visible = false
+spot_angle = 40.0
+spot_angle_attenuation = 0.17075515
+
+[node name="HitBox" type="Area3D" parent="."]
+monitoring = false
+
+[node name="Shape" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23590088, 0)
+shape = SubResource("BoxShape3D_1gtoh")

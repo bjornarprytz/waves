@@ -90,16 +90,16 @@ color_ramp = SubResource("Gradient_td361")
 
 [node name="HeadlightLeft" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9990514, 0.043549627, 0, -0.043549627, 0.9990514, -0.23118055, 0.25909972, -0.9178937)
-light_energy = 7.239
+light_energy = 5.0
 spot_range = 20.0
-spot_attenuation = 2.33
+spot_attenuation = 2.0
 spot_angle = 25.0
 
 [node name="HeadlightRight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9990514, 0.043549627, 0, -0.043549627, 0.9990514, 0.20929575, 0.25909972, -0.9178937)
-light_energy = 7.239
+light_energy = 5.0
 spot_range = 20.0
-spot_attenuation = 2.33
+spot_attenuation = 2.0
 spot_angle = 25.0
 
 [node name="HitBox" type="Area3D" parent="."]

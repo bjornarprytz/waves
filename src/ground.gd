@@ -13,6 +13,7 @@ var _rotation_dimmer := 0.0
 var building_spawner = preload("res://building.tscn")
 var tourist_spawner = preload("res://tourist.tscn")
 var taco_store_spawner = preload("res://taco_store.tscn")
+var street_light_spawner = preload("res://street_light.tscn")
 
 var left_building_range = Vector2(-6, -8)
 var right_building_range = Vector2(6, 8)
@@ -164,3 +165,20 @@ func _spawn_buildings():
 			bldg_instance.basis = b
 
 			bldg_instance.add_features(is_left)
+
+			if (d % 10 == 0):
+				var street_light_instance = street_light_spawner.instantiate() as StreetLight
+				add_child(street_light_instance)
+				
+				# Place on sidewalk instead of inside buildings
+				var sidewalk_y = sidewalk_offset if not is_left else -sidewalk_offset
+				street_light_instance.position = Vector3(x, sidewalk_y, z)
+				
+				var inward_rotation = PI / 2 if not is_left else -PI / 2
+
+				# Rotate 90 degrees inward from building basis
+				var rotated_basis = b.rotated(outward, inward_rotation)
+				street_light_instance.basis = rotated_basis
+				
+				if (d > 170 && d < 220):
+					street_light_instance.turn_on()

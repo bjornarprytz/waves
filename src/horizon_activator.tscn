@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://oawuimxc2024"]
+
+[ext_resource type="Script" uid="uid://bw3uv5bmmpkw0" path="res://horizon_activator.gd" id="1_0g1yt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yaehf"]
+size = Vector3(20.881836, 8.505859, 1)
+
+[node name="HorizonActivator" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
+script = ExtResource("1_0g1yt")
+
+[node name="Shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5001507, -0.28876114)
+shape = SubResource("BoxShape3D_yaehf")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

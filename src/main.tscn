@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=29 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://oyfamr18wj3p" path="res://aurora.tscn" id="5_aurora"]
 [ext_resource type="PackedScene" uid="uid://dljkuhk64w3qg" path="res://stats_ui.tscn" id="6_efxa6"]
 [ext_resource type="PackedScene" uid="uid://7wf22o12pssd" path="res://mountain.tscn" id="7_272bh"]
-[ext_resource type="AudioStream" uid="uid://dntxq22lnlcgt" path="res://assets/sound/bossfightfeeling - 02.04.2023, 12.26.wav" id="8_5vw27"]
+[ext_resource type="AudioStream" uid="uid://bbrf2nro7rnmw" path="res://assets/sound/tourist.wave.wav" id="8_074og"]
 [ext_resource type="Shader" uid="uid://b7mfuslajspmy" path="res://moon.gdshader" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://duqsj6w7ve83k" path="res://tourist_grinder.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://b15ev0eotrj5" path="res://tourist_activator.tscn" id="10_4c57u"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://db20tkgjyebfu" path="res://tutorial_key.gd" id="14_2cqfq"]
 [ext_resource type="Texture2D" uid="uid://bxj4hhwt2blnj" path="res://assets/img/key-SPACE.png" id="14_vivmo"]
 [ext_resource type="Texture2D" uid="uid://bdherahvf8a4r" path="res://assets/img/key-D.png" id="14_w48qg"]
+[ext_resource type="PackedScene" uid="uid://oawuimxc2024" path="res://horizon_activator.tscn" id="18_074og"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sky"]
 shader = ExtResource("4_sky")
@@ -164,7 +165,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.761629, 1.5240517, -78.00
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("8_5vw27")
+stream = ExtResource("8_074og")
 
 [node name="Light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.9251237, -0.09317341, 0.36805564, -4.132022e-08, 0.9694197, 0.24540883, -0.37966594, 0.22703351, -0.89683306, 238.6495, 106.64763, -565.4971)
@@ -213,3 +214,6 @@ transform = Transform3D(-9.298954e-08, 0.99997556, -0.006998672, 0.006998673, 0.
 mesh = SubResource("QuadMesh_vivmo")
 surface_material_override/0 = SubResource("StandardMaterial3D_vivmo")
 script = ExtResource("14_2cqfq")
+
+[node name="HorizonActivator" parent="." instance=ExtResource("18_074og")]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, -3.8082862, -42.69336)
