@@ -4,15 +4,16 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
 
 ## TODO
 
+- Name the game
+- Fix looping music
+
 - Unify art style
 - Unify UI
-- Name the game
 
 ### Nice to have
 
 - Menu screen
   - Phone: "Get some avocado for tacos!"
-- Street lights
 - Tourists
   - Visual variation
   - Animations
@@ -21,7 +22,6 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
   - Tourist bus
   - Polar bear
 - Lyd
-  - Annen musikk
   - Klara-lyd
 
 - Push release with `./push_release.sh`
