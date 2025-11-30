@@ -22,13 +22,13 @@ albedo_texture = ExtResource("3_y26aq")
 material = SubResource("StandardMaterial3D_8wm86")
 size = Vector2(5, 2)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_y26aq"]
-viewport_path = NodePath("SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_8wm86"]
+viewport_path = NodePath("Sign/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y26aq"]
 resource_local_to_scene = true
 transparency = 1
-albedo_texture = SubResource("ViewportTexture_y26aq")
+albedo_texture = SubResource("ViewportTexture_8wm86")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ohoyq"]
 material = SubResource("StandardMaterial3D_y26aq")
@@ -57,6 +57,30 @@ mesh = SubResource("QuadMesh_ochrr")
 [node name="Sign" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07655454, 1.9673061, 1.3111432)
 mesh = SubResource("QuadMesh_ohoyq")
+surface_material_override/0 = SubResource("StandardMaterial3D_y26aq")
+
+[node name="SubViewport" type="SubViewport" parent="Sign"]
+size = Vector2i(128, 32)
+
+[node name="ColorRect" type="ColorRect" parent="Sign/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sign" type="RichTextLabel" parent="Sign/SubViewport"]
+modulate = Color(1, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Butikk"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Spot" type="SpotLight3D" parent="."]
 transform = Transform3D(0.7438697, -0.14961089, -0.65136373, -0.6420332, 0.11070581, -0.7586419, 0.18561086, 0.98252785, -0.013704464, -5.021373, -1.9259756, 1.7332873)
@@ -69,29 +93,6 @@ transform = Transform3D(0.07405846, 0.7737276, 0.6291749, 0.005690121, 0.6305691
 light_energy = 10.0
 spot_range = 10.0
 spot_angle = 25.0
-
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(128, 32)
-
-[node name="ColorRect" type="ColorRect" parent="SubViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Sign" type="RichTextLabel" parent="SubViewport"]
-modulate = Color(1, 0, 0, 1)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Butikk"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Door" parent="." instance=ExtResource("4_8wm86")]
 unique_name_in_owner = true
