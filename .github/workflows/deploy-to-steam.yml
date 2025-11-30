@@ -7,7 +7,7 @@ on:
       - "steam*"
 
 env:
-  GAME_NAME: tromso-burrito-run
+  GAME_NAME: tromso-taco-run
   PROJECT_PATH: "./src/"
   GODOT_VERSION: 4.5-stable
 

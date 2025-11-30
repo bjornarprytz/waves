@@ -1,6 +1,6 @@
 # Tromsø Burrito Run: Tourist Slalom
 
-game on itch.io: [link](https://thewarlock.itch.io/tromso-burrito-run)
+game on itch.io: [link](https://thewarlock.itch.io/tromso-taco-run)
 
 ## TODO
 
