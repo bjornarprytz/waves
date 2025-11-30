@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://2yxs0eqay0a2"]
 
 [ext_resource type="Script" uid="uid://s8nhae4eecy3" path="res://tourist.gd" id="1_1jonp"]
-[ext_resource type="Texture2D" uid="uid://cum7qjtpjoy3i" path="res://assets/img/tourist-head-1.png" id="2_1jonp"]
-[ext_resource type="Texture2D" uid="uid://cq11ogq1gxkbw" path="res://assets/img/tourist-body-1.png" id="3_5njhx"]
+[ext_resource type="Texture2D" uid="uid://cb4038v7nrf4u" path="res://assets/img/tourist-head-back-1.png" id="2_5njhx"]
+[ext_resource type="Texture2D" uid="uid://co7rcn27wirqt" path="res://assets/img/tourist-back-1.png" id="3_av001"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_5njhx"]
 size = Vector3(0.04, 0.13, 0.02)
@@ -10,7 +10,7 @@ size = Vector3(0.04, 0.13, 0.02)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vkp31"]
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("2_1jonp")
+albedo_texture = ExtResource("2_5njhx")
 
 [sub_resource type="QuadMesh" id="QuadMesh_d4pc4"]
 lightmap_size_hint = Vector2i(7, 12)
@@ -20,7 +20,8 @@ size = Vector2(0.5, 0.25)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_av001"]
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("3_5njhx")
+albedo_texture = ExtResource("3_av001")
+stencil_flags = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_646cv"]
 lightmap_size_hint = Vector2i(7, 12)

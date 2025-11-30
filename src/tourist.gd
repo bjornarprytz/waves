@@ -1,6 +1,12 @@
 class_name Tourist
 extends Node3D
 
+var back_body = [preload("res://assets/img/tourist-back-1.png")]
+var back_head = [preload("res://assets/img/tourist-head-back-1.png")]
+
+var front_body = [preload("res://assets/img/tourist-body-1.png")]
+var front_head = [preload("res://assets/img/tourist-head-1.png")]
+
 @onready var handle: Node3D = %Handle
 
 @onready var head: MeshInstance3D = %Head
@@ -13,12 +19,35 @@ var is_left_side: bool = false
 var walk_tween: Tween
 
 var stumble_target_x: float = randf_range(.5, 5.5)
+var body_texture: CompressedTexture2D
+var head_texture: CompressedTexture2D
+
+func _ready() -> void:
+	var front = randf() < .69
+
+	if (front):
+		head_texture = front_head.pick_random()
+		body_texture = front_body.pick_random()
+	else:
+		head_texture = back_head.pick_random()
+		body_texture = back_body.pick_random()
+
+
+func _set_material_texture(mesh_instance: MeshInstance3D, texture: Texture2D, color: Color, flip: bool) -> void:
+	var mat = mesh_instance.get_surface_override_material(0)
+	if mat == null:
+		mat = mesh_instance.mesh.surface_get_material(0)
+		mat = mat.duplicate(true) as StandardMaterial3D
+		mesh_instance.set_surface_override_material(0, mat)
+	mat.albedo_texture = texture
+	mat.albedo_color = color
+	if flip:
+		mat.uv1_scale = Vector3(-1.0, 1.0, 1.0) # Flip the texture vertically if needed
 
 func tint(color: Color) -> void:
-	for texture in [head, body] as Array[MeshInstance3D]:
-		var mat = texture.mesh.surface_get_material(0).duplicate() as StandardMaterial3D
-		mat.albedo_color = color
-		texture.set_surface_override_material(0, mat)
+	var flip = randf() < 0.5
+	_set_material_texture(body, body_texture, color, flip)
+	_set_material_texture(head, head_texture, color, flip)
 
 func start_stumbling(delay: float = 0.0) -> void:
 	if is_left_side:

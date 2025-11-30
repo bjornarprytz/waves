@@ -4,14 +4,11 @@ game on itch.io: [link](https://thewarlock.itch.io/tromso-taco-run)
 
 ## TODO
 
-- Unify art style
-
 ### Nice to have
 
 - Menu screen
   - Phone: "Get some avocado for tacos!"
 - Tourists
-  - Visual variation
   - Animations
     - Take pictures of aurora
 - Other obstacles

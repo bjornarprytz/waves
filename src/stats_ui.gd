@@ -19,9 +19,9 @@ func update(game: Game):
 	await create("Longest Streak", str(game.longest_streak), false, true)
 	await create("Swerve", str(int(game.car_movement)), true, true)
 	await create("Distance Traveled", str(int(game.distance_traveled)), false, true)
-	await create("Honks", str(game.honks), true, false, "-25 points each")
-	await create("Houses Bothered", str(game.houses_startled), false, false, "-10 points each")
-	await create("People Hurt", str(game.tourists_hit), true, false, "-200 points each")
+	await create("Honks", str(game.honks), true, false, "-1 point each")
+	await create("Houses Bothered", str(game.houses_startled), false, false, "-5 points each")
+	await create("People Hurt", str(game.tourists_hit), true, false, "-100 points each")
 	var final_score = calc_score(game)
 	await create("Final Score", str(final_score), false, true)
 
@@ -31,9 +31,9 @@ func calc_score(game: Game) -> int:
 	score += int(game.car_movement)
 	score += game.longest_streak
 	score += int(game.distance_traveled)
-	score -= game.houses_startled * 10
-	score -= game.honks * 25
-	score -= game.tourists_hit * 200
+	score -= game.houses_startled * 5
+	score -= game.honks
+	score -= game.tourists_hit * 100
 	if (game.taco_acquired):
 		score += 1000
 	return max(score, 0)
