@@ -1,0 +1,45 @@
+name: Push to Itch.io
+
+on:
+  workflow_call:
+
+env:
+  ITCH_USER: thewarlock
+  ITCH_GAME: tromso-burrito-run
+
+jobs:
+  push-to-itch:
+    name: Push to Itch.io
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [web]
+    steps:
+      - name: Download Artifact (${{ matrix.platform }})
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ITCH_GAME }}.${{ github.ref_name }}.${{ matrix.platform }}
+
+      - name: Download Butler
+        run: |
+          mkdir -p tools
+          cd tools
+          BUTLER_VERSION=$(curl -s https://api.github.com/repos/itchio/butler/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
+          curl -L -o butler.zip "https://github.com/itchio/butler/releases/download/${BUTLER_VERSION}/butler-linux-amd64.zip"
+          unzip butler.zip
+          chmod +x butler
+          ./butler -V
+
+      - name: Push to Itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/}"
+          if [ -z "$VERSION" ] || [ "$VERSION" = "$GITHUB_REF" ]; then
+            VERSION="${GITHUB_SHA::7}"
+          fi
+          
+          ./tools/butler push \
+            . \
+            ${{ env.ITCH_USER }}/${{ env.ITCH_GAME }}:${{ matrix.platform }} \
+            --userversion "$VERSION"
