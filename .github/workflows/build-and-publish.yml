@@ -49,14 +49,24 @@ jobs:
           path: ${{ steps.export.outputs.build_directory }}/Web
 
   itch-io-upload:
-    name: Push to Itch.io
+    name: Upload to Itch.io
+    needs: [export-game]
     runs-on: ubuntu-latest
-    uses: bjornarprytz/butler-publish-itchio-action@master
-    env:
-      BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
-      CHANNEL: ${{ matrix.platform }}
-      ITCH_GAME: ${{ env.ITCH_GAME }}
-      ITCH_USER: ${{ env.ITCH_USER }}
-      PACKAGE: .
-      VERSION: ${{ github.ref_name }}
+    strategy:
+      matrix:
+        platform: [web] # Other options: windows, mac, linux
+    steps:
+      - name: Download Artifact (${{ matrix.platform }})
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.GAME_NAME }}.${{ github.ref_name }}.${{ matrix.platform }}
+      - name: Butler Upload
+        uses: bjornarprytz/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          CHANNEL: ${{ matrix.platform }}
+          ITCH_GAME: ${{ env.GAME_NAME }}
+          ITCH_USER: ${{ env.ITCHIO_USERNAME }}
+          PACKAGE: .
+          VERSION: ${{ github.ref_name }}
     
