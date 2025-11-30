@@ -35,7 +35,7 @@ project/assembly_name="waves"
 [gui]
 
 timers/tooltip_delay_sec=0.01
-timers/tooltip_delay_sec.editor_hint=0.01
+timers/tooltip_delay_sec.editor_hint=1.0
 theme/custom="res://global_theme.tres"
 
 [importer_defaults]

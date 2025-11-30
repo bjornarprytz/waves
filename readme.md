@@ -5,7 +5,6 @@ game on itch.io: [link](https://thewarlock.itch.io/tromso-taco-run)
 ## TODO
 
 - Unify art style
-- Unify UI
 
 ### Nice to have
 

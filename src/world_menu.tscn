@@ -30,7 +30,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ycdy4")
 
 [node name="SubViewport" type="SubViewport" parent="WorldMenu"]
 unique_name_in_owner = true
-size = Vector2i(200, 92)
+size = Vector2i(200, 96)
 
 [node name="MainMenu" parent="WorldMenu/SubViewport" instance=ExtResource("2_w7mvi")]
 

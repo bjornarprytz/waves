@@ -14,10 +14,16 @@ script = ExtResource("1_qh3q6")
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Layout" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="Layout"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
 mouse_filter = 2
 
 [node name="Header" type="RichTextLabel" parent="Layout"]
@@ -28,7 +34,7 @@ text = "HEADER"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Control" type="Control" parent="Layout"]
+[node name="Control2" type="Control" parent="Layout"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -40,3 +46,8 @@ mouse_filter = 2
 text = "VALUE"
 fit_content = true
 autowrap_mode = 0
+
+[node name="Control3" type="Control" parent="Layout"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+mouse_filter = 2

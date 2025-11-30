@@ -37,9 +37,17 @@ size_flags_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="Entries/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="Result" type="RichTextLabel" parent="Entries/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Entries/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Entries/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Result" type="RichTextLabel" parent="Entries/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[wave freq=1.69]Prison sentence acquired :("
@@ -47,6 +55,10 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="Entries/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
 
 [node name="EntryContainer" type="VBoxContainer" parent="Entries/VBoxContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true

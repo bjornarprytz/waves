@@ -1,9 +1,11 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bhttketftlysp"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bhttketftlysp"]
 
+[ext_resource type="FontFile" uid="uid://r2jlhhxcd4kl" path="res://assets/fonts/Titan_One/TitanOne-Regular.ttf" id="1_3m3sy"]
 [ext_resource type="Texture2D" uid="uid://b3j5t5dtouj45" path="res://assets/panel-texture.png" id="1_hanp0"]
 [ext_resource type="FontFile" uid="uid://vf6yvj2lvqpc" path="res://assets/fonts/Fira_Code/static/FiraCode-Bold.ttf" id="2_hmq0m"]
 [ext_resource type="FontFile" uid="uid://kc4hnm1j4fxk" path="res://assets/fonts/Fira_Code/static/FiraCode-Medium.ttf" id="3_swvbi"]
 [ext_resource type="FontFile" uid="uid://b5skvr8ealnht" path="res://assets/fonts/Bona_Nova_SC/BonaNovaSC-Bold.ttf" id="4_hijak"]
+[ext_resource type="FontFile" uid="uid://b4ggt73pnuilk" path="res://assets/fonts/Coming_Soon/ComingSoon-Regular.ttf" id="5_0lf1r"]
 [ext_resource type="FontFile" uid="uid://bb122o3gnfkmh" path="res://assets/fonts/Bona_Nova_SC/BonaNovaSC-Italic.ttf" id="5_x5u83"]
 [ext_resource type="FontFile" uid="uid://dcf1hls2gfcfc" path="res://assets/fonts/Bona_Nova_SC/BonaNovaSC-Regular.ttf" id="6_m0kks"]
 
@@ -23,12 +25,13 @@ texture_margin_bottom = 9.0
 
 [resource]
 ActionButton/base_type = &"Button"
+ActionButton/fonts/font = ExtResource("1_3m3sy")
 ActionButton/styles/normal = SubResource("StyleBoxFlat_vp42j")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_a20gn")
 RichTextLabel/font_sizes/normal_font_size = 24
 RichTextLabel/fonts/bold_font = ExtResource("2_hmq0m")
 RichTextLabel/fonts/mono_font = ExtResource("3_swvbi")
-RichTextLabel/fonts/normal_font = ExtResource("3_swvbi")
+RichTextLabel/fonts/normal_font = ExtResource("5_0lf1r")
 Title/base_type = &"RichTextLabel"
 Title/font_sizes/bold_font_size = 32
 Title/font_sizes/italics_font_size = 32
