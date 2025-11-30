@@ -4,8 +4,6 @@ game on itch.io: [link](https://thewarlock.itch.io/tromso-burrito-run)
 
 ## TODO
 
-- Fix looping music
-
 - Unify art style
 - Unify UI
 

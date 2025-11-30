@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dljkuhk64w3qg" path="res://stats_ui.tscn" id="6_efxa6"]
 [ext_resource type="PackedScene" uid="uid://7wf22o12pssd" path="res://mountain.tscn" id="7_272bh"]
 [ext_resource type="FontFile" uid="uid://cxxy7as46orgn" path="res://assets/fonts/Honk/Honk-Regular-VariableFont_MORF,SHLN.ttf" id="7_cegan"]
-[ext_resource type="AudioStream" uid="uid://bbrf2nro7rnmw" path="res://assets/sound/tourist.wave.wav" id="8_074og"]
 [ext_resource type="Shader" uid="uid://b7mfuslajspmy" path="res://moon.gdshader" id="8_kek77"]
+[ext_resource type="AudioStream" uid="uid://u3mmbxcin3kb" path="res://assets/sound/tourist.wave.wav" id="9_cegan"]
 [ext_resource type="PackedScene" uid="uid://duqsj6w7ve83k" path="res://tourist_grinder.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://b15ev0eotrj5" path="res://tourist_activator.tscn" id="10_4c57u"]
 [ext_resource type="Texture2D" uid="uid://dhr3dkqio2smy" path="res://assets/img/key-A.png" id="13_w48qg"]
@@ -202,7 +202,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.761629, 1.5240517, -78.00
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("8_074og")
+stream = ExtResource("9_cegan")
 autoplay = true
 
 [node name="Light" type="DirectionalLight3D" parent="."]
