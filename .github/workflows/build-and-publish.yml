@@ -49,7 +49,14 @@ jobs:
           path: ${{ steps.export.outputs.build_directory }}/Web
 
   itch-io-upload:
-    name: Upload to Itch.io
-    needs: [export-game]
-    uses: ./.github/workflows/push-to-itch.yml
-    secrets: inherit
+    name: Push to Itch.io
+    runs-on: ubuntu-latest
+    uses: bjornarprytz/butler-publish-itchio-action@master
+    env:
+      BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+      CHANNEL: ${{ matrix.platform }}
+      ITCH_GAME: ${{ env.ITCH_GAME }}
+      ITCH_USER: ${{ env.ITCH_USER }}
+      PACKAGE: .
+      VERSION: ${{ github.ref_name }}
+    

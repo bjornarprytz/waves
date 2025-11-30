@@ -171,14 +171,14 @@ offset_bottom = 40.0
 [node name="Title" type="RichTextLabel" parent="CanvasLayer/MarginContainer/Control/GameTitle"]
 modulate = Color(0.03137255, 0.6392157, 0.13333334, 1)
 layout_mode = 0
-offset_left = 669.0
+offset_left = 706.0
 offset_top = 6.0
-offset_right = 1795.0
+offset_right = 1832.0
 offset_bottom = 163.0
 scale = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = ExtResource("7_cegan")
 theme_override_font_sizes/normal_font_size = 128
-text = "Tromsø Burrito Run:"
+text = "Tromsø Taco Run:"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
