@@ -25,7 +25,8 @@ jobs:
           mkdir -p tools
           cd tools
           BUTLER_VERSION=$(curl -s https://api.github.com/repos/itchio/butler/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
-          curl -L -o butler.zip "https://github.com/itchio/butler/releases/download/${BUTLER_VERSION}/butler-linux-amd64.zip"
+          echo "Latest Butler version: $BUTLER_VERSION"
+          curl -L -o butler.zip "https://github.com/itchio/butler/archive/refs/tags/${BUTLER_VERSION}.zip"
           unzip butler.zip
           chmod +x butler
           ./butler -V
