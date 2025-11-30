@@ -17,6 +17,7 @@ var _heart_is_flashing = false
 @onready var stats_ui: StatsUI = %Stats
 @onready var main_menu: WorldMenu = %WorldMenu
 @onready var lives_container: HBoxContainer = %Lives
+@onready var game_title: Control = %GameTitle
 
 @onready var key_a: TutorialKey = %KeyA
 @onready var key_space: TutorialKey = %KeySPACE
@@ -85,7 +86,6 @@ func _physics_process(delta: float) -> void:
 		difficulty_timer = 0.0
 		var mod = [_increase_group_size, _increase_speed, _increase_spawn_rate].pick_random()
 		mod.call()
-		print("Increased difficulty!")
 
 func _increase_group_size():
 	ground.tourist_max_group_size += 1
@@ -150,6 +150,7 @@ func _on_start_game(settings: MainMenu.Settings) -> void:
 	_reset_stats()
 	
 	main_menu.hide()
+	game_title.hide()
 	main_menu.process_mode = Node.PROCESS_MODE_DISABLED
 	canvas_layer.show()
 	if (settings.game_length >= 0):
@@ -160,7 +161,6 @@ func _on_start_game(settings: MainMenu.Settings) -> void:
 	car.process_mode = Node.PROCESS_MODE_INHERIT
 
 	lives = settings.starting_lives
-	music.play()
 	
 	var move_camera_tween = create_tween()
 	move_camera_tween.set_parallel()

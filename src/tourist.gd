@@ -44,7 +44,6 @@ func walk(x: float, duration: float):
 func jump_away(car: Car) -> void:
 	if (walk_tween):
 		walk_tween.kill()
-		print("Aborted walk tween for jump_away")
 
 	hit_box.set_deferred("monitorable", false)
 	sweat.visible = true
@@ -88,7 +87,6 @@ func jump_away(car: Car) -> void:
 func flee(car: Car, fear_factor: float = 0.69) -> void:
 	if (walk_tween):
 		walk_tween.kill()
-		print("Aborted walk tween for flee")
 
 
 	sweat.visible = true

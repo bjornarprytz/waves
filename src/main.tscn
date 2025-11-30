@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=30 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://oyfamr18wj3p" path="res://aurora.tscn" id="5_aurora"]
 [ext_resource type="PackedScene" uid="uid://dljkuhk64w3qg" path="res://stats_ui.tscn" id="6_efxa6"]
 [ext_resource type="PackedScene" uid="uid://7wf22o12pssd" path="res://mountain.tscn" id="7_272bh"]
+[ext_resource type="FontFile" uid="uid://cxxy7as46orgn" path="res://assets/fonts/Honk/Honk-Regular-VariableFont_MORF,SHLN.ttf" id="7_cegan"]
 [ext_resource type="AudioStream" uid="uid://bbrf2nro7rnmw" path="res://assets/sound/tourist.wave.wav" id="8_074og"]
 [ext_resource type="Shader" uid="uid://b7mfuslajspmy" path="res://moon.gdshader" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://duqsj6w7ve83k" path="res://tourist_grinder.tscn" id="9_kek77"]
@@ -101,7 +102,6 @@ transform = Transform3D(2000, 0, 0, 0, 76.95932, 171.67029, 0, -128.75272, 102.6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -109,6 +109,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -116,6 +117,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Control" type="Control" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Judgement" type="RichTextLabel" parent="CanvasLayer/MarginContainer/Control"]
 unique_name_in_owner = true
@@ -160,12 +162,48 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="GameTitle" type="Control" parent="CanvasLayer/MarginContainer/Control"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/MarginContainer/Control/GameTitle"]
+modulate = Color(0.03137255, 0.6392157, 0.13333334, 1)
+layout_mode = 0
+offset_left = 669.0
+offset_top = 6.0
+offset_right = 1795.0
+offset_bottom = 163.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("7_cegan")
+theme_override_font_sizes/normal_font_size = 128
+text = "Tromsø Burrito Run:"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="SubTitle" type="RichTextLabel" parent="CanvasLayer/MarginContainer/Control/GameTitle"]
+layout_mode = 0
+offset_left = 933.0
+offset_top = 68.0
+offset_right = 1528.0
+offset_bottom = 186.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("7_cegan")
+theme_override_font_sizes/normal_font_size = 96
+text = "Tourist Slalom"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
 [node name="Mountain" parent="." instance=ExtResource("7_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.761629, 1.5240517, -78.004196)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("8_074og")
+autoplay = true
 
 [node name="Light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.9251237, -0.09317341, 0.36805564, -4.132022e-08, 0.9694197, 0.24540883, -0.37966594, 0.22703351, -0.89683306, 238.6495, 106.64763, -565.4971)

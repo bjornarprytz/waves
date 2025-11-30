@@ -1,10 +1,9 @@
-# waves
+# Tromsø Burrito Run: Tourist Slalom
 
-game on itch.io: [link](https://thewarlock.itch.io/waves)
+game on itch.io: [link](https://thewarlock.itch.io/tromso-burrito-run)
 
 ## TODO
 
-- Name the game
 - Fix looping music
 
 - Unify art style
@@ -25,13 +24,6 @@ game on itch.io: [link](https://thewarlock.itch.io/waves)
   - Klara-lyd
 
 - Push release with `./push_release.sh`
-
-- Add attribution:
-  - Aurora Borealis shader: [Miskatonic studio](https://godotshaders.com/shader/aurora-borealis/)
-  - Car: [GGBotNet](https://ggbot.itch.io/)
-  - Tromsdalstinden picture: [Asbjørn Floden](https://www.flickr.com/photos/asbjorn_floden/7850098520)
-  - Honk: Sound Effect by <a href="https://pixabay.com/users/floraphonic-38928062/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=189855">floraphonic</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=189855">Pixabay</a>
-  - Taco icon: <a href="https://www.flaticon.com/free-icons/taco" title="taco icons">Taco icons created by Freepik - Flaticon</a>
 
 ### Extra
 

@@ -11,17 +11,20 @@ extends Node3D
 var target_color: Color = Utility.random_color()
 var current_color: Color = Color.WHITE
 
+var _started = false
+
 func _ready() -> void:
 	for w in windows:
 		w.turn_on_light()
-	
-
+	_started = true;
 # Change target color every few seconds
 
 var color_change_timer: float = 0.0
 var color_change_interval: float = 1.0
 
 func _process(delta: float) -> void:
+	if (!_started):
+		return
 	current_color = current_color.lerp(target_color, delta * 10.0)
 	
 	color_change_timer += delta

@@ -22,9 +22,6 @@ albedo_texture = ExtResource("3_y26aq")
 material = SubResource("StandardMaterial3D_8wm86")
 size = Vector2(5, 2)
 
-[sub_resource type="QuadMesh" id="QuadMesh_ohoyq"]
-size = Vector2(4.22, 1)
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_y26aq"]
 viewport_path = NodePath("SubViewport")
 
@@ -32,6 +29,10 @@ viewport_path = NodePath("SubViewport")
 resource_local_to_scene = true
 transparency = 1
 albedo_texture = SubResource("ViewportTexture_y26aq")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ohoyq"]
+material = SubResource("StandardMaterial3D_y26aq")
+size = Vector2(4.22, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8wm86"]
 size = Vector3(10, 5, 10)
@@ -56,7 +57,6 @@ mesh = SubResource("QuadMesh_ochrr")
 [node name="Sign" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07655454, 1.9673061, 1.3111432)
 mesh = SubResource("QuadMesh_ohoyq")
-surface_material_override/0 = SubResource("StandardMaterial3D_y26aq")
 
 [node name="Spot" type="SpotLight3D" parent="."]
 transform = Transform3D(0.7438697, -0.14961089, -0.65136373, -0.6420332, 0.11070581, -0.7586419, 0.18561086, 0.98252785, -0.013704464, -5.021373, -1.9259756, 1.7332873)
@@ -105,7 +105,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.363889, 0.67881227, 0.49023
 
 [node name="HitBox" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+[node name="Shape" type="CollisionShape3D" parent="HitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.3531294)
 shape = SubResource("BoxShape3D_8wm86")
 
