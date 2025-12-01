@@ -102,20 +102,21 @@ func _spawn_tourist():
 	# Compensate for ground rotation to keep spawn at fixed world position
 	var local_angle_rad = deg_to_rad(world_spawn_angle_deg) + current_rotation
 	
+	# Cache trig calculations
+	var cos_angle = cos(local_angle_rad)
+	var sin_angle = sin(local_angle_rad)
+	var radius = self.mesh.top_radius
+	
 	var target_x: float = 0.0
 	var group_color = Utility.random_color()
 	for i in range(randi() % tourist_max_group_size + 1):
 		var is_left_side = randf() < 0.5
-		var base_y = 0.0
-		if is_left_side:
-			base_y = - sidewalk_offset
-		else:
-			base_y = sidewalk_offset
+		var base_y = -sidewalk_offset if is_left_side else sidewalk_offset
 		
 		var tourist_instance = tourist_spawner.instantiate() as Tourist
 		
-		var x = cos(local_angle_rad) * self.mesh.top_radius
-		var z = sin(local_angle_rad) * self.mesh.top_radius
+		var x = cos_angle * radius
+		var z = sin_angle * radius
 		var y = base_y + randf_range(-.069, .069)
 		
 		add_child(tourist_instance)
@@ -138,36 +139,29 @@ func _spawn_tourist():
 		await get_tree().process_frame
 	
 func _spawn_buildings():
+	var radius = self.mesh.top_radius
 	for d in range(360):
 		d = (d + 150) % 360
+		var angle_rad = deg_to_rad(d)
+		var cos_angle = cos(angle_rad)
+		var sin_angle = sin(angle_rad)
+		var x = cos_angle * radius
+		var z = sin_angle * radius
+		
+		# Calculate basis once for this angle
+		var outward = Vector3(x, 0, z).normalized()
+		var forward = Vector3.UP.cross(outward).normalized()
+		var right = outward.cross(forward).normalized()
+		var b = Basis(right, outward, -forward)
+		
 		for is_left in [true, false]:
 			# Spawn buildings on either side of the road
 			var bldg_instance = building_spawner.instantiate() as Building
-			var placement = 0.0
-			if is_left:
-				placement = randf_range(left_building_range.x, left_building_range.y)
-			else:
-				placement = randf_range(right_building_range.x, right_building_range.y)
+			var placement = randf_range(left_building_range.x, left_building_range.y) if is_left else randf_range(right_building_range.x, right_building_range.y)
 			
-			var angle_rad = deg_to_rad(d)
-			var x = cos(angle_rad) * (self.mesh.top_radius)
-			var z = sin(angle_rad) * (self.mesh.top_radius)
-			var y = placement
 			add_child(bldg_instance)
-			bldg_instance.position = Vector3(x, y, z)
-
-			# Rotate building to stand upright and face away from center
-			# The outward direction from center
-			var outward = Vector3(x, 0, z).normalized()
-			# Building's up should be the outward direction
-			# Building's forward should point along the wheel's tangent
-			var forward = Vector3.UP.cross(outward).normalized()
-			var right = outward.cross(forward).normalized()
-			
-			# Create basis: X=right, Y=up(outward), Z=-forward
-			var b = Basis(right, outward, -forward)
+			bldg_instance.position = Vector3(x, placement, z)
 			bldg_instance.basis = b
-
 			bldg_instance.add_features(is_left)
 
 			if (d % 10 == 0):
@@ -186,5 +180,5 @@ func _spawn_buildings():
 				
 				if (d > 170 && d < 220):
 					street_light_instance.turn_on()
-		if ((d % 30) == 29):
+		if (d < 170 && d > 220 && d % 10 == 0):
 			await get_tree().process_frame
