@@ -153,3 +153,11 @@ func flee(car: Car, fear_factor: float = 0.69) -> void:
 func steps(x: float):
 	var v = pingpong(x * .69, .2)
 	handle.position.y = v
+
+func cleanup():
+	# Hide meshes to prevent material errors when freeing
+	body.visible = false
+	head.visible = false
+	# Clear material references
+	body.set_surface_override_material(0, null)
+	head.set_surface_override_material(0, null)
