@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://cx73vidme64cb"]
+[gd_scene load_steps=15 format=3 uid="uid://cx73vidme64cb"]
 
 [ext_resource type="Script" uid="uid://bpcjhu6mj43xa" path="res://taco_store.gd" id="1_ochrr"]
 [ext_resource type="Texture2D" uid="uid://cglac1jjyygjg" path="res://assets/img/husvegg.png" id="2_8wm86"]
 [ext_resource type="Texture2D" uid="uid://bpv03idijtwt7" path="res://assets/img/taco.png" id="3_y26aq"]
+[ext_resource type="FontFile" uid="uid://r2jlhhxcd4kl" path="res://assets/fonts/Titan_One/TitanOne-Regular.ttf" id="4_4sr7e"]
 [ext_resource type="PackedScene" uid="uid://dub4kkmxs8g6s" path="res://window.tscn" id="4_8wm86"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1gjg"]
@@ -28,7 +29,9 @@ viewport_path = NodePath("Sign/SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y26aq"]
 resource_local_to_scene = true
 transparency = 1
+shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_8wm86")
+disable_receive_shadows = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_ohoyq"]
 material = SubResource("StandardMaterial3D_y26aq")
@@ -76,6 +79,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_4sr7e")
 text = "Butikk"
 fit_content = true
 autowrap_mode = 0
