@@ -3,22 +3,21 @@ extends Node3D
 
 @onready var pane: MeshInstance3D = %Pane
 
-func change_hue(color: Color):
-	# Change the hue of the window pane material
-	var mat = pane.mesh.surface_get_material(0).duplicate() as StandardMaterial3D
+func _ready() -> void:
+	# Duplicate material so each window has independent instance parameters
+	var mat = pane.get_surface_override_material(0)
+	if mat == null:
+		mat = pane.mesh.surface_get_material(0)
+	if mat:
+		mat = mat.duplicate()
+		pane.set_surface_override_material(0, mat)
 
-	mat.albedo_color = color
-	pane.set_surface_override_material(0, mat)
-	
+func change_hue(color: Color):
+	# Use instance shader parameters instead of duplicating materials
+	pane.set_instance_shader_parameter("light_color", color)
 
 func turn_on_light() -> void:
-	# Set emission to true
-	var mat = pane.mesh.surface_get_material(0).duplicate() as StandardMaterial3D
-	mat.emission_enabled = true
-	pane.set_surface_override_material(0, mat)
+	pane.set_instance_shader_parameter("light_on", true)
 
 func turn_off_light() -> void:
-	# Set emission to false
-	var mat = pane.mesh.surface_get_material(0).duplicate() as StandardMaterial3D
-	mat.emission_enabled = false
-	pane.set_surface_override_material(0, mat)
+	pane.set_instance_shader_parameter("light_on", false)

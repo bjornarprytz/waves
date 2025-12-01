@@ -1,6 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dub4kkmxs8g6s"]
+[gd_scene load_steps=8 format=3 uid="uid://dub4kkmxs8g6s"]
 
 [ext_resource type="Script" uid="uid://cccjrxoor7ktv" path="res://window.gd" id="1_mvsta"]
+[ext_resource type="Shader" uid="uid://dpgqq3lv0j4aj" path="res://window_light.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pane"]
+render_priority = 0
+shader = ExtResource("2_shader")
+shader_parameter/base_color = Color(0.266575, 0.266575, 0.266575, 1)
+shader_parameter/emission_base = Color(0.458263, 0.250497, 0.072118, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3ebo7"]
+material = SubResource("ShaderMaterial_pane")
+size = Vector3(1, 1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ebo7"]
 albedo_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
@@ -8,11 +19,8 @@ emission = Color(0.45826262, 0.25049698, 0.07211808, 1)
 emission_energy_multiplier = 8.1
 disable_receive_shadows = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_3ebo7"]
-material = SubResource("StandardMaterial3D_3ebo7")
-size = Vector3(1, 1, 0.1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvsta"]
+albedo_color = Color(0.74138474, 0.7413847, 0.74138457, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hjewq"]
 material = SubResource("StandardMaterial3D_mvsta")

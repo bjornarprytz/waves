@@ -23,6 +23,10 @@ var body_texture: CompressedTexture2D
 var head_texture: CompressedTexture2D
 
 func _ready() -> void:
+	# Duplicate materials once per instance
+	_duplicate_material(body)
+	_duplicate_material(head)
+	
 	var front = randf() < .69
 
 	if (front):
@@ -31,23 +35,31 @@ func _ready() -> void:
 	else:
 		head_texture = back_head.pick_random()
 		body_texture = back_body.pick_random()
+	
+	# Set textures on duplicated materials
+	_set_texture(body, body_texture)
+	_set_texture(head, head_texture)
 
-
-func _set_material_texture(mesh_instance: MeshInstance3D, texture: Texture2D, color: Color, flip: bool) -> void:
+func _duplicate_material(mesh_instance: MeshInstance3D) -> void:
 	var mat = mesh_instance.get_surface_override_material(0)
 	if mat == null:
 		mat = mesh_instance.mesh.surface_get_material(0)
-		mat = mat.duplicate(true) as StandardMaterial3D
+	if mat:
+		mat = mat.duplicate()
 		mesh_instance.set_surface_override_material(0, mat)
-	mat.albedo_texture = texture
-	mat.albedo_color = color
-	if flip:
-		mat.uv1_scale = Vector3(-1.0, 1.0, 1.0) # Flip the texture vertically if needed
+
+func _set_texture(mesh_instance: MeshInstance3D, texture: Texture2D) -> void:
+	var mat = mesh_instance.get_surface_override_material(0)
+	if mat:
+		mat.set_shader_parameter("texture_albedo", texture)
 
 func tint(color: Color) -> void:
 	var flip = randf() < 0.5
-	_set_material_texture(body, body_texture, color, flip)
-	_set_material_texture(head, head_texture, color, flip)
+	# Use instance shader parameters instead of duplicating materials
+	body.set_instance_shader_parameter("tint_color", color)
+	body.set_instance_shader_parameter("flip_texture", flip)
+	head.set_instance_shader_parameter("tint_color", color)
+	head.set_instance_shader_parameter("flip_texture", flip)
 
 func start_stumbling(delay: float = 0.0) -> void:
 	if is_left_side:
