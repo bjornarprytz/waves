@@ -152,7 +152,7 @@ func _on_start_game(settings: MainMenu.Settings) -> void:
 	main_menu.process_mode = Node.PROCESS_MODE_DISABLED
 	canvas_layer.show()
 	if (settings.game_length >= 0):
-		ground.place_taco_store(220)
+		ground.place_taco_store(settings.game_length)
 	ground.start()
 	camera.reparent(camera_play_anchor)
 	
