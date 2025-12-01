@@ -5,6 +5,7 @@ class Settings:
 	## Between 
 	var game_length: int
 	var starting_lives: int = 3
+	var mode_name: String
 	
 	func _init(mode: String = "Endless", lives: int = 3) -> void:
 		# NOTE: car starts at 180 degrees
@@ -17,6 +18,7 @@ class Settings:
 				game_length = 300
 	
 		self.starting_lives = lives
+		self.mode_name = mode
 
 var modes = ["Short", "Long", "Endless"]
 

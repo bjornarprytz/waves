@@ -55,11 +55,15 @@ func _set_texture(mesh_instance: MeshInstance3D, texture: Texture2D) -> void:
 
 func tint(color: Color) -> void:
 	var flip = randf() < 0.5
-	# Use instance shader parameters instead of duplicating materials
-	body.set_instance_shader_parameter("tint_color", color)
-	body.set_instance_shader_parameter("flip_texture", flip)
-	head.set_instance_shader_parameter("tint_color", color)
-	head.set_instance_shader_parameter("flip_texture", flip)
+	# Set shader parameters on duplicated materials
+	var body_mat = body.get_surface_override_material(0)
+	var head_mat = head.get_surface_override_material(0)
+	if body_mat:
+		body_mat.set_shader_parameter("tint_color", color)
+		body_mat.set_shader_parameter("flip_texture", flip)
+	if head_mat:
+		head_mat.set_shader_parameter("tint_color", color)
+		head_mat.set_shader_parameter("flip_texture", flip)
 
 func start_stumbling(delay: float = 0.0) -> void:
 	if is_left_side:

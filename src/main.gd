@@ -18,6 +18,7 @@ var _heart_is_flashing = false
 @onready var main_menu: WorldMenu = %WorldMenu
 @onready var lives_container: HBoxContainer = %Lives
 @onready var game_title: Control = %GameTitle
+@onready var mode: RichTextLabel = %Mode
 
 @onready var key_a: TutorialKey = %KeyA
 @onready var key_space: TutorialKey = %KeySPACE
@@ -149,6 +150,7 @@ func _on_start_game(settings: MainMenu.Settings) -> void:
 	
 	main_menu.hide()
 	game_title.hide()
+	mode.text = settings.mode_name
 	main_menu.process_mode = Node.PROCESS_MODE_DISABLED
 	canvas_layer.show()
 	if (settings.game_length >= 0):
