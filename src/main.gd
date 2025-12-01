@@ -57,7 +57,6 @@ func _ready() -> void:
 	Events.honk_made.connect(_on_honk)
 	Events.tourist_hit.connect(_on_tourist_hit)
 	Events.car_movement.connect(_on_car_movement)
-	Events.distance_traveled.connect(_on_distance_traveled)
 	
 	Events.start_game.connect(_on_start_game)
 
@@ -102,6 +101,8 @@ func _on_game_over(result: bool):
 	game_started = false
 	taco_acquired = result
 
+	distance_traveled = ground.total_distance_traveled()
+
 	stats_ui.update(self)
 	stats_ui.show()
 	#stats_ui.modulate.a = 0.0
@@ -138,9 +139,6 @@ func _on_tourist_avoided(_tourist: Tourist):
 
 func _on_car_movement(change: float) -> void:
 	car_movement += abs(change)
-
-func _on_distance_traveled(distance: float) -> void:
-	distance_traveled += abs(distance)
 
 func _on_start_game(settings: MainMenu.Settings) -> void:
 	if (game_started):

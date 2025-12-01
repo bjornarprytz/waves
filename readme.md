@@ -4,6 +4,11 @@ game on itch.io: [link](https://thewarlock.itch.io/tromso-taco-run)
 
 ## TODO
 
+- [edit game](https://itch.io/game/edit/4019277)
+  - Make a nice cover image (630x500)
+  - Add screenshots (recommended: 3-5)
+  - Pick a genre
+
 ### Nice to have
 
 - Menu screen
@@ -18,17 +23,6 @@ game on itch.io: [link](https://thewarlock.itch.io/tromso-taco-run)
   - Klara-lyd
 
 - Push release with `./push_release.sh`
-
-### Extra
-
-- [edit game](https://itch.io/game/edit/4019277)
-  - Rename the game
-  - Write a short description
-  - Make a nice cover image (630x500)
-  - Add screenshots (recommended: 3-5)
-  - Pick a genre
-  - Add a tag or two
-  - Publish a devlog on instagram
 
 ### Meta
 

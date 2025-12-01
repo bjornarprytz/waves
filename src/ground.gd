@@ -26,6 +26,9 @@ var next_tourist_spawn: float = 0.0
 var current_rotation: float = 0.0 # Track ground rotation
 
 
+func total_distance_traveled() -> float:
+	return current_rotation / rads_per_meter
+
 func _ready() -> void:
 	assert(self.mesh.top_radius == self.mesh.bottom_radius)
 	
@@ -88,8 +91,6 @@ func _physics_process(delta: float) -> void:
 	if tourist_spawn_timer >= next_tourist_spawn:
 		_spawn_tourist()
 		_reset_tourist_timer()
-	
-	Events.distance_traveled.emit(rotation_delta / rads_per_meter)
 
 func _reset_tourist_timer():
 	next_tourist_spawn = tourist_frequency * randf_range(0.5, 1.5)
@@ -133,9 +134,12 @@ func _spawn_tourist():
 		
 		# Basis with Y-axis = outward, Z-axis = -forward, X-axis = right
 		tourist_instance.basis = Basis(right, outward, -forward)
+
+		await get_tree().process_frame
 	
 func _spawn_buildings():
 	for d in range(360):
+		d = (d + 150) % 360
 		for is_left in [true, false]:
 			# Spawn buildings on either side of the road
 			var bldg_instance = building_spawner.instantiate() as Building
@@ -182,3 +186,5 @@ func _spawn_buildings():
 				
 				if (d > 170 && d < 220):
 					street_light_instance.turn_on()
+		if ((d % 30) == 29):
+			await get_tree().process_frame
