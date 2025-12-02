@@ -204,7 +204,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -177.0
+offset_left = 42.0
+offset_top = -171.0
+offset_right = 42.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -221,17 +224,30 @@ grow_horizontal = 1
 grow_vertical = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/MarginContainer/Control/StartUI"]
+texture_filter = 3
 layout_mode = 0
-offset_left = 764.0
-offset_top = 11.0
-offset_right = 1118.0
-offset_bottom = 261.0
+offset_left = 721.0
+offset_right = 1170.0
+offset_bottom = 250.0
 
-[node name="TodoList" type="RichTextLabel" parent="CanvasLayer/MarginContainer/Control/StartUI/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/Control/StartUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/Control/StartUI/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainer/Control/StartUI/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="TodoList" type="RichTextLabel" parent="CanvasLayer/MarginContainer/Control/StartUI/PanelContainer/MarginContainer/VBoxContainer"]
+modulate = Color(0.16565639, 0.16565642, 0.16565639, 1)
+texture_filter = 3
 layout_mode = 2
 bbcode_enabled = true
-text = "1. Avoid hurting pedestrians
-2. Honk sparingly
+text = "1. Avoid hurting tourists
+2. Honking will wake the neighbours
 3. Get tacos for dinner!"
 fit_content = true
 autowrap_mode = 0
