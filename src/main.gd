@@ -5,7 +5,6 @@ var heart_spawner = preload("res://heart_icon.tscn")
 
 var _heart_is_flashing = false
 
-@onready var debug_label: RichTextLabel = %Debug
 @onready var canvas_layer: CanvasLayer = %CanvasLayer
 
 @onready var camera_pause_anchor: Node3D = %CameraPauseAnchor
@@ -14,8 +13,9 @@ var _heart_is_flashing = false
 
 @onready var music: AudioStreamPlayer = %Music
 
+@onready var tutorial: Node3D = %Tutorial
 @onready var stats_ui: StatsUI = %Stats
-@onready var main_menu: WorldMenu = %WorldMenu
+@onready var main_menu: Control = %StartUI
 @onready var lives_container: HBoxContainer = %Lives
 @onready var game_title: Control = %GameTitle
 @onready var mode: RichTextLabel = %Mode
@@ -47,9 +47,6 @@ var difficulty_interval := 5.69
 
 func restart():
 	get_tree().reload_current_scene()
-
-func _process(_delta: float) -> void:
-	debug_label.text = str(rad_to_deg(ground.current_rotation))
 
 func _ready() -> void:
 	Events.game_over.connect(_on_game_over)
@@ -149,6 +146,7 @@ func _on_start_game(settings: MainMenu.Settings) -> void:
 	_reset_stats()
 	
 	main_menu.hide()
+	tutorial.hide()
 	game_title.hide()
 	mode.text = settings.mode_name
 	main_menu.process_mode = Node.PROCESS_MODE_DISABLED
