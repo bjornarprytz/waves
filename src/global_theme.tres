@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=11 format=3 uid="uid://bhttketftlysp"]
 
 [ext_resource type="FontFile" uid="uid://r2jlhhxcd4kl" path="res://assets/fonts/Titan_One/TitanOne-Regular.ttf" id="1_3m3sy"]
-[ext_resource type="Texture2D" uid="uid://b3j5t5dtouj45" path="res://assets/panel-texture.png" id="1_hanp0"]
+[ext_resource type="Texture2D" uid="uid://3sy8hdjvcu5j" path="res://assets/panel-texture.png" id="1_hanp0"]
 [ext_resource type="FontFile" uid="uid://vf6yvj2lvqpc" path="res://assets/fonts/Fira_Code/static/FiraCode-Bold.ttf" id="2_hmq0m"]
 [ext_resource type="FontFile" uid="uid://kc4hnm1j4fxk" path="res://assets/fonts/Fira_Code/static/FiraCode-Medium.ttf" id="3_swvbi"]
 [ext_resource type="FontFile" uid="uid://b5skvr8ealnht" path="res://assets/fonts/Bona_Nova_SC/BonaNovaSC-Bold.ttf" id="4_hijak"]

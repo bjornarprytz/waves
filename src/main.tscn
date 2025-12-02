@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=32 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://cxxy7as46orgn" path="res://assets/fonts/Honk/Honk-Regular-VariableFont_MORF,SHLN.ttf" id="7_cegan"]
 [ext_resource type="Shader" uid="uid://b7mfuslajspmy" path="res://moon.gdshader" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://d1cjdsnxpim6t" path="res://main_menu.tscn" id="8_w48qg"]
+[ext_resource type="Texture2D" uid="uid://b3j5t5dtouj45" path="res://assets/note-texture.png" id="9_82xsv"]
 [ext_resource type="AudioStream" uid="uid://u3mmbxcin3kb" path="res://assets/sound/tourist.wave.wav" id="9_cegan"]
 [ext_resource type="PackedScene" uid="uid://duqsj6w7ve83k" path="res://tourist_grinder.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://b15ev0eotrj5" path="res://tourist_activator.tscn" id="10_4c57u"]
@@ -38,6 +39,13 @@ sky_custom_fov = 100.0
 ambient_light_source = 2
 ambient_light_color = Color(0, 0.1871664, 0.1465011, 1)
 ambient_light_energy = 0.01
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_getpj"]
+texture = ExtResource("9_82xsv")
+texture_margin_left = 9.0
+texture_margin_top = 9.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
 render_priority = 0
@@ -229,6 +237,7 @@ layout_mode = 0
 offset_left = 721.0
 offset_right = 1170.0
 offset_bottom = 250.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_getpj")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/Control/StartUI/PanelContainer"]
 layout_mode = 2
