@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqt6d5h2rvom4"]
+
+[ext_resource type="Script" uid="uid://ck3on0ucdgh7y" path="res://cooldown.gd" id="1_qhtrn"]
+
+[node name="Cooldown" type="ProgressBar"]
+offset_right = 191.0
+offset_bottom = 42.0
+show_percentage = false
+script = ExtResource("1_qhtrn")
+
+[node name="Message" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 40.0
+offset_top = 3.0
+offset_right = 151.0
+offset_bottom = 40.0
+text = "Honk refill"
+fit_content = true
+autowrap_mode = 0

@@ -13,7 +13,10 @@ const CAR_HORN = preload("uid://oaxmdv814w57")
 @onready var sound_source: AudioStreamPlayer3D = %SoundSource
 @onready var honk_aoe: Area3D = %HonkRange
 
-var _is_honking: bool = false
+var _honk_cooling_down: bool = false
+@export var honk_cooldown: float = 2.69
+
+var honk_timer: Timer
 
 var is_invincible: bool = false
 
@@ -35,6 +38,11 @@ var inertia := 0.0
 
 var acceleration := 10.0
 var deceleration := 5.69
+
+func _ready() -> void:
+	honk_timer = Timer.new()
+	add_child(honk_timer)
+	honk_timer.one_shot = true
 
 func _process(delta: float) -> void:
 	var left_pressed = Input.is_action_pressed("steer_left")
@@ -96,26 +104,32 @@ func _unhandled_input(event: InputEvent) -> void:
 		_honk()
 
 func _honk():
-	if (_is_honking):
+	if (_honk_cooling_down):
+		Events.honk_attempted.emit(honk_timer)
 		return
 	
 	
-	_is_honking = true
+	_honk_cooling_down = true
+	honk_timer.wait_time = honk_cooldown
+	honk_timer.start()
+
 	sound_source.stream = CAR_HORN
 	sound_source.play()
 	
 	honk_aoe.show()
 	var tween = create_tween()
 	tween.tween_property(honk_aoe, "scale", Vector3.ONE * honk_range, CAR_HORN.get_length())
+	tween.tween_callback(_hide_honk_area)
 	
 	Events.honk_made.emit()
-	await tween.finished
 	
+	await honk_timer.timeout
+	
+	_honk_cooling_down = false
+
+func _hide_honk_area():
 	honk_aoe.scale = Vector3.ONE
 	honk_aoe.hide()
-	
-	_is_honking = false
-	
 
 func _on_hit_box_area_entered(area: Area3D) -> void:
 	if area.owner is Tourist:

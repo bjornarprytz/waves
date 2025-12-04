@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cgrejd4v5ywd3"]
+[gd_scene load_steps=33 format=3 uid="uid://cgrejd4v5ywd3"]
 
 [ext_resource type="Script" uid="uid://b2lwj7ap00k72" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bccp5jxnm18cp" path="res://ground.tscn" id="2_0xm2m"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://u3mmbxcin3kb" path="res://assets/sound/tourist.wave.wav" id="9_cegan"]
 [ext_resource type="PackedScene" uid="uid://duqsj6w7ve83k" path="res://tourist_grinder.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://b15ev0eotrj5" path="res://tourist_activator.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://bqt6d5h2rvom4" path="res://cooldown.tscn" id="10_getpj"]
 [ext_resource type="Texture2D" uid="uid://dhr3dkqio2smy" path="res://assets/img/key-A.png" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://2yxs0eqay0a2" path="res://tourist.tscn" id="13_yaehf"]
 [ext_resource type="Script" uid="uid://db20tkgjyebfu" path="res://tutorial_key.gd" id="14_2cqfq"]
@@ -260,6 +261,21 @@ text = "1. Avoid hurting tourists
 3. Get tacos for dinner!"
 fit_content = true
 autowrap_mode = 0
+
+[node name="Cooldown" parent="CanvasLayer/MarginContainer/Control" instance=ExtResource("10_getpj")]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -95.5
+offset_top = -58.0
+offset_right = 95.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Mountain" parent="." instance=ExtResource("7_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.761629, 1.5240517, -78.004196)
